@@ -1,6 +1,6 @@
 {
   "name": "deno-lit-ts-starterkit-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Client of deno+lit+ts starterkit",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
