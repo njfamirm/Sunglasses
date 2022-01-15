@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "r": "npm-run-all run:*",
     "run:deno": "deno run --allow-read --allow-net src/index.ts"
