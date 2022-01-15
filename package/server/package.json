@@ -1,0 +1,16 @@
+{
+  "name": "deno-lit-ts-starterkit-server",
+  "version": "0.0.0",
+  "description": "Server of deno+lit+ts starterkit",
+  "main": "index.js",
+  "author": "Amir Najafi <njfamirm@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "r": "npm-run-all run:*",
+    "run:deno": "deno run --allow-read --allow-net src/index.ts"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
