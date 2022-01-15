@@ -1,6 +1,6 @@
 {
   "name": "deno-lit-ts-starterkit-server",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Server of deno+lit+ts starterkit",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
