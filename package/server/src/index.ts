@@ -20,11 +20,11 @@ router.get("/", async (ctx: Context) => {
   });
 });
 
-// serve favoicon.ico
+// serve favicon.ico
 router.get("/favicon.ico", async (ctx: Context) => {
-  await send(ctx, "/favicon.ico", {
+  await send(ctx, "/favicon.svg", {
     root: `${Deno.cwd()}/../client/public`,
-    index: "favicon.ico",
+    index: "favicon.svg",
   });
 });
 
