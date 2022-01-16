@@ -44,8 +44,8 @@ app.use(async (ctx, next) => {
 // page not found
 app.use((context) => {
   context.response.status = Status.NotFound;
-  context.response.body = `"${context.request.url}" not found`;
+  context.response.body = `'${context.request.url}' not found`;
 });
 
-info("serving on http://localhost:8000");
+info("Serving on http://localhost:8000");
 await app.listen({ port: 8000 });

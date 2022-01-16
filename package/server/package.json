@@ -1,5 +1,5 @@
 {
-  "name": "deno-lit-ts-starterkit-server",
+  "name": "deno-lit-typescript-starter-server",
   "version": "1.0.1",
   "description": "Server of deno+lit+ts starterkit",
   "main": "index.js",

@@ -1,0 +1,10 @@
+# Reference: https://eslint.org/docs/user-guide/configuring/ignoring-code
+
+# js and other extensions
+*.js
+*.mjs
+*.map
+*.d.ts
+
+# dependencies
+node_modules/
