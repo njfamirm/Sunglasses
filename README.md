@@ -62,11 +62,30 @@ Source https://github.com/njfamirm/deno-lit-typescript-starter.git
 '
 ```
 
+## Update
+
+First checkout ot new branch and pull starter to them
+
+```bash
+git checkout -b starter
+git remote add starter https://github.com/njfamirm/deno-lit-typescript-starter.git
+git pull starter main --allow-unrelated-histories
+```
+
+Second resolve conflicts [\*](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+
+```bash
+git checkout YOUR_BRANCH
+git merge starter
+git branch -d starter
+```
+
 ## Hint
 
 see A specification for adding human and machine readable meaning to commit messages on [Conventional Commits](https://www.conventionalcommits.org/en/about/)
 
-----------
+---
 
 ### Todo
+
 - [ ] Config eslint in Deno
