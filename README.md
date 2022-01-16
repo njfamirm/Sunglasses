@@ -65,3 +65,8 @@ Source https://github.com/njfamirm/deno-lit-typescript-starter.git
 ## Hint
 
 see A specification for adding human and machine readable meaning to commit messages on [Conventional Commits](https://www.conventionalcommits.org/en/about/)
+
+----------
+
+### Todo
+- [ ] Config eslint in Deno
