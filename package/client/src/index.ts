@@ -1,21 +1,27 @@
 import { css, html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
 
-@customElement('simple-greeting')
-export default class SimpleGreeting extends LitElement {
-  // Define scoped styles right with your component, in plain CSS
+import './components/header.ts';
+
+export default class Body extends LitElement {
   static styles = css`
-    :host {
-      color: blue;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   `;
 
-  // Declare reactive properties
-  @property()
-  name?: string = 'World';
-
-  // Render the UI as a function of component state
+  // eslint-disable-next-line class-methods-use-this
   render() {
-    return html`<p>Hello, ${this.name}!</p>`;
+    return html`
+    <end-h degree=1>Test</end-h>
+    <end-h degree=2>Test</end-h>
+    <end-h degree=3>Test</end-h>
+    <end-h degree=4>Test</end-h>
+    <end-h degree=5>Test</end-h>
+    <end-h degree=6>Test</end-h>
+    `;
   }
 }
+
+customElements.define('end-body', Body);
