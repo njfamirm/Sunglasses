@@ -1,7 +1,7 @@
 {
-  "name": "deno-lit-typescript-starter-server",
-  "version": "1.0.1",
-  "description": "Server of deno+lit+ts starterkit",
+  "name": "tweet-to-photo-server",
+  "version": "0.0.0",
+  "description": "Server of tweet-to-photo",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [

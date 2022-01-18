@@ -1,7 +1,7 @@
 {
-  "name": "deno-lit-ts-starterkit",
-  "version": "1.0.0",
-  "description": "Starter for using Deno & lit in Typescript with Monorepo software development strategy",
+  "name": "tweet-to-photo",
+  "version": "0.0.0",
+  "description": "Tweet to photo web app",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [
     "Amir Najafi <njfamirm@gmail.com>"

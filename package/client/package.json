@@ -1,7 +1,7 @@
 {
-  "name": "deno-lit-typescript-starter-client",
+  "name": "tweet-to-photo-client",
   "version": "1.0.1",
-  "description": "Client of deno+lit+ts starterkit",
+  "description": "Client of tweet-to-photo",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [
