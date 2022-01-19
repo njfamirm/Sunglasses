@@ -24,25 +24,15 @@ a package manager for JavaScript
 
 a tool for managing JavaScript projects with multiple packages.
 
+## Use template 
+
+[Template documention](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+
 ## Personalization
-
-### Clone remote
-
-```bash
-git clone https://github.com/njfamirm/deno-lit-typescript-starter.git YOUR_PROJECT_NAME
-```
-
-### Change remote
-
-```bash
-git remote set-url origin YOUR_REPOSITORY_PROJECT_LINK
-```
 
 ### package.json
 
 Personalization package.json & package/server/package.json & package/client/package.json<br />
-
-> _PS: Thank you for not removing my name from the contributors field in package.json (:_
 
 ### lerna.json
 
