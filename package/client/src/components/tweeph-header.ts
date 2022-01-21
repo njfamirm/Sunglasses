@@ -8,8 +8,9 @@ export default class Header extends LitElement {
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    width: 93vw;
-    padding: 10px 0;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 0 2%;
   }
 
   .logo-container {

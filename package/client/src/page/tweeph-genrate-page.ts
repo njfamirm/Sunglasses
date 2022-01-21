@@ -4,6 +4,7 @@ import '../components/tweeph-heading.ts';
 import '../components/tweeph-button.ts';
 import '../components/tweeph-genrate-form.ts';
 import '../components/tweeph-header.ts';
+import '../components/tweeph-footer.ts';
 
 export default class Body extends LitElement {
   static styles = css`
@@ -15,7 +16,6 @@ export default class Body extends LitElement {
   }
 
   .container {
-    width: 100vw;
     height: 100vh;
     background-color: #fff;
     display: flex;
@@ -30,6 +30,7 @@ export default class Body extends LitElement {
     <div class="container">
       <tweeph-header></tweeph-header>
       <tweeph-genrate-form></tweeph-genrate-form>
+      <tweeph-footer></tweeph-footer>
     </div>
     `;
   }
