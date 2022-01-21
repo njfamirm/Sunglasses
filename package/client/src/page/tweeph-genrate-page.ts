@@ -3,6 +3,7 @@ import { css, html, LitElement } from 'lit';
 import '../components/tweeph-heading.ts';
 import '../components/tweeph-button.ts';
 import '../components/tweeph-genrate-form.ts';
+import '../components/tweeph-header.ts';
 
 export default class Body extends LitElement {
   static styles = css`
@@ -19,14 +20,16 @@ export default class Body extends LitElement {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
   `;
 
   render() {
     return html`
-    <div class="container"></div>
+    <div class="container">
+      <tweeph-header></tweeph-header>
+    </div>
     `;
   }
 }

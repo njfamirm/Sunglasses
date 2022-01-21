@@ -16,7 +16,7 @@ export default class Input extends LitElement {
     outline: none;
     font-family: 'Roboto Mono', monospace;
     display: inline;
-    border-radius: 500px;
+    border-radius: 25px;
     flex-grow: 1;
     background-color: #EFF3F4;
   }
@@ -32,14 +32,14 @@ export default class Input extends LitElement {
     justify-content: space-between;
     background-color: #EFF3F4;
     align-items: center;
-    border-radius: 500px;
+    border-radius: 25px;
     height: 100%;
   }
 
   .sumbit-btn {
     font-weight: 600;
     font-size: 1.2em;
-    border-radius: 500px;
+    border-radius: 25px;
     padding: 10px 25px;
     user-select: none;
     min-height: 40px;

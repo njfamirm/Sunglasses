@@ -5,7 +5,7 @@ export default class Button extends LitElement {
   button {
     font-weight: 600;
     font-size: 1.2em;
-    border-radius: 500px;
+    border-radius: 25px;
     padding: 10px 25px;
     user-select: none;
     min-height: 40px;
