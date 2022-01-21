@@ -1,13 +1,13 @@
 import { css, html, LitElement } from 'lit';
 
-export default class Header extends LitElement {
+export default class Heading extends LitElement {
   static styles = css`
     a {
       text-decoration: none;
+      cursor: pointer;
     }
 
     h2 {
-      font-family: "Manrope", sans-serif;
       font-weight: 600;
       color: #14171a;
       user-select: none;
@@ -22,15 +22,16 @@ export default class Header extends LitElement {
       margin-right: 0.2em;
       opacity: 30%;
       font-weight: 400;
-      cursor: pointer;
       transition: text-shadow 0.5s ease;
       text-decoration: none;
     }
   `;
 
-  // Render the UI as a function of component state
   render() {
-    // fix id space!
+    /**
+    * @todo fix id space!
+    * @todo visible # when h hovered
+    */
     return html`<a href="#${this.innerHTML.toString()}">
           <span class="sharp">#</span>
           <h2 id=${this.innerHTML.toString()}>${this.innerHTML.toString()}</h2>
@@ -38,4 +39,4 @@ export default class Header extends LitElement {
   }
 }
 
-customElements.define('tweeph-h', Header);
+customElements.define('tweeph-heading', Heading);

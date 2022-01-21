@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit';
 
-import './button.ts';
+import './tweeph-button.ts';
 
 export default class Input extends LitElement {
   static styles? = css`
@@ -61,6 +61,9 @@ export default class Input extends LitElement {
   }
   `
 
+  /**
+   * @todo use tweeph-button for submit
+   */
   render() {
     return html`
     <form action="genrate/"  id="linkform">
