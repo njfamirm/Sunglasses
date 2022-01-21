@@ -29,6 +29,7 @@ export default class Body extends LitElement {
     return html`
     <div class="container">
       <tweeph-header></tweeph-header>
+      <tweeph-genrate-form></tweeph-genrate-form>
     </div>
     `;
   }
