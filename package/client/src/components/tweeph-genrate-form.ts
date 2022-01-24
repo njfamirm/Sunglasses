@@ -4,6 +4,7 @@ import './tweeph-button.ts';
 
 export default class Input extends LitElement {
   static styles? = css`
+
   .input {
     font-weight: 500;
     font-size: 1em;
@@ -66,7 +67,7 @@ export default class Input extends LitElement {
    */
   render() {
     return html`
-    <form action="genrate/"  id="linkform">
+    <form action="#">
         <input class="input" type="url" spellcheck="false" id="link-box" autocomplete="off" placeholder="Enter tweet link"></input>
         <input class="sumbit-btn" type="submit" value="Genrate" />
     </form>

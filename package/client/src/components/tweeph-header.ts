@@ -93,7 +93,6 @@ export default class Header extends LitElement {
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/genrate">Genrate</a></li>
-            <li><a hrep="">Share</a></li>
           </ul>
         </header>
       `;
