@@ -26,7 +26,7 @@ export default class Header extends LitElement {
     background-color: #1D9BF0;
     border-radius: 25%;
     box-sizing: border-box;
-    padding: 0.5em;
+    padding: 0.3em;
   }
 
   svg {
@@ -76,7 +76,7 @@ export default class Header extends LitElement {
   }
 
   li {
-    padding: 0 0 0 5em;
+    padding: 0 0 0 3em;
     list-style: none;
   }
   `
@@ -93,6 +93,7 @@ export default class Header extends LitElement {
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/genrate">Genrate</a></li>
+            <li><a href="#">Share</a></li>
           </ul>
         </header>
       `;
