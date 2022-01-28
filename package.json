@@ -1,6 +1,6 @@
 {
   "name": "deno-lit-ts-starterkit",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Starter for using Deno & lit in Typescript with Monorepo software development strategy",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [
