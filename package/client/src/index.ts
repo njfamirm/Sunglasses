@@ -1,1 +1,1 @@
-import './pages/deno-lit-typescript-starter-home-page.ts';
+import './routes/routes.ts';
