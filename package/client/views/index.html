@@ -8,6 +8,20 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        *:focus-visible {
+            outline: none;
+        }
+
+        body {
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 
@@ -27,7 +41,9 @@
 
 <body>
 
-    <tweeph-genrate-page></tweeph-genrate-page>
+    <tweeph-header></tweeph-header>
+    <main></main>
+    <tweeph-footer></tweeph-footer>
 
 </body>
 

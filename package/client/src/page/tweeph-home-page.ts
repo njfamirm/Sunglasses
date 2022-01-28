@@ -1,11 +1,5 @@
 import { css, html, LitElement } from 'lit';
 
-import '../components/tweeph-heading.ts';
-import '../components/tweeph-button.ts';
-import '../components/tweeph-genrate-form.ts';
-import '../components/tweeph-header.ts';
-import '../components/tweeph-footer.ts';
-
 export default class Body extends LitElement {
   static styles = css`
   * {
@@ -22,9 +16,9 @@ export default class Body extends LitElement {
 
   render() {
     return html`
-      <tweeph-genrate-form></tweeph-genrate-form>
+    test
     `;
   }
 }
 
-customElements.define('tweeph-genrate-page', Body);
+customElements.define('tweeph-home-page', Body);
