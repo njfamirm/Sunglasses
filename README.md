@@ -24,7 +24,7 @@ a package manager for JavaScript
 
 a tool for managing JavaScript projects with multiple packages.
 
-## Use template 
+## Use template
 
 [Template documention](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 
@@ -78,4 +78,11 @@ see A specification for adding human and machine readable meaning to commit mess
 
 ### Todo
 
+#### Feature
+
 - [ ] Config eslint in Deno
+- [ ] Add CONTRIBUTING.md file
+
+#### Code
+
+Please run `TODO-Highlight: List highlighted annotations` in command palette
