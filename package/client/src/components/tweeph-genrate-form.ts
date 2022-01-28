@@ -5,8 +5,15 @@ import './tweeph-button.ts';
 
 export default class Input extends LitElement {
   static styles? = css`
-  form {
+  :host {
     width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,7 +28,8 @@ export default class Input extends LitElement {
     color: rgba(15, 20, 25, 0.3);
   }
 
-  .input {
+  input {
+    width: 70vw;
     font-weight: 500;
     font-size: 1em;
     padding: 10px 25px;
@@ -31,15 +39,13 @@ export default class Input extends LitElement {
     border: none;
     outline: none;
     font-family: 'Roboto Mono', monospace;
-    display: inline;
     border-radius: 250px;
-    flex-grow: 1;
     background-color: #EFF3F4;
     transition: width 1s ease, padding 1s ease;
   }
 
 
-  .sumbit-btn {
+  button {
     font-weight: 600;
     font-size: 1.2em;
     border-radius: 250px;
@@ -52,24 +58,25 @@ export default class Input extends LitElement {
     cursor: pointer;
     font-family: 'Roboto Mono', monospace;
     height: 100%;
+    transition: background-color 3s cubic-bezier(.6,.32,.06,.74) 0s;
   }
 
-  .sumbit-btn:hover {
+  button:hover {
     background-color: #1A8CD8;
   }
 
-  .sumbit-btn:focus {
+  button:focus {
     border: none;
   }
   `
 
   /**
-   * @todo use tweeph-button for submit
+   * @TODO use tweeph-button for submit
    */
   render() {
     return html`
     <form action="#" novalidate>
-        <input class="input" type="url" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
+        <input class="input" type="url" value="https://twitter.com/njfamirm/status/1486041539281362950" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
         <button class="sumbit-btn">Genrate</button>
     </form>
     `;
@@ -82,34 +89,69 @@ export default class Input extends LitElement {
   @query('form') form: HTMLSelectElement | undefined;
 
   firstUpdated() {
-    this.form?.addEventListener('submit', () => {
-      const ID = this.input?.value;
-      if (ID !== undefined && ID !== '' && this.checkValidValue(ID)) {
-        this.checkExistID(ID);
-        /**
-         * @todo: fix !
-         */
-        this.input?.setAttribute('style', 'width: 0; padding: 0;');
-        this.form?.setAttribute('style', 'width: 100%;');
-        this.button!.innerHTML = 'Checking';
+    this.form?.addEventListener('submit', () => { this.sumbit(); });
+  }
+
+  private sumbit() {
+    const value = this.input?.value;
+    if (value !== undefined && value !== '') {
+      this.changeInput('Checking');
+      const ID = this.checkValidValue(value);
+      if (ID !== null) {
+        if (this.checkExistID(ID)) {
+          this.changeInput('OK');
+          /**
+           * @TODO: redirect to /t/${ID}
+           */
+        } else {
+          this.changeInput('NotValid');
+          /**
+           * @TODO: sleep 1 second and change to Genrate
+           */
+          this.changeInput('Genrate');
+        }
       }
-    });
+    }
+  }
+
+  private changeInput(inner: string) {
+    switch (inner) {
+      case 'NotValid':
+        this.button!.innerHTML = 'Not valid';
+        this.button!.style.backgroundColor = 'rgb(29, 155, 240)';
+        break;
+      case 'Checking':
+        this.input!.value = '';
+        this.button!.innerHTML = 'Checking';
+        this.button!.style.backgroundColor = 'rgb(15, 20, 25)';
+        this.input!.style.width = '0';
+        this.input!.style.padding = '0';
+        this.button!.style.cursor = 'default';
+        break;
+      case 'OK':
+        this.button!.innerHTML = 'Redirecting';
+        this.button!.style.backgroundColor = 'rgb(29, 155, 240)';
+        break;
+      default:
+        this.button!.innerHTML = 'Generate';
+        this.button!.style.backgroundColor = 'rgb(29, 155, 240)';
+        this.input!.style.width = '70vw';
+        this.input!.style.padding = '10px 25px';
+        this.button!.style.cursor = 'pointer';
+    }
   }
 
   // eslint-disable-next-line no-unused-vars
-  private checkExistID(_ID: string) {
-    //
+  private checkExistID(_ID: string): boolean {
+    return true;
   }
 
-  /**
-   * @todo fix the http & www requirement
-   */
-  private checkValidValue(value: string): boolean {
-    const match = value.match(/(http(s)?:\/\/.)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\d*/g);
+  private checkValidValue(value: string): string | null {
+    const match = value.match(/^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g);
     if (match !== null) {
-      return true;
+      return (<any>(value.match(/\d*$/g)))[0];
     }
-    return false;
+    return null;
   }
 }
 

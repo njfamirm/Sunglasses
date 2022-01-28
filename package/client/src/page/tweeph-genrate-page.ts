@@ -15,6 +15,10 @@ export default class Body extends LitElement {
     font-family: 'Roboto Mono', monospace;
   }
 
+  *:focus-visible {
+    outline: none;
+  }
+
   .container {
     height: 100vh;
     background-color: #fff;
