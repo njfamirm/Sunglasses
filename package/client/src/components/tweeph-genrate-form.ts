@@ -89,7 +89,11 @@ export default class Input extends LitElement {
   @query('form') form: HTMLSelectElement | undefined;
 
   firstUpdated() {
-    this.form?.addEventListener('submit', () => { this.sumbit(); });
+    this.form?.addEventListener('submit', (e) => {
+      // to prevent redirect in action form
+      e.preventDefault();
+      this.sumbit();
+    });
   }
 
   private sumbit() {
@@ -100,16 +104,13 @@ export default class Input extends LitElement {
       if (ID !== null) {
         if (this.checkExistID(ID)) {
           this.changeInput('OK');
-          /**
-           * @TODO: redirect to /t/${ID}
-           */
-        } else {
-          this.changeInput('NotValid');
-          /**
+          window.location.href = `/t/${ID}`;
+        }
+        this.changeInput('NotValid');
+        /**
            * @TODO: sleep 1 second and change to Genrate
            */
-          this.changeInput('Genrate');
-        }
+        this.changeInput('Genrate');
       }
     }
   }
