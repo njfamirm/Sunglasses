@@ -1,1 +1,1 @@
-import './components/deno-lit-typescript-starter-hello.ts';
+import './pages/deno-lit-typescript-starter-home-page.ts';
