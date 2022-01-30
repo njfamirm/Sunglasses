@@ -6,7 +6,7 @@ import './tweeph-button.ts';
 export default class Input extends LitElement {
   static styles? = css`
   :host {
-    width: 800vw;
+    width: 80vw;
     display: flex;
     flex-direction: row;
     justify-content: center;

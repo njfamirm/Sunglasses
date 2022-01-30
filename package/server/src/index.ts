@@ -20,6 +20,14 @@ router.get("/", async (ctx: Context) => {
   });
 });
 
+// serve generate page
+router.get("/generate", async (ctx: Context) => {
+  await send(ctx, "/", {
+    root: `${Deno.cwd()}/../client/views`,
+    index: "index.html",
+  });
+});
+
 // serve favicon.ico
 router.get("/favicon.ico", async (ctx: Context) => {
   await send(ctx, "/favicon.svg", {

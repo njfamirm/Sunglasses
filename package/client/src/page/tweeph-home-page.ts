@@ -1,5 +1,7 @@
 import { css, html, LitElement } from 'lit';
 
+import '../components/tweeph-heading.ts';
+
 export default class Body extends LitElement {
   static styles = css`
   * {
@@ -16,7 +18,7 @@ export default class Body extends LitElement {
 
   render() {
     return html`
-    test
+    <tweeph-heading>Tweeph</tweeph-heading>
     `;
   }
 }
