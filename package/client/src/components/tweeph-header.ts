@@ -91,7 +91,7 @@ export default class Header extends LitElement {
             </div>
           </div>
           <ul>
-            <li><a href="/genrate">Genrate</a></li>
+            <li><a href="/generate">generate</a></li>
             <li><a href="/about">About</a></li>
           </ul>
         </header>

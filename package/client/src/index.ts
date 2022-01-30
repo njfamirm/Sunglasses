@@ -12,10 +12,10 @@ window.addEventListener('load', () => {
       component: 'tweeph-home-page',
     },
     {
-      path: '/genrate',
-      component: 'tweeph-genrate-page',
+      path: '/generate',
+      component: 'tweeph-generate-page',
       action: () => {
-        import('./page/tweeph-genrate-page');
+        import('./page/tweeph-generate-page');
       },
     },
   ]);

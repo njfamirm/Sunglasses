@@ -6,7 +6,7 @@ import './tweeph-button.ts';
 export default class Input extends LitElement {
   static styles? = css`
   :host {
-    width: 80vw;
+    width: 800vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -77,7 +77,7 @@ export default class Input extends LitElement {
     return html`
     <form action="#" novalidate>
         <input class="input" type="url" value="https://twitter.com/njfamirm/status/1486041539281362950" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
-        <button class="sumbit-btn">Genrate</button>
+        <button class="sumbit-btn">generate</button>
     </form>
     `;
   }
@@ -108,9 +108,9 @@ export default class Input extends LitElement {
         }
         this.changeInput('NotValid');
         /**
-           * @TODO: sleep 1 second and change to Genrate
+           * @TODO: sleep 1 second and change to generate
            */
-        this.changeInput('Genrate');
+        this.changeInput('generate');
       }
     }
   }
@@ -156,4 +156,4 @@ export default class Input extends LitElement {
   }
 }
 
-customElements.define('tweeph-genrate-form', Input);
+customElements.define('tweeph-generate-form', Input);
