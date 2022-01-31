@@ -8,7 +8,8 @@ export default class Body extends LitElement {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
   }
 
   *:focus-visible {
@@ -24,6 +25,10 @@ export default class Body extends LitElement {
     padding: 50px;
   }
 
+  .text {
+    justify-content: center;
+  }
+
   .banner-text {
     margin: 1em;
     padding-left: 0.2em;
@@ -34,8 +39,10 @@ export default class Body extends LitElement {
   }
 
   h1 {
+    color: var(--black-color);
     font-size: 4em;
     user-select: none;
+    font-weight: 700;
   }
 
   .text {
@@ -52,6 +59,11 @@ export default class Body extends LitElement {
     width: 30vw;
     border-radius: 10px;
   }
+
+  p {
+    font-size: 1.3em;
+    line-height: 1.3em;
+  }
   `;
 
   render() {
@@ -64,11 +76,11 @@ export default class Body extends LitElement {
           <p>And share anywhere!</p>
         </div>
         <a href="/generate">
-          <tweeph-button>Genrating</tweeph-button>
+          <tweeph-button>Generating</tweeph-button>
         </a>
       </div>
       <div class="photo">
-        <img src="/public/img/banner-photo.jpg" alt="banner photo">
+        <img src="/public/img/banner-photo.webp" alt="banner photo">
 
       </div>
     </div>

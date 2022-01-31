@@ -17,7 +17,7 @@ export default class Input extends LitElement {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #EFF3F4;
+    background-color: #f0f0f0;
     align-items: center;
     border-radius: 250px;
     height: 57px;
@@ -25,38 +25,35 @@ export default class Input extends LitElement {
   }
 
   ::placeholder {
-    color: rgba(15, 20, 25, 0.3);
+    color: var(--dark-gray-color);
   }
 
   input {
     width: 70vw;
-    font-weight: 500;
     font-size: 1em;
     padding: 10px 25px;
     user-select: none;
-    color: rgb(15, 20, 25);
+    color: var(--black-color);
     background-color: inherit;
     border: none;
     outline: none;
-    font-family: 'Roboto Mono', monospace;
     border-radius: 250px;
-    background-color: #EFF3F4;
+    background-color: inherit;
     transition: width 1s ease, padding 1s ease;
   }
 
 
   button {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.2em;
     border-radius: 250px;
     padding: 10px 25px;
     user-select: none;
     min-width: 36px;
-    background-color: rgb(29, 155, 240);
-    color: #fff;
+    background-color: var(--light-blue-color);
+    color: var(--light-color);
     border: none;
     cursor: pointer;
-    font-family: 'Roboto Mono', monospace;
     height: 100%;
     transition: background-color 3s cubic-bezier(.6,.32,.06,.74) 0s;
   }
@@ -70,14 +67,11 @@ export default class Input extends LitElement {
   }
   `
 
-  /**
-   * @TODO use tweeph-button for submit
-   */
   render() {
     return html`
     <form action="#" novalidate>
         <input class="input" type="url" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
-        <button class="sumbit-btn">generate</button>
+        <button class="sumbit-btn">Generate</button>
     </form>
     `;
   }
@@ -119,23 +113,23 @@ export default class Input extends LitElement {
     switch (inner) {
       case 'NotValid':
         this.button!.innerHTML = 'Not valid';
-        this.button!.style.backgroundColor = 'rgb(29, 155, 240)';
+        this.button!.style.backgroundColor = 'var(--red-color)';
         break;
       case 'Checking':
         this.input!.value = '';
         this.button!.innerHTML = 'Checking';
-        this.button!.style.backgroundColor = 'rgb(15, 20, 25)';
+        this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         this.input!.style.width = '0';
         this.input!.style.padding = '0';
         this.button!.style.cursor = 'default';
         break;
       case 'OK':
         this.button!.innerHTML = 'Redirecting';
-        this.button!.style.backgroundColor = 'rgb(29, 155, 240)';
+        this.button!.style.backgroundColor = 'var(--light-blue-color)';
         break;
       default:
         this.button!.innerHTML = 'Generate';
-        this.button!.style.backgroundColor = 'rgb(29, 155, 240)';
+        this.button!.style.backgroundColor = 'var(--light-blue-color)';
         this.input!.style.width = '70vw';
         this.input!.style.padding = '10px 25px';
         this.button!.style.cursor = 'pointer';

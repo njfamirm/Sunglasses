@@ -8,8 +8,8 @@ export default class Heading extends LitElement {
     }
 
     h2 {
-      font-weight: 600;
-      color: #14171a;
+      font-weight: 400;
+      color: var(--black-color);
       user-select: none;
       display: block;
       font-size: 5em;

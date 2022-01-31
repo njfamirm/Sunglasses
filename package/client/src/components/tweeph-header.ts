@@ -11,6 +11,7 @@ export default class Header extends LitElement {
     width: 100vw;
     box-sizing: border-box;
     padding: 0 2%;
+    background-color: var(--light-gray-color);
   }
 
   .logo-container {
@@ -23,15 +24,16 @@ export default class Header extends LitElement {
   .logo {
     height: 2.4em;
     width: 2.4em;
-    background-color: #1D9BF0;
+    background-color: var(--light-blue-color);
     border-radius: 25%;
     box-sizing: border-box;
     padding: 0.42em;
   }
 
   svg {
-    fill: #fff;
-    stroke: #fff;
+    fill: currentColor;
+    color: var(--light-color);
+    stroke: var(--light-color);
     stroke-width: 0.5px;
     transition: transform 0.4s;
   }
@@ -47,9 +49,9 @@ export default class Header extends LitElement {
   p {
     order: 2;
     font-size: 1.4em;
-    font-weight: 600;
+    font-weight: 400;
     margin-left: 0.3em;
-    color: #1D9BF0;
+    color: var(--light-blue-color);
     user-select: none;
   }
 
@@ -62,17 +64,21 @@ export default class Header extends LitElement {
   }
 
   a {
-    text-decoration: none;
-    font-size: 1.3em;
-    font-weight: 500;
     cursor: pointer;
     user-select: none;
-    color: rgb(15, 20, 25);
-    transition: color 0.3s;
+    text-decoration: none;
   }
 
-  a:hover {
-    color: #1D9BF0;
+  .header-link {
+    text-decoration: none;
+    font-size: 1.3em;
+    color: var(--black-color);
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+
+  .header-link:hover {
+    color: var(--light-blue-color);
   }
 
   li {
@@ -87,15 +93,17 @@ export default class Header extends LitElement {
   render() {
     return html`
         <header>
-          <div class="logo-container">
-            <p>Tweeph</p>
-            <div class="logo">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"></path></g></svg>
+          <a href="/">
+            <div class="logo-container">
+              <p>Tweeph</p>
+              <div class="logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"></path></g></svg>
+              </div>
             </div>
-          </div>
+          </a>
           <ul>
-            <li><a href="/generate">Generate</a></li>
-            <li><a href="/about">About</a></li>
+            <li><a class="header-link" href="/generate">Generate</a></li>
+            <li><a class="header-link" href="/about">About</a></li>
           </ul>
         </header>
       `;

@@ -2,7 +2,6 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
-  devtool: "eval-source-map",
   entry: {
     index: "./src/index.ts",
   },
@@ -13,10 +12,15 @@ module.exports = {
         use: "ts-loader",
         include: [path.resolve(__dirname, "src")],
       },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+        include: [path.resolve(__dirname, "public", "css")],
+      },
     ],
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".js", ".css"],
   },
   output: {
     filename: "[name].js",
