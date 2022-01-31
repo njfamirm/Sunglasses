@@ -76,7 +76,7 @@ export default class Input extends LitElement {
   render() {
     return html`
     <form action="#" novalidate>
-        <input class="input" type="url" value="https://twitter.com/njfamirm/status/1486041539281362950" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
+        <input class="input" type="url" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
         <button class="sumbit-btn">generate</button>
     </form>
     `;

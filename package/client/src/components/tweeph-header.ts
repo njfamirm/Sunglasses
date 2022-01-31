@@ -81,6 +81,9 @@ export default class Header extends LitElement {
   }
   `
 
+  /**
+  * @TODO: add link to logo
+  */
   render() {
     return html`
         <header>
@@ -91,7 +94,7 @@ export default class Header extends LitElement {
             </div>
           </div>
           <ul>
-            <li><a href="/generate">generate</a></li>
+            <li><a href="/generate">Generate</a></li>
             <li><a href="/about">About</a></li>
           </ul>
         </header>
