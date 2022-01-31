@@ -3,7 +3,7 @@ import { css, html, LitElement } from 'lit';
 export default class Heading extends LitElement {
   static styles = css`
     a {
-      text-decoration: none;
+      text-decorataion: none;
       cursor: pointer;
     }
 
