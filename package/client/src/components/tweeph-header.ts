@@ -24,7 +24,7 @@ export default class Header extends LitElement {
   .logo {
     height: 2.4em;
     width: 2.4em;
-    background-color: var(--light-blue-color);
+    background-color: var(--blue-color);
     border-radius: 25%;
     box-sizing: border-box;
     padding: 0.42em;
@@ -51,7 +51,7 @@ export default class Header extends LitElement {
     font-size: 1.4em;
     font-weight: 400;
     margin-left: 0.3em;
-    color: var(--light-blue-color);
+    color: var(--blue-color);
     user-select: none;
   }
 
@@ -78,7 +78,7 @@ export default class Header extends LitElement {
   }
 
   .header-link:hover {
-    color: var(--light-blue-color);
+    color: var(--blue-color);
   }
 
   li {

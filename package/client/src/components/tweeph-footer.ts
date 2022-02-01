@@ -39,7 +39,7 @@ export default class Footer extends LitElement {
     }
 
     svg {
-      color: var(--light-blue-color);
+      color: var(--blue-color);
       fill: currentColor;
       height: 1.5em;
       width: 1.5em;

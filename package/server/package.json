@@ -1,7 +1,7 @@
 {
-  "name": "tweet-to-photo-server",
+  "name": "tweeph-server",
   "version": "0.0.0",
-  "description": "Server of tweet-to-photo",
+  "description": "Server of Tweeph web app",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [

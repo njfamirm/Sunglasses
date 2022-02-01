@@ -10,11 +10,11 @@ export default class Button extends LitElement {
     user-select: none;
     min-height: 40px;
     min-width: 36px;
-    background-color: var(--light-blue-color);
+    background-color: var(--blue-color);
     color: var(--light-color);
     border: none;
     cursor: pointer;
-
+    transition: background-color 2s cubic-bezier(.6,.32,.06,.74) 0s;
     height: 100%;
   }
 
