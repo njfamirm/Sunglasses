@@ -2,6 +2,16 @@ import { html, css, LitElement } from 'lit';
 
 export default class Header extends LitElement {
   static styles? = css`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  *:focus-visible {
+    outline: none;
+  }
+
   header {
     display: flex;
     flex-direction: row;
@@ -10,7 +20,7 @@ export default class Header extends LitElement {
     align-content: center;
     width: 100vw;
     box-sizing: border-box;
-    padding: 0 2%;
+    padding: 0.7em 2em;
     background-color: var(--light-gray-color);
   }
 

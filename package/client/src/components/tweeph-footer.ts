@@ -2,54 +2,59 @@ import { html, css, LitElement } from 'lit';
 
 export default class Footer extends LitElement {
   static styles? = css`
-    * {
-      user-select: none;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    :host {
-      width: 100vw;
-    }
+  *:focus-visible {
+    outline: none;
+  }
 
-    footer {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 0.5em;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      background-color: var(--light-gray-color);
-    }
+  :host {
+    width: 100vw;
+  }
 
-    p {
-      color: var(--black-color);
-    }
+  footer {
+    border-top: 1px solid #b5b5b547;
+    padding: 0.5em 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--light-gray-color);
+  }
 
-    .logo {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-    }
+  p {
+    color: var(--black-color);
+  }
 
-    a {
-      display: flex;
-      align-items: center;
-      padding: 1em;
-    }
+  .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-    svg {
-      color: var(--blue-color);
-      fill: currentColor;
-      height: 1.5em;
-      width: 1.5em;
-      transition: color 0.3s;
-    }
+  a {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+  }
 
-    svg:hover {
-      color: var(--dark-blue-color);
-      fill: currentColor;
-    }
+  svg {
+    color: var(--blue-color);
+    fill: currentColor;
+    height: 1.5em;
+    width: 1.5em;
+    transition: color 0.3s;
+  }
+
+  svg:hover {
+    color: var(--dark-blue-color);
+    fill: currentColor;
+  }
   `
 
   render() {

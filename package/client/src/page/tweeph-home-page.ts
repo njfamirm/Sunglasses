@@ -117,6 +117,7 @@ export default class Body extends LitElement {
 
   /**
    * @TODO: fix width
+   * @TODO: add link for start button
    */
   render() {
     return html`
