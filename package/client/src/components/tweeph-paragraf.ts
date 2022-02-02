@@ -3,6 +3,11 @@ import { property } from 'lit/decorators.js';
 
 export default class Paragraf extends LitElement {
   static styles = css`
+    p::selection {
+      color: var(--light-gray-color);
+      background-color: var(--black-color);
+    }
+
     h2 {
       font-weight: 700;
       color: var(--blue-color);
@@ -23,8 +28,8 @@ export default class Paragraf extends LitElement {
   @property({ type: String, attribute: true })
   header: string = '';
 
-  @property({ type: String, attribute: true })
-  id: string = '';
+  // @property({ type: String, attribute: true })
+  // id: string = '';
 
   /**
    * @TODO: add ID

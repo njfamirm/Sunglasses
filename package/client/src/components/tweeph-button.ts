@@ -2,6 +2,18 @@ import { html, css, LitElement } from 'lit';
 
 export default class Button extends LitElement {
   static styles? = css`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+  }
+
+  *:focus-visible {
+    outline: none;
+  }
+
   button {
     font-weight: 400;
     font-size: 1.2em;

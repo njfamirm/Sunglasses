@@ -12,9 +12,15 @@ export default class Footer extends LitElement {
     outline: none;
   }
 
+  p::selection {
+    color: var(--light-gray-color);
+    background-color: var(--black-color);
+  }
+
   :host {
     width: 100vw;
   }
+
 
   footer {
     border-top: 1px solid #b5b5b547;

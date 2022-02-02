@@ -23,10 +23,16 @@ export default class Body extends LitElement {
     background-color: var(--black-color);
   }
 
+  * > p > span::selection {
+    color: var(--light-gray-color);
+    background-color: var(--black-color);
+  }
+
 
   .banner {
     background-image: url("/public/img/banner-photo.webp");
     background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .banner-text {
@@ -44,16 +50,14 @@ export default class Body extends LitElement {
     padding-left: 0.2em;
   }
 
-  .text > p > span {
-    user-select: none;
-    color: var(--light-gray-color);
-    background-color: var(--dark-gray-color);
-  }
-
   .text > p {
-    font-weight: 400;
     color: var(--dark-gray-color)
   }
+
+  .text > p > span {
+    font-weight: 400;
+  }
+
 
   h1 {
     color: var(--black-color);
@@ -76,25 +80,19 @@ export default class Body extends LitElement {
     padding: 2em 3em;
     background-color: var(--light-gray-color);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
-  /**
-  * @TODO: fix typing effect
-  */
-  .generate-info > p > span {
-    /* width: 32ch;
-    animation: typing 4s steps(32);
-    white-space: nowrap;
-    overflow: hidden; */
-    color: var(--dark-gray-color)
+
+  .generate-info > p {
+    color: var(--black-color);
+    font-weight: 400;
+    margin-right: 1em;
   }
 
-  /* @keyframes typing {
-    from {
-      width: 0
-    }
-  } */
+  .generate-info > p > span {
+    color: var(--dark-gray-color);
+  }
 
   .empty {
     height: 75vh;
@@ -125,13 +123,13 @@ export default class Body extends LitElement {
       <div class="banner-text">
         <h1>Tweeph</h1>
         <div class="text">
-          <p><span>Customize able</span> image from tweet</p>
-          <p>And share <span>anywhere!</span></p>
+          <p><span>Simplicity</span> while being efficient</p>
+          <p>for share <span>Everywhere!</span></p>
         </div>
       </div>
       <div class="generate-info">
-        <p>There is no monetary plan<span>, in fact we do not have any plan!</span></p>
-        <tweeph-button>Starting</tweeph-button>
+        <p>Simple, Free, Efficient<span>, Isn't it time to give it a try?!</span></p>
+        <tweeph-button>Start</tweeph-button>
       </div>
       <div class="empty"></div>
       <div class="info">
