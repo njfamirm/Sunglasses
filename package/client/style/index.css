@@ -4,9 +4,11 @@
   --black-color: #14171a;
   --gray-color: #383d40;
   --dark-gray-color: #1c2226;
+  --middle-gray-color: #7e7e7e;
   --light-gray-color: #afafaf;
   --white-dark-color: #fafafa;
   --white-color: #ffffff;
+  --shadow-color: #00000017;
 }
 
 html {

@@ -1,4 +1,5 @@
 import { css, html, LitElement } from 'lit';
+import { property, query } from 'lit/decorators.js';
 
 export default class Tweet extends LitElement {
   static styles = css`
@@ -6,6 +7,10 @@ export default class Tweet extends LitElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    *::selection {
+      user-select: none;
     }
 
     :host {
@@ -17,8 +22,9 @@ export default class Tweet extends LitElement {
     }
 
     .tweet-container {
+      box-shadow: 0 0 18px 0px var(--shadow-color);
       padding: 20px 20px;
-      background-color: #15202b;
+      background-color: var(--tweet-black-color);
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -27,7 +33,7 @@ export default class Tweet extends LitElement {
     }
 
     .tweet-container > * {
-      color: #fff;
+      color: var(--tweet-light-color);
     }
 
     .avatar {
@@ -40,11 +46,12 @@ export default class Tweet extends LitElement {
     }
 
     .name {
-      font-weight: 900;
+      color: var(--tweet-white-color);
+      font-weight: 700;
     }
 
     .username {
-      color: var(--light-gray-color);
+      color: var(--tweet-middle-dark-color);
     }
 
     .avatar {
@@ -66,15 +73,9 @@ export default class Tweet extends LitElement {
       margin-top: 12px;
     }
 
-    /* .tweet-media {
-      display: flex;
-      flex-direction: column;
-      margin-top: 12px;
-      border: 1px solid var(--light-gray-color);
-      border-radius: 16px;
-      overflow: hidden;
-      max-width: 566px;
-    } */
+    .tweet-text p {
+      color: var(--tweet-white-color);
+    }
 
     .info {
       margin-top: 16px;
@@ -82,13 +83,14 @@ export default class Tweet extends LitElement {
 
     .info > * {
       display: inline;
-      color: var(--light-gray-color);
+      color: var(--tweet-middle-dark-color);
     }
 
     .line {
       height: 0.3px;
       width: 100%;
-      background-color: #65778663;
+      background-color: var(--tweet-middle-dark-color);
+      opacity: 20%;
       margin: 16px 0;
     }
 
@@ -100,16 +102,14 @@ export default class Tweet extends LitElement {
       display: flex;
       align-items: center;
       margin-right: 20px;
-    }
-
-    .action > * {
       font-size: 15px;
-      color: var(--light-gray-color);
+      color: var(--tweet-middle-dark-color);
     }
 
     .count {
-      color: #fff;
+      color: var(--tweet-white-color);
       margin-right: 5px;
+      font-weight: 400;
     }
 
     .count-padding {
@@ -130,12 +130,15 @@ export default class Tweet extends LitElement {
         </div>
       </div>
 
-      <div class="tweet-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dicta perferendis repudiandae,
-        et ducimus sequi iusto, harum, at molestias aut nulla porro necessitatibus dolores laudantium enim nostrum veniam
-        tempora blanditiis.</div>
+      <div class="tweet-text">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dicta perferendis repudiandae,
+          et ducimus sequi iusto, harum, at molestias aut nulla porro necessitatibus dolores laudantium enim nostrum veniam
+          tempora blanditiis.
+        </p>
+      </div>
 
       <!-- <div class="tweet-media"> -->
-      <!-- <img src="./avatar.png" alt=""> -->
       <!-- </div> -->
 
       <div class="info">
@@ -169,6 +172,33 @@ export default class Tweet extends LitElement {
       </div>
       </div>
     `;
+  }
+
+  /**
+   * @TODO: change to :host
+   */
+  @query('.tweet-container') host: HTMLElement | undefined;
+
+  @property({ type: String, attribute: true })
+  theme: 'light' | 'dark' = 'dark';
+
+  protected firstUpdated() {
+    this.setTheme();
+  }
+
+  private setTheme() {
+    if (this.theme === 'dark') {
+      this.host!.style.setProperty('--tweet-black-color', 'var(--black-color)');
+      this.host!.style.setProperty('--tweet-white-color', 'var(--white-color)');
+      this.host!.style.setProperty('--tweet-middle-light-color', 'var(--white-dark-color)');
+      this.host!.style.setProperty('--tweet-middle-dark-color', 'var(--light-gray-color)');
+    } else {
+      this.host!.style.setProperty('--tweet-black-color', 'var(--white-color)');
+      this.host!.style.setProperty('--tweet-middle-light-color', 'var(--light-gray-color)');
+      this.host!.style.setProperty('--tweet-middle-dark-color', 'var(--middle-gray-color)');
+      this.host!.style.setProperty('--tweet-white-color', 'var(--black-color)');
+    }
+    this.requestUpdate();
   }
 }
 
