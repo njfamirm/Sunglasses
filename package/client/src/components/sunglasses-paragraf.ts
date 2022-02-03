@@ -42,4 +42,4 @@ export default class Paragraf extends LitElement {
   }
 }
 
-customElements.define('tweeph-paragraf', Paragraf);
+customElements.define('sunglasses-paragraf', Paragraf);

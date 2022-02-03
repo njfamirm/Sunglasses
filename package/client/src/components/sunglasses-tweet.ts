@@ -172,4 +172,4 @@ export default class Tweet extends LitElement {
   }
 }
 
-customElements.define('tweeph-tweet', Tweet);
+customElements.define('sunglasses-tweet', Tweet);

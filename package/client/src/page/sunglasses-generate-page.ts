@@ -158,4 +158,4 @@ export default class Generate extends LitElement {
   }
 }
 
-customElements.define('tweeph-generate-page', Generate);
+customElements.define('sunglasses-generate-page', Generate);

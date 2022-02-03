@@ -80,4 +80,4 @@ export default class Footer extends LitElement {
   }
 }
 
-customElements.define('tweeph-footer', Footer);
+customElements.define('sunglasses-footer', Footer);

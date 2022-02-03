@@ -91,4 +91,4 @@ export default class Header extends LitElement {
   }
 }
 
-customElements.define('tweeph-header', Header);
+customElements.define('sunglasses-header', Header);

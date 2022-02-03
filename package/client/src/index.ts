@@ -1,6 +1,6 @@
 // component
-import './components/tweeph-footer.ts';
-import './components/tweeph-header.ts';
+import './components/sunglasses-footer.ts';
+import './components/sunglasses-header.ts';
 
 // css
 import '../style/index.css';
@@ -12,18 +12,18 @@ window.addEventListener('load', () => {
   route.setRoutes([
     {
       path: '/',
-      component: 'tweeph-home-page',
+      component: 'sunglasses-home-page',
       action: () => {
         // eslint-disable-next-line import/extensions, import/no-unresolved
-        import('./page/tweeph-home-page');
+        import('./page/sunglasses-home-page');
       },
     },
     {
       path: '/generate',
-      component: 'tweeph-generate-page',
+      component: 'sunglasses-generate-page',
       action: () => {
         // eslint-disable-next-line import/extensions, import/no-unresolved
-        import('./page/tweeph-generate-page');
+        import('./page/sunglasses-generate-page');
       },
     },
   ]);

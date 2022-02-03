@@ -46,4 +46,4 @@ export default class Button extends LitElement {
   }
 }
 
-customElements.define('tweeph-button', Button);
+customElements.define('sunglasses-button', Button);
