@@ -18,21 +18,16 @@ export default class Body extends LitElement {
   }
 
 
-  p::selection {
-    color: var(--light-gray-color);
-    background-color: var(--black-color);
-  }
-
-  * > p > span::selection {
-    color: var(--light-gray-color);
+  p::selection, span::selection {
+    color: var(--white-dark-color);
     background-color: var(--black-color);
   }
 
 
   .banner {
     background-image: url("/public/img/banner-photo.webp");
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-attachment: fixed;
   }
 
   .banner-text {
@@ -50,17 +45,18 @@ export default class Body extends LitElement {
     padding-left: 0.2em;
   }
 
-  .text > p {
-    color: var(--dark-gray-color)
+  .text > p > span {
+    background-color: var(--black-color);
+    color: var(--white-color);
   }
 
-  .text > p > span {
+  .text > p > span > span {
     font-weight: 400;
   }
 
 
   h1 {
-    color: var(--black-color);
+    color: var(--white-color);
     font-size: 5em;
     user-select: none;
     font-weight: 700;
@@ -78,7 +74,7 @@ export default class Body extends LitElement {
 
   .generate-info {
     padding: 2em 3em;
-    background-color: var(--light-gray-color);
+    background-color: var(--white-dark-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +87,7 @@ export default class Body extends LitElement {
   }
 
   .generate-info > p > span {
-    color: var(--dark-gray-color);
+    color: var(--light-gray-color);
   }
 
   .empty {
@@ -99,7 +95,7 @@ export default class Body extends LitElement {
   }
 
   .info {
-    background-color: var(--light-gray-color);
+    background-color: var(--white-dark-color);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -123,8 +119,8 @@ export default class Body extends LitElement {
       <div class="banner-text">
         <h1>Tweeph</h1>
         <div class="text">
-          <p><span>Simplicity</span> while being efficient</p>
-          <p>for share <span>Everywhere!</span></p>
+          <p><span><span>Simplicity</span> while being efficient</span></p>
+          <p><span>share <span>Everywhere!</span></span></p>
         </div>
       </div>
       <div class="generate-info">

@@ -4,13 +4,13 @@ import { property } from 'lit/decorators.js';
 export default class Paragraf extends LitElement {
   static styles = css`
     p::selection {
-      color: var(--light-gray-color);
+      color: var(--white-dark-color);
       background-color: var(--black-color);
     }
 
     h2 {
       font-weight: 700;
-      color: var(--blue-color);
+      color: var(--gray-color);
       user-select: none;
       display: block;
       font-size: 3em;

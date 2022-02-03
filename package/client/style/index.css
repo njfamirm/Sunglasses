@@ -2,12 +2,11 @@
 
 :root {
   --black-color: #14171a;
-  --blue-color: #1a8cd8;
-  --dark-blue-color: #105985;
-  --dark-gray-color: #657786;
-  --light-gray-color: #f5f8fa;
-  --light-color: #fafafa;
-  --red-color: #f01d30;
+  --gray-color: #383d40;
+  --dark-gray-color: #1c2226;
+  --light-gray-color: #afafaf;
+  --white-dark-color: #fafafa;
+  --white-color: #ffffff;
 }
 
 html {
@@ -28,7 +27,7 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: var(--light-color);
+  background-color: var(--white-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

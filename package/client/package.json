@@ -1,7 +1,7 @@
 {
-  "name": "tweeph-client",
+  "name": "sunglasses-client",
   "version": "1.0.1",
-  "description": "Client of Tweeph web app",
+  "description": "Client of Sunglasses web app",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [

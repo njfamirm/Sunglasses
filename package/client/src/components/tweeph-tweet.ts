@@ -44,7 +44,7 @@ export default class Tweet extends LitElement {
     }
 
     .username {
-      color: var(--dark-gray-color);
+      color: var(--light-gray-color);
     }
 
     .avatar {
@@ -70,7 +70,7 @@ export default class Tweet extends LitElement {
       display: flex;
       flex-direction: column;
       margin-top: 12px;
-      border: 1px solid var(--dark-gray-color);
+      border: 1px solid var(--light-gray-color);
       border-radius: 16px;
       overflow: hidden;
       max-width: 566px;
@@ -82,7 +82,7 @@ export default class Tweet extends LitElement {
 
     .info > * {
       display: inline;
-      color: var(--dark-gray-color);
+      color: var(--light-gray-color);
     }
 
     .line {
@@ -104,7 +104,7 @@ export default class Tweet extends LitElement {
 
     .action > * {
       font-size: 15px;
-      color: var(--dark-gray-color);
+      color: var(--light-gray-color);
     }
 
     .count {

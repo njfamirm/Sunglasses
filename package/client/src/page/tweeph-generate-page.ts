@@ -23,7 +23,7 @@ export default class Generate extends LitElement {
   }
 
   ::placeholder {
-    color: var(--dark-gray-color);
+    color: var(--light-gray-color);
   }
 
   input {
@@ -48,8 +48,8 @@ export default class Generate extends LitElement {
     padding: 10px 25px;
     user-select: none;
     width: 140px;
-    background-color: var(--blue-color);
-    color: var(--light-color);
+    background-color: var(--gray-color);
+    color: var(--white-color);
     border: none;
     cursor: pointer;
     height: 100%;
@@ -60,7 +60,7 @@ export default class Generate extends LitElement {
   }
 
   button:hover {
-    background-color: var(--dark-blue-color);
+    background-color: var(--dark-gray-color);
   }
 
   button:focus {
@@ -121,23 +121,23 @@ export default class Generate extends LitElement {
     switch (inner) {
       case 'NotValid':
         this.button!.innerHTML = 'Not valid';
-        this.button!.style.backgroundColor = 'var(--dark-gray-color)';
+        this.button!.style.backgroundColor = 'var(--light-gray-color)';
         break;
       case 'Checking':
         this.input!.value = '';
         this.button!.innerHTML = 'Checking';
-        this.button!.style.backgroundColor = 'var(--dark-blue-color)';
+        this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         this.input!.style.width = '0';
         this.input!.style.padding = '0';
         this.button!.style.cursor = 'default';
         break;
       case 'OK':
         this.button!.innerHTML = 'Redirecting';
-        this.button!.style.backgroundColor = 'var(--blue-color)';
+        this.button!.style.backgroundColor = 'var(--gray-color)';
         break;
       default:
         this.button!.innerHTML = 'Generate';
-        this.button!.style.backgroundColor = 'var(--blue-color)';
+        this.button!.style.backgroundColor = 'var(--gray-color)';
         this.input!.style.width = '70vw';
         this.input!.style.padding = '10px 25px';
         this.button!.style.cursor = 'pointer';

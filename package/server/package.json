@@ -1,7 +1,7 @@
 {
-  "name": "tweeph-server",
+  "name": "sunglasses",
   "version": "0.0.0",
-  "description": "Server of Tweeph web app",
+  "description": "Server of Sunglasses web app",
   "main": "index.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [
