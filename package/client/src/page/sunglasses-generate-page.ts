@@ -99,7 +99,7 @@ export default class Generate extends LitElement {
         this.changeInput('Checking');
         if (this.checkExistID(ID)) {
           this.changeInput('OK');
-          // window.location.href = `/t/${ID}`;
+          window.location.href = '/editor';
         } else {
           this.changeInput('NotValid');
           /**
@@ -112,7 +112,7 @@ export default class Generate extends LitElement {
         /**
            * @TODO: sleep 1 second and change to generate
            */
-        // this.changeInput('Generate');
+        this.changeInput('Generate');
       }
     }
   }

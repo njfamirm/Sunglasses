@@ -19,6 +19,14 @@ window.addEventListener('load', () => {
       },
     },
     {
+      path: '/editor',
+      component: 'sunglasses-editor-page',
+      action: () => {
+        // eslint-disable-next-line import/extensions, import/no-unresolved
+        import('./page/sunglasses-editor-page');
+      },
+    },
+    {
       path: '/generate',
       component: 'sunglasses-generate-page',
       action: () => {

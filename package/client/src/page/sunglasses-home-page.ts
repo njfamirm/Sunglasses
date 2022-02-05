@@ -23,6 +23,10 @@ export default class Body extends LitElement {
     background-color: var(--black-color);
   }
 
+  :host {
+    width: 100%;
+  }
+
 
   .banner {
     background-image: url("/public/img/banner-photo.webp");
@@ -117,7 +121,7 @@ export default class Body extends LitElement {
     return html`
     <div class="banner">
       <div class="banner-text">
-        <h1>Tweeph</h1>
+        <h1>Sunglasses</h1>
         <div class="text">
           <p><span><span>Simplicity</span> while being efficient</span></p>
           <p><span>share <span>Everywhere!</span></span></p>

@@ -4,6 +4,7 @@ import { property, query } from 'lit/decorators.js';
 export default class Tweet extends LitElement {
   static styles = css`
     * {
+      transition: color 1s ease;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -11,14 +12,6 @@ export default class Tweet extends LitElement {
 
     *::selection {
       user-select: none;
-    }
-
-    :host {
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
 
     .tweet-container {
@@ -179,10 +172,21 @@ export default class Tweet extends LitElement {
    */
   @query('.tweet-container') host: HTMLElement | undefined;
 
-  @property({ type: String, attribute: true })
-  theme: 'light' | 'dark' = 'dark';
+  @property({ type: String })
+  theme: 'light' | 'dark';
+
+  constructor() {
+    super();
+    this.theme = 'light';
+  }
 
   protected firstUpdated() {
+    this.setTheme();
+  }
+
+  attributeChangedCallback() {
+    // eslint-disable-next-line no-unused-expressions
+    this.theme === 'dark' ? this.theme = 'light' : this.theme = 'dark';
     this.setTheme();
   }
 
