@@ -13,25 +13,25 @@ window.addEventListener('load', () => {
     {
       path: '/',
       component: 'sunglasses-home-page',
-      action: () => {
+      action: async () => {
         // eslint-disable-next-line import/extensions, import/no-unresolved
-        import('./page/sunglasses-home-page');
+        await import('./page/sunglasses-home-page');
       },
     },
     {
       path: '/editor',
       component: 'sunglasses-editor-page',
-      action: () => {
+      action: async () => {
         // eslint-disable-next-line import/extensions, import/no-unresolved
-        import('./page/sunglasses-editor-page');
+        await import('./page/sunglasses-editor-page');
       },
     },
     {
       path: '/generate',
       component: 'sunglasses-generate-page',
-      action: () => {
+      action: async () => {
         // eslint-disable-next-line import/extensions, import/no-unresolved
-        import('./page/sunglasses-generate-page');
+        await import('./page/sunglasses-generate-page');
       },
     },
   ]);
