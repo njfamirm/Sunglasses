@@ -35,6 +35,7 @@ export default class Tweet extends LitElement {
     }
 
     .user-info {
+      width: 100%;
       margin-left: 12px;
     }
 
@@ -70,6 +71,10 @@ export default class Tweet extends LitElement {
       color: var(--tweet-white-color);
     }
 
+    .tweet-text > p > span {
+      color: var(--tweet-middle-dark-color);
+    }
+
     .info {
       margin-top: 16px;
     }
@@ -99,6 +104,10 @@ export default class Tweet extends LitElement {
       color: var(--tweet-middle-dark-color);
     }
 
+    .action-text {
+      white-space: nowrap;
+    }
+
     .count {
       color: var(--tweet-white-color);
       margin-right: 5px;
@@ -125,9 +134,10 @@ export default class Tweet extends LitElement {
 
       <div class="tweet-text">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dicta perferendis repudiandae,
-          et ducimus sequi iusto, harum, at molestias aut nulla porro necessitatibus dolores laudantium enim nostrum veniam
-          tempora blanditiis.
+        Good news is on the way
+        <br>
+        <br>
+        <span>#twitter @buildWithLit</span>
         </p>
       </div>
 
@@ -147,18 +157,18 @@ export default class Tweet extends LitElement {
       <div class="tweet-actions">
 
         <div class="action">
+          <p class="count count-padding">22</p>
+          <p class="action-text">Likes</p>
+        </div>
+
+        <div class="action">
           <p class="count">22</p>
-          <p>Retweets</p>
+          <p class="action-text">Retweets</p>
         </div>
 
         <div class="action">
           <p class="count count-padding">22</p>
-          <p>Quote Tweet</p>
-        </div>
-
-        <div class="action">
-          <p class="count count-padding">22</p>
-          <p>Likes</p>
+          <p class="action-text">Quote Tweet</p>
         </div>
 
       </div>
