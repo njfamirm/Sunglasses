@@ -47,3 +47,10 @@ export default class Button extends LitElement {
 }
 
 customElements.define('sunglasses-button', Button);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-button': Button;
+  }
+}

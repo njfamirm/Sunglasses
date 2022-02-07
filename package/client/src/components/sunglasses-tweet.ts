@@ -217,3 +217,10 @@ export default class Tweet extends LitElement {
 }
 
 customElements.define('sunglasses-tweet', Tweet);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-tweet': Tweet;
+  }
+}

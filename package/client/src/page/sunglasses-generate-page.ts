@@ -159,3 +159,10 @@ export default class Generate extends LitElement {
 }
 
 customElements.define('sunglasses-generate-page', Generate);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-generate-page': Generate;
+  }
+}

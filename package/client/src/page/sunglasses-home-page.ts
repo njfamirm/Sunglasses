@@ -3,7 +3,7 @@ import { css, html, LitElement } from 'lit';
 import '../components/sunglasses-button.ts';
 import '../components/sunglasses-paragraf.ts';
 
-export default class Body extends LitElement {
+export default class Home extends LitElement {
   static styles = css`
   * {
     margin: 0;
@@ -142,4 +142,11 @@ export default class Body extends LitElement {
   }
 }
 
-customElements.define('sunglasses-home-page', Body);
+customElements.define('sunglasses-home-page', Home);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-home-page': Home;
+  }
+}

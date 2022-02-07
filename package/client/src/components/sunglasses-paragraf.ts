@@ -43,3 +43,10 @@ export default class Paragraf extends LitElement {
 }
 
 customElements.define('sunglasses-paragraf', Paragraf);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-paragraf': Paragraf;
+  }
+}

@@ -81,3 +81,10 @@ export default class Footer extends LitElement {
 }
 
 customElements.define('sunglasses-footer', Footer);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-footer': Footer;
+  }
+}

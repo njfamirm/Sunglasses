@@ -83,3 +83,10 @@ export default class Editor extends LitElement {
 }
 
 customElements.define('sunglasses-editor-page', Editor);
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface HTMLElementTagNameMap {
+    'sunglasses-editor-page': Editor;
+  }
+}
