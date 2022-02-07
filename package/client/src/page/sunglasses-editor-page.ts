@@ -46,11 +46,6 @@ export default class Editor extends LitElement {
     return html`
     <sunglasses-tweet id="tweet"></sunglasses-tweet>
     <div class="panel">
-      <div class="theme">
-        <!-- fix -->
-        <!-- <sunglasses-button id="theme">${this.theme.toString()}</sunglasses-button> -->
-        <sunglasses-button id="theme">Change Theme</sunglasses-button>
-      </div>
         <sunglasses-button id="export">Export</sunglasses-button>
     </div>
     `;

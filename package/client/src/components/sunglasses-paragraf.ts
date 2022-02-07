@@ -10,7 +10,7 @@ export default class Paragraf extends LitElement {
 
     h2 {
       font-weight: 700;
-      color: var(--gray-color);
+      color: var(--dark-gray-color);
       user-select: none;
       display: block;
       font-size: 3em;

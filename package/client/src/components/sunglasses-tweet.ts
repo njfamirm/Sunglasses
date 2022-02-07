@@ -1,5 +1,4 @@
 import { css, html, LitElement } from 'lit';
-import { property, query } from 'lit/decorators.js';
 
 export default class Tweet extends LitElement {
   static styles = css`
@@ -15,9 +14,9 @@ export default class Tweet extends LitElement {
     }
 
     .tweet-container {
-      box-shadow: 0 0 18px 0px var(--shadow-color);
+      box-shadow: var(--shadow);
       padding: 20px 20px;
-      background-color: var(--tweet-black-color);
+      background-color: var(--white-color);
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -25,9 +24,9 @@ export default class Tweet extends LitElement {
       border-radius: 5px;
     }
 
-    .tweet-container > * {
-      color: var(--tweet-light-color);
-    }
+      /* .tweet-container > * {
+        color: var(--tweet-light-color);
+      } */
 
     .avatar {
       display: flex;
@@ -40,12 +39,12 @@ export default class Tweet extends LitElement {
     }
 
     .name {
-      color: var(--tweet-white-color);
+      color: var(--black-color);
       font-weight: 700;
     }
 
     .username {
-      color: var(--tweet-middle-dark-color);
+      color: var(--gray-color);
     }
 
     .avatar {
@@ -68,11 +67,11 @@ export default class Tweet extends LitElement {
     }
 
     .tweet-text p {
-      color: var(--tweet-white-color);
+      color: var(--black-color);
     }
 
     .tweet-text > p > span {
-      color: var(--tweet-middle-dark-color);
+      color: var(--dark-gray-color);
     }
 
     .info {
@@ -81,19 +80,20 @@ export default class Tweet extends LitElement {
 
     .info > * {
       display: inline;
-      color: var(--tweet-middle-dark-color);
+      color: var(--gray-color);
     }
 
     .line {
       height: 0.3px;
       width: 100%;
-      background-color: var(--tweet-middle-dark-color);
+      background-color: var(--black-color);
       opacity: 20%;
       margin: 16px 0;
     }
 
     .tweet-actions {
       display: flex;
+      justify-content: space-around;
     }
 
     .action {
@@ -101,7 +101,7 @@ export default class Tweet extends LitElement {
       align-items: center;
       margin-right: 20px;
       font-size: 15px;
-      color: var(--tweet-middle-dark-color);
+      color: var(--gray-color);
     }
 
     .action-text {
@@ -109,7 +109,7 @@ export default class Tweet extends LitElement {
     }
 
     .count {
-      color: var(--tweet-white-color);
+      color: var(--dark-gray-color);
       margin-right: 5px;
       font-weight: 400;
     }
@@ -175,44 +175,6 @@ export default class Tweet extends LitElement {
       </div>
       </div>
     `;
-  }
-
-  /**
-   * @TODO: change to :host
-   */
-  @query('.tweet-container') host: HTMLElement | undefined;
-
-  @property({ type: String })
-  theme: 'light' | 'dark';
-
-  constructor() {
-    super();
-    this.theme = 'light';
-  }
-
-  protected firstUpdated() {
-    this.setTheme();
-  }
-
-  attributeChangedCallback() {
-    // eslint-disable-next-line no-unused-expressions
-    this.theme === 'dark' ? this.theme = 'light' : this.theme = 'dark';
-    this.setTheme();
-  }
-
-  private setTheme() {
-    if (this.theme === 'dark') {
-      this.host!.style.setProperty('--tweet-black-color', 'var(--black-color)');
-      this.host!.style.setProperty('--tweet-white-color', 'var(--white-color)');
-      this.host!.style.setProperty('--tweet-middle-light-color', 'var(--white-dark-color)');
-      this.host!.style.setProperty('--tweet-middle-dark-color', 'var(--light-gray-color)');
-    } else {
-      this.host!.style.setProperty('--tweet-black-color', 'var(--white-color)');
-      this.host!.style.setProperty('--tweet-middle-light-color', 'var(--light-gray-color)');
-      this.host!.style.setProperty('--tweet-middle-dark-color', 'var(--middle-gray-color)');
-      this.host!.style.setProperty('--tweet-white-color', 'var(--black-color)');
-    }
-    this.requestUpdate();
   }
 }
 

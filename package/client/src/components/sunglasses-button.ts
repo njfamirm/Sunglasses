@@ -22,7 +22,7 @@ export default class Button extends LitElement {
     user-select: none;
     min-height: 40px;
     min-width: 36px;
-    background-color: var(--gray-color);
+    background-color: var(--dark-gray-color);
     color: var(--white-color);
     border: none;
     cursor: pointer;
@@ -31,7 +31,7 @@ export default class Button extends LitElement {
   }
 
   button:hover {
-    background-color: var(--dark-gray-color);
+    background-color: var(--black-color);
   }
 
   button:focus {

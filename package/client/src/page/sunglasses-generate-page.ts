@@ -15,11 +15,12 @@ export default class Generate extends LitElement {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #f0f0f0;
+    background-color: var(--white-color);
     align-items: center;
     border-radius: 250px;
     height: 57px;
     transition: width 1s ease;
+    box-shadow: var(--shadow);
   }
 
   ::placeholder {
@@ -48,7 +49,7 @@ export default class Generate extends LitElement {
     padding: 10px 25px;
     user-select: none;
     width: 140px;
-    background-color: var(--gray-color);
+    background-color: var(--dark-gray-color);
     color: var(--white-color);
     border: none;
     cursor: pointer;
@@ -60,7 +61,7 @@ export default class Generate extends LitElement {
   }
 
   button:hover {
-    background-color: var(--dark-gray-color);
+    background-color: var(--black-color);
   }
 
   button:focus {

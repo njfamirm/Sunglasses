@@ -27,11 +27,11 @@ export default class Home extends LitElement {
     width: 100%;
   }
 
-
   .banner {
     background-image: url("/public/img/banner-photo.webp");
     background-size: 100%;
     background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .banner-text {
@@ -40,6 +40,13 @@ export default class Home extends LitElement {
     flex-direction: column;
     justify-content: center;
     height: 82vh;
+  }
+
+  h1 {
+    color: #1b1b1b;
+    font-size: 5em;
+    user-select: none;
+    font-weight: 700;
   }
 
   .text {
@@ -58,14 +65,6 @@ export default class Home extends LitElement {
     font-weight: 400;
   }
 
-
-  h1 {
-    color: var(--white-color);
-    font-size: 5em;
-    user-select: none;
-    font-weight: 700;
-  }
-
   .banner-text {
     display: flex;
     flex-direction: column;
@@ -78,7 +77,7 @@ export default class Home extends LitElement {
 
   .generate-info {
     padding: 2em 3em;
-    background-color: var(--white-dark-color);
+    background-color: var(--white-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,7 +98,7 @@ export default class Home extends LitElement {
   }
 
   .info {
-    background-color: var(--white-dark-color);
+    background-color: var(--white-color);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -129,7 +128,9 @@ export default class Home extends LitElement {
       </div>
       <div class="generate-info">
         <p>Simple, Free, Efficient<span>, Isn't it time to give it a try?!</span></p>
-        <sunglasses-button>Start</sunglasses-button>
+        <a href="/generate">
+          <sunglasses-button>Start</sunglasses-button>
+        </a>
       </div>
       <div class="empty"></div>
       <div class="info">

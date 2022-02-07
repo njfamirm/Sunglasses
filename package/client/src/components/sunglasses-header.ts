@@ -18,10 +18,10 @@ export default class Header extends LitElement {
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
     padding: 0.2em 2em;
-    background-color: var(--white-dark-color);
+    background-color: var(--white-color);
   }
 
   .logo {
@@ -49,7 +49,6 @@ export default class Header extends LitElement {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: center;
   }
 
   a {
@@ -71,8 +70,25 @@ export default class Header extends LitElement {
   }
 
   li {
-    padding: 0 0 0 3em;
     list-style: none;
+  }
+
+  li > a {
+    margin: 0 0 0 3em;
+  }
+
+  .theme-switcher {
+    margin: 0 0 0 2em;
+    color: var(--black-color);
+    fill: currentColor;
+    transition: color 0.3s;
+    width: 1.5em;
+    height: 100%;
+    cursor: pointer
+  }
+
+  .theme-switcher:hover {
+    color: var(--gray-color);
   }
   `;
 
@@ -85,9 +101,23 @@ export default class Header extends LitElement {
           <ul>
             <li><a class="header-link" href="/generate">Generate</a></li>
             <li><a class="header-link" href="/about">About</a></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" x="0" y="0" viewBox="0 0 48 48" xml:space="preserve" class="theme-switcher"><g><g xmlns="http://www.w3.org/2000/svg"><g><path d="m38.58 15.755c-.7-7.38-6.82-13.19-14.27-13.53l-.31-.01-.35.01c-7.41.34-13.53 6.15-14.23 13.53-.45 4.91 1.51 9.74 5.25 12.9.78.66 1.43 1.49 1.87 2.41.44.93.67 1.91.67 2.93 0 .45.11.87.28 1.25v3.72c0 1.21.72 2.25 1.76 2.72v1.1c0 1.65 1.34 3 3 3h3.5c1.66 0 3-1.35 3-3v-1.1c1.04-.47 1.76-1.51 1.76-2.72v-3.72c.18-.38.28-.8.28-1.25 0-1.02.23-2 .67-2.93.44-.92 1.09-1.75 1.87-2.41 3.74-3.16 5.7-7.99 5.25-12.9zm-22.58.27c0 .55-.45 1-1 1s-1-.45-1-1c0-5.51 4.49-10 10-10 .55 0 1 .45 1 1s-.45 1-1 1c-4.41 0-8 3.59-8 8zm10.75 26.76c0 .55-.45 1-1 1h-3.5c-.55 0-1-.45-1-1v-.82h5.5zm1.76-3.82c0 .55-.45 1-1 1h-7.02c-.55 0-1-.45-1-1v-2.07c.23.06.47.1.72.1h7.58c.25 0 .49-.04.72-.1z"></path></g></g></g></svg></li>
           </ul>
         </header>
       `;
+  }
+
+  /**
+   * @TODO: user query
+   */
+  protected firstUpdated() {
+    const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
+    themeSwitcher?.addEventListener('click', () => {
+      let theme = document.body.getAttribute('data-theme');
+      // eslint-disable-next-line no-unused-expressions
+      theme === 'dark' ? theme = 'light' : theme = 'dark';
+      document.body.setAttribute('data-theme', theme);
+    });
   }
 }
 

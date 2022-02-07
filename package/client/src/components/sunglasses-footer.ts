@@ -18,18 +18,18 @@ export default class Footer extends LitElement {
   }
 
   :host {
-    width: 100vw;
+    width: 100%;
   }
 
 
   footer {
-    border-top: 1px solid #b5b5b547;
+    border-top: 1px solid var(--light-gray-color);
     padding: 0.5em 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--white-dark-color);
+    background-color: var(--white-color);
   }
 
   p {
