@@ -69,19 +69,13 @@ git checkout YOUR_BRANCH
 git merge starter
 git branch -d starter
 ```
-
-## Hint
-
-see A specification for adding human and machine readable meaning to commit messages on [Conventional Commits](https://www.conventionalcommits.org/en/about/)
-
 ---
 
 ### Todo
 
 #### Feature
 
-- [ ] Config eslint in Deno
-- [ ] Add CONTRIBUTING.md file
+- Config eslint in Deno
 
 #### Code
 
