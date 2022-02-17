@@ -14,6 +14,7 @@ const app = new Application();
 
 // serve home page
 router.get("/", async (ctx: Context) => {
+  ctx.response.status = 200;
   await send(ctx, "/", {
     root: `${Deno.cwd()}/../client/views`,
     index: "index.html",
@@ -22,6 +23,16 @@ router.get("/", async (ctx: Context) => {
 
 // serve generate page
 router.get("/generate", async (ctx: Context) => {
+  ctx.response.status = 200;
+  await send(ctx, "/", {
+    root: `${Deno.cwd()}/../client/views`,
+    index: "index.html",
+  });
+});
+
+// serve 404 page
+router.get("/(.*)", async (ctx: Context) => {
+  ctx.response.status = 404;
   await send(ctx, "/", {
     root: `${Deno.cwd()}/../client/views`,
     index: "index.html",
