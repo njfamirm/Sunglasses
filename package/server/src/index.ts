@@ -4,38 +4,29 @@ import {
   Router,
   send,
   Status,
-} from "https://deno.land/x/oak/mod.ts";
-import { info } from "https://deno.land/std/log/mod.ts";
+} from 'https://deno.land/x/oak/mod.ts';
+import {info} from 'https://deno.land/std/log/mod.ts';
 
-import { checkFileExist } from "./util/checkFileExist.ts";
+import {checkFileExist} from './util/checkFileExist.ts';
 
 const router = new Router();
 const app = new Application();
 
 // serve home page
-router.get("/", async (ctx: Context) => {
+router.get('/', async (ctx: Context) => {
   ctx.response.status = 200;
-  await send(ctx, "/", {
+  await send(ctx, '/', {
     root: `${Deno.cwd()}/../client/views`,
-    index: "index.html",
+    index: 'index.html',
   });
 });
 
 // serve generate page
-router.get("/generate", async (ctx: Context) => {
+router.get('/generate', async (ctx: Context) => {
   ctx.response.status = 200;
-  await send(ctx, "/", {
+  await send(ctx, '/', {
     root: `${Deno.cwd()}/../client/views`,
-    index: "index.html",
-  });
-});
-
-// serve 404 page
-router.get("/(.*)", async (ctx: Context) => {
-  ctx.response.status = 404;
-  await send(ctx, "/", {
-    root: `${Deno.cwd()}/../client/views`,
-    index: "index.html",
+    index: 'index.html',
   });
 });
 
@@ -45,18 +36,18 @@ router.get("/(.*)", async (ctx: Context) => {
  * and get link of tweet, after click in input button
  * redirect into /editor from router
  */
-router.get("/editor", async (ctx: Context) => {
-  await send(ctx, "/", {
+router.get('/editor', async (ctx: Context) => {
+  await send(ctx, '/', {
     root: `${Deno.cwd()}/../client/views`,
-    index: "index.html",
+    index: 'index.html',
   });
 });
 
 // serve favicon.ico
-router.get("/favicon.ico", async (ctx: Context) => {
-  await send(ctx, "/favicon.svg", {
+router.get('/favicon.ico', async (ctx: Context) => {
+  await send(ctx, '/favicon.svg', {
     root: `${Deno.cwd()}/../client/public`,
-    index: "favicon.svg",
+    index: 'favicon.svg',
   });
 });
 
@@ -76,8 +67,8 @@ app.use(async (ctx, next) => {
 // page not found
 app.use((context) => {
   context.response.status = Status.NotFound;
-  context.response.body = `'${context.request.url}' not found`;
+  context.response.body = `404 - '${context.request.url}' not found`;
 });
 
-info("Serving on http://localhost:8000");
-await app.listen({ port: 8000 });
+info('Serving on http://localhost:8000');
+await app.listen({port: 8000});

@@ -1,7 +1,9 @@
-import { css, html, LitElement } from 'lit';
+import {css, html, LitElement} from 'lit';
+
+import type {TemplateResult} from 'lit';
 
 export default class Tweet extends LitElement {
-  static styles = css`
+  static override styles = css`
     * {
       transition: color 1s ease;
       margin: 0;
@@ -24,7 +26,7 @@ export default class Tweet extends LitElement {
       border-radius: 5px;
     }
 
-      /* .tweet-container > * {
+    /* .tweet-container > * {
         color: var(--tweet-light-color);
       } */
 
@@ -117,10 +119,9 @@ export default class Tweet extends LitElement {
     .count-padding {
       margin-left: 20px;
     }
-
   `;
 
-  render() {
+  override render(): TemplateResult {
     return html`
       <div class="tweet-container">
 
