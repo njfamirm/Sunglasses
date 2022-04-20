@@ -1,10 +1,12 @@
-import { css, html, LitElement } from 'lit';
+import {css, html, LitElement} from 'lit';
+
+import type {TemplateResult} from 'lit';
 
 import '../components/sunglasses-button.ts';
 import '../components/sunglasses-paragraf.ts';
 
 export default class Home extends LitElement {
-  static styles = css`
+  static override styles = css`
   * {
     margin: 0;
     padding: 0;
@@ -116,7 +118,7 @@ export default class Home extends LitElement {
    * @TODO: fix width
    * @TODO: add link for start button
    */
-  render() {
+  override render():TemplateResult {
     return html`
     <div class="banner">
       <div class="banner-text">

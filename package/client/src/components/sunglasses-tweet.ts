@@ -1,7 +1,9 @@
-import { css, html, LitElement } from 'lit';
+import {css, html, LitElement} from 'lit';
+
+import type {TemplateResult} from 'lit';
 
 export default class Tweet extends LitElement {
-  static styles = css`
+  static override styles = css`
     * {
       transition: color 1s ease;
       margin: 0;
@@ -120,7 +122,7 @@ export default class Tweet extends LitElement {
 
   `;
 
-  render() {
+  override render():TemplateResult {
     return html`
       <div class="tweet-container">
 

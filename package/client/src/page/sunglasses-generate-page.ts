@@ -1,8 +1,10 @@
-import { html, css, LitElement } from 'lit';
-import { query } from 'lit/decorators.js';
+import {html, css, LitElement} from 'lit';
+import {query} from 'lit/decorators.js';
+
+import type {TemplateResult} from 'lit';
 
 export default class Generate extends LitElement {
-  static styles? = css`
+  static override styles? = css`
   :host {
     width: 80vw;
     display: flex;
@@ -69,10 +71,11 @@ export default class Generate extends LitElement {
   }
   `
 
-  render() {
+  override render():TemplateResult {
     return html`
     <form action="#" novalidate>
-        <input class="input" type="url" spellcheck="false" id="link-box" autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
+        <input class="input" type="url" spellcheck="false" id="link-box"
+          autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
         <button class="sumbit-btn">Generate</button>
     </form>
     `;
@@ -84,7 +87,7 @@ export default class Generate extends LitElement {
 
   @query('form') form: HTMLSelectElement | undefined;
 
-  firstUpdated() {
+  override firstUpdated():void {
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -92,7 +95,7 @@ export default class Generate extends LitElement {
     });
   }
 
-  private sumbit() {
+  private sumbit():void {
     const value = this.input?.value;
     if (value !== undefined && value !== '') {
       const ID = this.checkValidValue(value);
@@ -118,7 +121,7 @@ export default class Generate extends LitElement {
     }
   }
 
-  private changeInput(inner: string) {
+  private changeInput(inner: string):void {
     switch (inner) {
       case 'NotValid':
         this.button!.innerHTML = 'Not valid';

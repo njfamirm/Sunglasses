@@ -1,9 +1,11 @@
-import { html, css, LitElement } from 'lit';
+import {html, css, LitElement} from 'lit';
+
+import type {TemplateResult} from 'lit';
 
 import '../components/sunglasses-button.ts';
 
 export default class NotFOund extends LitElement {
-  static styles? = css`
+  static override styles? = css`
   * {
     margin: 0;
     padding: 0;
@@ -44,7 +46,7 @@ export default class NotFOund extends LitElement {
   }
   `
 
-  render() {
+  override render():TemplateResult {
     return html`
       <div class="text">
         <h1>404</h1>

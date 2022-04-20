@@ -1,7 +1,9 @@
-import { html, css, LitElement } from 'lit';
+import {html, css, LitElement} from 'lit';
+
+import type {TemplateResult} from 'lit';
 
 export default class Header extends LitElement {
-  static styles? = css`
+  static override styles? = css`
   * {
     margin: 0;
     padding: 0;
@@ -92,7 +94,7 @@ export default class Header extends LitElement {
   }
   `;
 
-  render() {
+  override render():TemplateResult {
     return html`
         <header>
           <a href="/">
@@ -110,7 +112,7 @@ export default class Header extends LitElement {
   /**
    * @TODO: user query
    */
-  protected firstUpdated() {
+  protected override firstUpdated():void {
     const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
     themeSwitcher?.addEventListener('click', () => {
       let theme = document.body.getAttribute('data-theme');

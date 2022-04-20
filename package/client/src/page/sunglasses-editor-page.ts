@@ -1,13 +1,15 @@
-import { html, css, LitElement } from 'lit';
-import { state } from 'lit/decorators.js';
 import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
+import {html, css, LitElement} from 'lit';
+import {state} from 'lit/decorators.js';
+
+import type {TemplateResult} from 'lit';
 
 import '../components/sunglasses-tweet.ts';
 import '../components/sunglasses-button.ts';
 
 export default class Editor extends LitElement {
-  static styles? = css`
+  static override styles? = css`
   * {
     margin: 0;
     padding: 0;
@@ -42,7 +44,7 @@ export default class Editor extends LitElement {
   }
   `;
 
-  render() {
+  override render():TemplateResult {
     return html`
     <sunglasses-tweet id="tweet"></sunglasses-tweet>
     <div class="panel">
@@ -53,22 +55,26 @@ export default class Editor extends LitElement {
 
   @state() theme : 'dark' | 'light' = 'light'
 
-  protected firstUpdated() {
+  protected override firstUpdated():void {
     const themeButton = this.shadowRoot?.querySelector('#theme');
     const tweetElement = this.shadowRoot?.querySelector('#tweet');
     const ExportButton = this.shadowRoot?.querySelector('#export');
-    themeButton?.addEventListener('click', () => { this.changeTheme(tweetElement); });
-    ExportButton?.addEventListener('click', () => { this.export(tweetElement!.shadowRoot!.children[0]); });
+    themeButton?.addEventListener('click', () => {
+      this.changeTheme(tweetElement);
+    });
+    ExportButton?.addEventListener('click', () => {
+      this.export(tweetElement!.shadowRoot!.children[0]);
+    });
   }
 
-  private changeTheme(tweetElement: any) {
+  private changeTheme(tweetElement: any):void {
     // eslint-disable-next-line no-unused-expressions
     this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light';
     tweetElement?.setAttribute('theme', this.theme);
   }
 
   // export tweet
-  private export(tweet: any) {
+  private export(tweet: any):void {
     if (tweet !== undefined && tweet !== null) {
       domtoimage.toBlob(tweet).then((blob) => {
         saveAs(blob, 'tweet | sunglasses.com .png');

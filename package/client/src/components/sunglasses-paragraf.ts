@@ -1,8 +1,10 @@
-import { css, html, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import {css, html, LitElement} from 'lit';
+import {property} from 'lit/decorators.js';
+
+import type {TemplateResult} from 'lit';
 
 export default class Paragraf extends LitElement {
-  static styles = css`
+  static override styles = css`
     p::selection {
       color: var(--white-dark-color);
       background-color: var(--black-color);
@@ -25,8 +27,8 @@ export default class Paragraf extends LitElement {
     }
   `;
 
-  @property({ type: String, attribute: true })
-  header: string = '';
+  @property({type: String, attribute: true})
+  header = '';
 
   // @property({ type: String, attribute: true })
   // id: string = '';
@@ -34,7 +36,7 @@ export default class Paragraf extends LitElement {
   /**
    * @TODO: add ID
    */
-  render() {
+  override render():TemplateResult {
     return html`
       <h2>${this.header}</h2>
       <p>${this.innerHTML.toString()}</p>

@@ -1,7 +1,9 @@
-import { html, css, LitElement } from 'lit';
+import {html, css, LitElement} from 'lit';
+
+import type {TemplateResult} from 'lit';
 
 export default class Button extends LitElement {
-  static styles? = css`
+  static override styles? = css`
   * {
     margin: 0;
     padding: 0;
@@ -39,7 +41,7 @@ export default class Button extends LitElement {
   }
   `
 
-  render() {
+  override render():TemplateResult {
     return html`
         <button>${this.innerHTML.toString()}</button>
       `;
