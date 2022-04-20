@@ -1,0 +1,11 @@
+# build
+**/*.js
+
+# webpack config file
+!package/client/webpack.config.js
+
+# Dependencies
+node_modules/
+
+# logs
+**/*.log
