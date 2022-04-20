@@ -6,47 +6,47 @@ import '../components/sunglasses-button.ts';
 
 export default class NotFOund extends LitElement {
   static override styles? = css`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  * {
-    user-select: none;
-  }
+    * {
+      user-select: none;
+    }
 
-  :host {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    :host {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .text {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5em;
-  }
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5em;
+    }
 
-  .text > h1 {
-    font-size: 9em;
-    background-color: var(--black-color);
-    color: var(--white-color);
-    border-radius: 20px;
-    padding: 0.1em;
-    margin-right: 0.5em;
-  }
+    .text > h1 {
+      font-size: 9em;
+      background-color: var(--black-color);
+      color: var(--white-color);
+      border-radius: 20px;
+      padding: 0.1em;
+      margin-right: 0.5em;
+    }
 
-  .text > p {
-    font-size: 5em;
-    color: var(--dark-gray-color)
-  }
-  `
+    .text > p {
+      font-size: 5em;
+      color: var(--dark-gray-color);
+    }
+  `;
 
-  override render():TemplateResult {
+  override render(): TemplateResult {
     return html`
       <div class="text">
         <h1>404</h1>

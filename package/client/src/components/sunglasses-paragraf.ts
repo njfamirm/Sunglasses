@@ -36,11 +36,11 @@ export default class Paragraf extends LitElement {
   /**
    * @TODO: add ID
    */
-  override render():TemplateResult {
+  override render(): TemplateResult {
     return html`
       <h2>${this.header}</h2>
       <p>${this.innerHTML.toString()}</p>
-      `;
+    `;
   }
 }
 

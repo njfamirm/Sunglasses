@@ -5,73 +5,72 @@ import type {TemplateResult} from 'lit';
 
 export default class Generate extends LitElement {
   static override styles? = css`
-  :host {
-    width: 80vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+    :host {
+      width: 80vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
 
-  form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: var(--white-color);
-    align-items: center;
-    border-radius: 250px;
-    height: 57px;
-    transition: width 1s ease;
-    box-shadow: var(--shadow);
-  }
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: var(--white-color);
+      align-items: center;
+      border-radius: 250px;
+      height: 57px;
+      transition: width 1s ease;
+      box-shadow: var(--shadow);
+    }
 
-  ::placeholder {
-    color: var(--light-gray-color);
-  }
+    ::placeholder {
+      color: var(--light-gray-color);
+    }
 
-  input {
-    width: 70vw;
-    font-size: 1em;
-    padding: 10px 25px;
-    user-select: none;
-    color: var(--black-color);
-    background-color: inherit;
-    border: none;
-    outline: none;
-    border-radius: 250px;
-    background-color: inherit;
-    transition: width 1s ease, padding 1s ease;
-  }
+    input {
+      width: 70vw;
+      font-size: 1em;
+      padding: 10px 25px;
+      user-select: none;
+      color: var(--black-color);
+      background-color: inherit;
+      border: none;
+      outline: none;
+      border-radius: 250px;
+      background-color: inherit;
+      transition: width 1s ease, padding 1s ease;
+    }
 
+    button {
+      font-weight: 700;
+      font-size: 1.2em;
+      border-radius: 250px;
+      padding: 10px 25px;
+      user-select: none;
+      width: 140px;
+      background-color: var(--dark-gray-color);
+      color: var(--white-color);
+      border: none;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 3s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;
+    }
 
-  button {
-    font-weight: 700;
-    font-size: 1.2em;
-    border-radius: 250px;
-    padding: 10px 25px;
-    user-select: none;
-    width: 140px;
-    background-color: var(--dark-gray-color);
-    color: var(--white-color);
-    border: none;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 3s cubic-bezier(.6,.32,.06,.74) 0s;
-  }
+    button:hover {
+      background-color: var(--black-color);
+    }
 
-  button:hover {
-    background-color: var(--black-color);
-  }
+    button:focus {
+      border: none;
+    }
+  `;
 
-  button:focus {
-    border: none;
-  }
-  `
-
-  override render():TemplateResult {
+  override render(): TemplateResult {
     return html`
     <form action="#" novalidate>
         <input class="input" type="url" spellcheck="false" id="link-box"
@@ -87,7 +86,7 @@ export default class Generate extends LitElement {
 
   @query('form') form: HTMLSelectElement | undefined;
 
-  override firstUpdated():void {
+  override firstUpdated(): void {
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -95,7 +94,7 @@ export default class Generate extends LitElement {
     });
   }
 
-  private sumbit():void {
+  private sumbit(): void {
     const value = this.input?.value;
     if (value !== undefined && value !== '') {
       const ID = this.checkValidValue(value);
@@ -114,14 +113,14 @@ export default class Generate extends LitElement {
       } else {
         this.changeInput('NotValid');
         /**
-           * @TODO: sleep 1 second and change to generate
-           */
+         * @TODO: sleep 1 second and change to generate
+         */
         this.changeInput('Generate');
       }
     }
   }
 
-  private changeInput(inner: string):void {
+  private changeInput(inner: string): void {
     switch (inner) {
       case 'NotValid':
         this.button!.innerHTML = 'Not valid';
@@ -154,9 +153,11 @@ export default class Generate extends LitElement {
   }
 
   private checkValidValue(value: string): string | null {
-    const match = value.match(/^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g);
+    const match = value.match(
+      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
+    );
     if (match !== null) {
-      return (<any>(value.match(/\d*$/g)))[0];
+      return (<any>value.match(/\d*$/g))[0];
     }
     return null;
   }

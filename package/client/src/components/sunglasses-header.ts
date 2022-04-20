@@ -4,97 +4,97 @@ import type {TemplateResult} from 'lit';
 
 export default class Header extends LitElement {
   static override styles? = css`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  *:focus-visible {
-    outline: none;
-  }
+    *:focus-visible {
+      outline: none;
+    }
 
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.2em 2em;
-    background-color: var(--white-color);
-  }
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.2em 2em;
+      background-color: var(--white-color);
+    }
 
-  .logo {
-    height: 100%;
-    width: 3.2em;
-    color: var(--black-color);
-    fill: currentColor;
-  }
+    .logo {
+      height: 100%;
+      width: 3.2em;
+      color: var(--black-color);
+      fill: currentColor;
+    }
 
-  svg:focus {
-    border: none;
-  }
+    svg:focus {
+      border: none;
+    }
 
-  p {
-    order: 2;
-    font-size: 1.4em;
-    font-weight: 400;
-    margin-left: 0.3em;
-    color: var(--gray-color);
-    user-select: none;
-  }
+    p {
+      order: 2;
+      font-size: 1.4em;
+      font-weight: 400;
+      margin-left: 0.3em;
+      color: var(--gray-color);
+      user-select: none;
+    }
 
-  ul {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
+    ul {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
 
-  a {
-    cursor: pointer;
-    user-select: none;
-    text-decoration: none;
-  }
+    a {
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+    }
 
-  .header-link {
-    text-decoration: none;
-    font-size: 1.3em;
-    color: var(--black-color);
-    transition: color 0.3s;
-    font-weight: 400;
-  }
+    .header-link {
+      text-decoration: none;
+      font-size: 1.3em;
+      color: var(--black-color);
+      transition: color 0.3s;
+      font-weight: 400;
+    }
 
-  .header-link:hover {
-    color: var(--gray-color);
-  }
+    .header-link:hover {
+      color: var(--gray-color);
+    }
 
-  li {
-    list-style: none;
-  }
+    li {
+      list-style: none;
+    }
 
-  li > a {
-    margin: 0 0 0 3em;
-  }
+    li > a {
+      margin: 0 0 0 3em;
+    }
 
-  .theme-switcher {
-    margin: 0 0 0 2em;
-    color: var(--black-color);
-    fill: currentColor;
-    transition: color 0.3s;
-    width: 1.5em;
-    height: 100%;
-    cursor: pointer
-  }
+    .theme-switcher {
+      margin: 0 0 0 2em;
+      color: var(--black-color);
+      fill: currentColor;
+      transition: color 0.3s;
+      width: 1.5em;
+      height: 100%;
+      cursor: pointer;
+    }
 
-  .theme-switcher:hover {
-    color: var(--gray-color);
-  }
+    .theme-switcher:hover {
+      color: var(--gray-color);
+    }
   `;
 
-  override render():TemplateResult {
+  override render(): TemplateResult {
     return html`
         <header>
           <a href="/">
@@ -112,12 +112,12 @@ export default class Header extends LitElement {
   /**
    * @TODO: user query
    */
-  protected override firstUpdated():void {
+  protected override firstUpdated(): void {
     const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
     themeSwitcher?.addEventListener('click', () => {
       let theme = document.body.getAttribute('data-theme');
       // eslint-disable-next-line no-unused-expressions
-      theme === 'dark' ? theme = 'light' : theme = 'dark';
+      theme === 'dark' ? (theme = 'light') : (theme = 'dark');
       document.body.setAttribute('data-theme', theme);
     });
   }
