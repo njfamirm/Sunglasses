@@ -1,5 +1,5 @@
-import domtoimage from 'dom-to-image';
-import {saveAs} from 'file-saver';
+// import domtoimage from 'dom-to-image';
+// import {saveAs} from 'file-saver';
 import {html, css, LitElement} from 'lit';
 import {state} from 'lit/decorators.js';
 
@@ -7,6 +7,7 @@ import type {TemplateResult} from 'lit';
 
 import '../components/sunglasses-tweet.ts';
 import '../components/sunglasses-button.ts';
+import '../components/sunglasses-input.ts';
 
 export default class Home extends LitElement {
   static override styles? = css`
@@ -22,9 +23,13 @@ export default class Home extends LitElement {
       outline: none;
     }
 
+    sunglasses-input {
+      width: 100%;
+    }
+
     :host {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
       flex-direction: column;
       align-items: center;
     }
@@ -32,15 +37,12 @@ export default class Home extends LitElement {
     .panel {
       width: 100%;
       display: flex;
+      flex-direction: row;
       justify-content: space-around;
-      align-items: center;
-      border-radius: 100px;
-      padding: 5px;
     }
 
-    .theme {
-      display: flex;
-      align-items: center;
+    .button {
+      margin-left: 20px;
     }
   `;
 
@@ -48,7 +50,8 @@ export default class Home extends LitElement {
     return html`
       <sunglasses-tweet id="tweet"></sunglasses-tweet>
       <div class="panel">
-        <sunglasses-button id="export">Export</sunglasses-button>
+        <sunglasses-input id="input"></sunglasses-input>
+        <sunglasses-button class="button">Search</sunglasses-button>
       </div>
     `;
   }
@@ -58,12 +61,8 @@ export default class Home extends LitElement {
   protected override firstUpdated(): void {
     const themeButton = this.shadowRoot?.querySelector('#theme');
     const tweetElement = this.shadowRoot?.querySelector('#tweet');
-    const ExportButton = this.shadowRoot?.querySelector('#export');
     themeButton?.addEventListener('click', () => {
       this.changeTheme(tweetElement);
-    });
-    ExportButton?.addEventListener('click', () => {
-      this.export(tweetElement!.shadowRoot!.children[0]);
     });
   }
 
@@ -73,14 +72,14 @@ export default class Home extends LitElement {
     tweetElement?.setAttribute('theme', this.theme);
   }
 
-  // export tweet
-  private export(tweet: any): void {
-    if (tweet !== undefined && tweet !== null) {
-      domtoimage.toBlob(tweet).then((blob) => {
-        saveAs(blob, 'tweet | sunglasses.com .png');
-      });
-    }
-  }
+  // // export tweet
+  // private export(tweet: any): void {
+  //   if (tweet !== undefined && tweet !== null) {
+  //     domtoimage.toBlob(tweet).then((blob) => {
+  //       saveAs(blob, 'tweet | sunglasses.com .png');
+  //     });
+  //   }
+  // }
 }
 
 customElements.define('sunglasses-home-page', Home);

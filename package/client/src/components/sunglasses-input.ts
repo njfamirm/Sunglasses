@@ -1,12 +1,11 @@
 import {html, css, LitElement} from 'lit';
-import {query} from 'lit/decorators.js';
+import {property, query} from 'lit/decorators.js';
 
 import type {TemplateResult} from 'lit';
 
 export default class Input extends LitElement {
   static override styles? = css`
     :host {
-      width: 80vw;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -14,6 +13,7 @@ export default class Input extends LitElement {
     }
 
     form {
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -30,7 +30,7 @@ export default class Input extends LitElement {
     }
 
     input {
-      width: 70vw;
+      width: 100%;
       font-size: 1em;
       padding: 10px 25px;
       user-select: none;
@@ -43,7 +43,7 @@ export default class Input extends LitElement {
       transition: width 1s ease, padding 1s ease;
     }
 
-    button {
+    #export {
       font-weight: 700;
       font-size: 1.2em;
       border-radius: 250px;
@@ -75,7 +75,6 @@ export default class Input extends LitElement {
     <form action="#" novalidate>
         <input class="input" type="url" spellcheck="false" id="link-box"
           autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
-        <button class="sumbit-btn">Generate</button>
     </form>
     `;
   }
@@ -86,7 +85,15 @@ export default class Input extends LitElement {
 
   @query('form') form: HTMLSelectElement | undefined;
 
+  @property({type: String}) exported: 'false' | 'ok' = 'false'
+
   override firstUpdated(): void {
+    const inputElement = this.shadowRoot!.querySelector('#export');
+    inputElement?.addEventListener('click', () => {
+      console.log('fired');
+      this.exported = 'ok';
+    });
+
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -102,7 +109,6 @@ export default class Input extends LitElement {
         this.changeInput('Checking');
         if (this.checkExistID(ID)) {
           this.changeInput('OK');
-          window.location.href = '/editor';
         } else {
           this.changeInput('NotValid');
           /**

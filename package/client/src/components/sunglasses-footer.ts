@@ -24,7 +24,6 @@ export default class Footer extends LitElement {
     }
 
     footer {
-      border-top: 1px solid var(--light-gray-color);
       padding: 0.5em 0;
       display: flex;
       flex-direction: row;
