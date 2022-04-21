@@ -21,28 +21,6 @@ router.get('/', async (ctx: Context) => {
   });
 });
 
-// serve generate page
-router.get('/generate', async (ctx: Context) => {
-  ctx.response.status = 200;
-  await send(ctx, '/', {
-    root: `${Deno.cwd()}/../client/views`,
-    index: 'index.html',
-  });
-});
-
-/**
- * serve editor page
- * user must first go to generate oage
- * and get link of tweet, after click in input button
- * redirect into /editor from router
- */
-router.get('/editor', async (ctx: Context) => {
-  await send(ctx, '/', {
-    root: `${Deno.cwd()}/../client/views`,
-    index: 'index.html',
-  });
-});
-
 // serve favicon.ico
 router.get('/favicon.ico', async (ctx: Context) => {
   await send(ctx, '/favicon.svg', {

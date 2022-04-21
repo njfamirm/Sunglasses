@@ -3,7 +3,7 @@ import {query} from 'lit/decorators.js';
 
 import type {TemplateResult} from 'lit';
 
-export default class Generate extends LitElement {
+export default class Input extends LitElement {
   static override styles? = css`
     :host {
       width: 80vw;
@@ -154,7 +154,7 @@ export default class Generate extends LitElement {
 
   private checkValidValue(value: string): string | null {
     const match = value.match(
-      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
+        /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
       return (<any>value.match(/\d*$/g))[0];
@@ -163,11 +163,11 @@ export default class Generate extends LitElement {
   }
 }
 
-customElements.define('sunglasses-generate-page', Generate);
+customElements.define('sunglasses-input', Input);
 
 declare global {
   // eslint-disable-next-line no-unused-vars
   interface HTMLElementTagNameMap {
-    'sunglasses-generate-page': Generate;
+    'sunglasses-input': Input;
   }
 }
