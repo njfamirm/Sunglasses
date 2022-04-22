@@ -21,6 +21,14 @@ router.get('/', async (ctx: Context) => {
   });
 });
 
+// serve home page
+router.get('/api', async (ctx: Context) => {
+  ctx.response.status = 200;
+  await send(ctx, 'tweet.json', {
+    root: `${Deno.cwd()}/src/`,
+  });
+});
+
 // serve favicon.ico
 router.get('/favicon.ico', async (ctx: Context) => {
   await send(ctx, '/favicon.svg', {

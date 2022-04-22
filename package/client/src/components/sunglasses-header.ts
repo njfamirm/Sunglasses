@@ -125,7 +125,6 @@ export default class Header extends LitElement {
 customElements.define('sunglasses-header', Header);
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
   interface HTMLElementTagNameMap {
     'sunglasses-header': Header;
   }
