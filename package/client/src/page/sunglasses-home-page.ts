@@ -1,5 +1,3 @@
-// import domtoimage from 'dom-to-image';
-// import {saveAs} from 'file-saver';
 import {html, css, LitElement} from 'lit';
 import {state} from 'lit/decorators.js';
 
@@ -7,7 +5,7 @@ import type {TemplateResult} from 'lit';
 
 import '../components/sunglasses-tweet.ts';
 import '../components/sunglasses-button.ts';
-import '../components/sunglasses-input.ts';
+import '../components/sunglasses-panel.ts';
 
 export default class Home extends LitElement {
   static override styles? = css`
@@ -23,15 +21,19 @@ export default class Home extends LitElement {
       outline: none;
     }
 
-    sunglasses-input {
-      width: 100%;
-    }
-
     :host {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       flex-direction: column;
       align-items: center;
+    }
+
+    sunglasses-tweet {
+      margin-bottom: 2em;
+    }
+
+    sunglasses-panel {
+      width: 100%;
     }
 
     .panel {
@@ -49,10 +51,7 @@ export default class Home extends LitElement {
   override render(): TemplateResult {
     return html`
       <sunglasses-tweet id="tweet"></sunglasses-tweet>
-      <div class="panel">
-        <sunglasses-input id="input"></sunglasses-input>
-        <sunglasses-button class="button">Search</sunglasses-button>
-      </div>
+      <sunglasses-panel id="input"></sunglasses-panel>
     `;
   }
 
@@ -71,15 +70,6 @@ export default class Home extends LitElement {
     this.theme === 'light' ? (this.theme = 'dark') : (this.theme = 'light');
     tweetElement?.setAttribute('theme', this.theme);
   }
-
-  // // export tweet
-  // private export(tweet: any): void {
-  //   if (tweet !== undefined && tweet !== null) {
-  //     domtoimage.toBlob(tweet).then((blob) => {
-  //       saveAs(blob, 'tweet | sunglasses.com .png');
-  //     });
-  //   }
-  // }
 }
 
 customElements.define('sunglasses-home-page', Home);

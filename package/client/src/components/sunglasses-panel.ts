@@ -1,10 +1,20 @@
+import domtoimage from 'dom-to-image';
+import {saveAs} from 'file-saver';
 import {html, css, LitElement} from 'lit';
 import {property, query} from 'lit/decorators.js';
 
 import type {TemplateResult} from 'lit';
 
-export default class Input extends LitElement {
+export default class Panel extends LitElement {
   static override styles? = css`
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
     :host {
       display: flex;
       flex-direction: row;
@@ -17,11 +27,13 @@ export default class Input extends LitElement {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      background-color: var(--white-color);
       align-items: center;
       border-radius: 250px;
       height: 57px;
       transition: width 1s ease;
+    }
+
+    form > * {
       box-shadow: var(--shadow);
     }
 
@@ -31,25 +43,29 @@ export default class Input extends LitElement {
 
     input {
       width: 100%;
+      height: 100%;
       font-size: 1em;
       padding: 10px 25px;
       user-select: none;
       color: var(--black-color);
-      background-color: inherit;
+      background-color: var(--white-color);
       border: none;
       outline: none;
       border-radius: 250px;
       background-color: inherit;
-      transition: width 1s ease, padding 1s ease;
+      border: 0 solid rgb(255, 0, 0, 30%);
+      transition: width 1s ease, padding 1s ease, border 0.5s ease;
     }
 
-    #export {
+    button {
+      width: 140px;
+      padding-left: 10px;
       font-weight: 700;
+      margin-left: 10px;
       font-size: 1.2em;
       border-radius: 250px;
       padding: 10px 25px;
       user-select: none;
-      width: 140px;
       background-color: var(--dark-gray-color);
       color: var(--white-color);
       border: none;
@@ -69,12 +85,14 @@ export default class Input extends LitElement {
       border: none;
     }
   `;
+  tweet: any;
 
   override render(): TemplateResult {
     return html`
     <form action="#" novalidate>
         <input class="input" type="url" spellcheck="false" id="link-box"
           autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
+        <button id="export">Search</button>
     </form>
     `;
   }
@@ -85,15 +103,12 @@ export default class Input extends LitElement {
 
   @query('form') form: HTMLSelectElement | undefined;
 
-  @property({type: String}) exported: 'false' | 'ok' = 'false'
+  @property({type: Boolean, attribute: true}) export = false;
+
 
   override firstUpdated(): void {
-    const inputElement = this.shadowRoot!.querySelector('#export');
-    inputElement?.addEventListener('click', () => {
-      console.log('fired');
-      this.exported = 'ok';
-    });
-
+    this.tweet = document.querySelector('body > main > sunglasses-home-page')!.shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
+    console.log(this.tweet);
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -107,21 +122,21 @@ export default class Input extends LitElement {
       const ID = this.checkValidValue(value);
       if (ID !== null) {
         this.changeInput('Checking');
-        if (this.checkExistID(ID)) {
-          this.changeInput('OK');
-        } else {
-          this.changeInput('NotValid');
-          /**
-           * @TODO: sleep 1 second and change to generate
-           */
-          this.changeInput('Generate');
-        }
+        delay(2000).then(() => {
+          if (this.checkExistID(ID)) {
+            this.changeInput('OK');
+          } else {
+            this.changeInput('NotValid');
+            delay(3000).then(() => {
+              this.changeInput('');
+            });
+          }
+        });
       } else {
         this.changeInput('NotValid');
-        /**
-         * @TODO: sleep 1 second and change to generate
-         */
-        this.changeInput('Generate');
+        delay(3000).then(() => {
+          this.changeInput('');
+        });
       }
     }
   }
@@ -129,27 +144,24 @@ export default class Input extends LitElement {
   private changeInput(inner: string): void {
     switch (inner) {
       case 'NotValid':
-        this.button!.innerHTML = 'Not valid';
-        this.button!.style.backgroundColor = 'var(--light-gray-color)';
+        this.input!.style.border = '0.5px solid rgb(255, 0, 0, 60%)';
         break;
       case 'Checking':
-        this.input!.value = '';
-        this.button!.innerHTML = 'Checking';
+        this.button!.innerHTML = 'Searching';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
-        this.input!.style.width = '0';
-        this.input!.style.padding = '0';
         this.button!.style.cursor = 'default';
         break;
       case 'OK':
-        this.button!.innerHTML = 'Redirecting';
-        this.button!.style.backgroundColor = 'var(--gray-color)';
+        this.button!.innerHTML = 'Exporting';
+        this.button!.style.backgroundColor = 'var(--dark-gray-color)';
+        this.exportTweet(this.tweet);
         break;
       default:
-        this.button!.innerHTML = 'Generate';
-        this.button!.style.backgroundColor = 'var(--gray-color)';
-        this.input!.style.width = '70vw';
-        this.input!.style.padding = '10px 25px';
+        this.button!.innerHTML = 'Search';
+        this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         this.button!.style.cursor = 'pointer';
+        this.input!.value = '';
+        this.input!.style.border = '0 solid rgb(255, 0, 0, 30%)';
     }
   }
 
@@ -167,13 +179,27 @@ export default class Input extends LitElement {
     }
     return null;
   }
+
+  // export tweet
+  private exportTweet(tweet: any): void {
+    if (tweet !== undefined && tweet !== null) {
+      domtoimage.toBlob(tweet).then((blob) => {
+        saveAs(blob, 'tweet | sunglasses.com .png');
+      });
+      this.changeInput('');
+    }
+  }
 }
 
-customElements.define('sunglasses-input', Input);
+customElements.define('sunglasses-panel', Panel);
 
 declare global {
   // eslint-disable-next-line no-unused-vars
   interface HTMLElementTagNameMap {
-    'sunglasses-input': Input;
+    'sunglasses-panel': Panel;
   }
+}
+
+function delay(time: number):Promise<unknown> {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
