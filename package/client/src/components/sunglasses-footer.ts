@@ -66,7 +66,6 @@ export default class Footer extends LitElement {
   override render(): TemplateResult {
     return html`
       <footer>
-        <p>CopyRight 2022 Tweeph</p>
         <div class="logo">
           <a
             title="view source"
@@ -86,7 +85,7 @@ export default class Footer extends LitElement {
             </svg>
           </a>
           <a
-            title="njfamirm's twitter "
+            title="njfamirm's twitter"
             href="https://twitter.com/Njfamirm"
             target="_blank"
           >

@@ -105,9 +105,10 @@ export default class Panel extends LitElement {
 
   @property({type: Boolean, attribute: true}) export = false;
 
-
   override firstUpdated(): void {
-    this.tweet = document.querySelector('body > main > sunglasses-home-page')!.shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
+    this.tweet = document
+      .querySelector('body > main > sunglasses-home-page')!
+      .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
     console.log(this.tweet);
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
@@ -172,7 +173,7 @@ export default class Panel extends LitElement {
 
   private checkValidValue(value: string): string | null {
     const match = value.match(
-        /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
+      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
     );
     if (match !== null) {
       return (<any>value.match(/\d*$/g))[0];
@@ -200,6 +201,6 @@ declare global {
   }
 }
 
-function delay(time: number):Promise<unknown> {
+function delay(time: number): Promise<unknown> {
   return new Promise((resolve) => setTimeout(resolve, time));
 }

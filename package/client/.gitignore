@@ -4,3 +4,8 @@ node_modules/
 # build
 dist/
 public/js
+
+# logs
+*.log
+
+!esbuild.bundle.js
