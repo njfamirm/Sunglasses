@@ -10,8 +10,11 @@
   "license": "MIT",
   "scripts": {
     "b": "npm-run-all clean:* build:*",
-    "build:ts": "esbuild \"src/index.ts\" --bundle --outfile=\"public/js/index.js\" --minify",
-    "build:css": "esbuild \"style/index.css\" --bundle --outfile=\"public/css/index.css\" --minify",
+    "build:ts": "esbuild \"src/index.ts\" --bundle --outfile=\"public/js/index.js\" --sourcemap",
+    "build:css": "esbuild \"style/index.css\" --bundle --outfile=\"public/css/index.css\" --sourcemap",
+    "buildp": "npm-run-all clean:* buildp:*",
+    "buildp:ts": "esbuild \"src/index.ts\" --bundle --outfile=\"public/js/index.js\" --minify",
+    "buildp:css": "esbuild \"style/index.css\" --bundle --outfile=\"public/css/index.css\" --minify",
     "c": "npm-run-all clean:*",
     "clean:public": "rm -rf public/js public/css",
     "clean:ts": "tsc --build --clean && rm -rf dist",
