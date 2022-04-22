@@ -89,7 +89,7 @@ export default class Panel extends LitElement {
 
   override render(): TemplateResult {
     return html`
-    <form action="#" novalidate>
+    <form novalidate>
         <input class="input" type="url" spellcheck="false" id="link-box"
           autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
         <button id="export">Search</button>
@@ -107,9 +107,8 @@ export default class Panel extends LitElement {
 
   override firstUpdated(): void {
     this.tweet = document
-      .querySelector('body > main > sunglasses-home-page')!
-      .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
-    console.log(this.tweet);
+        .querySelector('body > sunglasses-home-page')!
+        .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -173,7 +172,7 @@ export default class Panel extends LitElement {
 
   private checkValidValue(value: string): string | null {
     const match = value.match(
-      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
+        /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
       return (<any>value.match(/\d*$/g))[0];
