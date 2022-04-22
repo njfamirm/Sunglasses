@@ -9,8 +9,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "b": "npm-run-all build:*",
-    "build:lit": "rm -rf ./public/js && webpack",
+    "b": "npm-run-all clean:* build:*",
+    "build:ts": "webpack",
     "c": "npm-run-all clean:*",
     "clean:public": "rm -rf public/js public/css",
     "clean:ts": "tsc --build --clean && rm -rf dist",

@@ -9,6 +9,7 @@
   --white-dark-color: #f7f7f7;
   --white-color: #fff;
   --shadow: 0 0 18px 0px #00000017;
+  --reverse-shadow: 0 0 18px 0px #0000004a;
 }
 
 :root [data-theme="dark"] {
@@ -20,6 +21,7 @@
   --white-dark-color: #313131;
   --white-color: #1b1b1b;
   --shadow: 0px 0 20px 0px #0000004a;
+  --reverse-shadow: 0px 0 20px 0px #00000017;
 }
 
 html {

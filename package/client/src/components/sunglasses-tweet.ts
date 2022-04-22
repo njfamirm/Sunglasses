@@ -126,7 +126,7 @@ export default class Tweet extends LitElement {
       <div class="tweet-container">
 
       <div class="avatar">
-        <img class="avatar-image" src="/public/img/banner-photo.webp" alt="">
+        <img class="avatar-image" src="/public/img/test-avatar.jpg" alt="">
         <div class="user-info">
           <p class="name">Amir Najafi</p>
           <p class="username">@njfamirm</p>
