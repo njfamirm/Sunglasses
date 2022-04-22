@@ -49,16 +49,15 @@ export default class Panel extends LitElement {
       user-select: none;
       color: var(--black-color);
       background-color: var(--white-color);
-      border: none;
       outline: none;
       border-radius: 250px;
       background-color: inherit;
-      border: 0 solid rgb(255, 0, 0, 30%);
+      border: 0 solid #ffffff00;
       transition: width 1s ease, padding 1s ease, border 0.5s ease;
     }
 
     button {
-      width: 140px;
+      width: 180px;
       padding-left: 10px;
       font-weight: 700;
       margin-left: 10px;
@@ -74,7 +73,7 @@ export default class Panel extends LitElement {
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: background-color 3s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;
+      transition: background-color 1s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;
     }
 
     button:hover {
@@ -107,8 +106,8 @@ export default class Panel extends LitElement {
 
   override firstUpdated(): void {
     this.tweet = document
-        .querySelector('body > sunglasses-home-page')!
-        .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
+      .querySelector('body > sunglasses-home-page')!
+      .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -144,12 +143,13 @@ export default class Panel extends LitElement {
   private changeInput(inner: string): void {
     switch (inner) {
       case 'NotValid':
-        this.input!.style.border = '0.5px solid rgb(255, 0, 0, 60%)';
+        this.input!.style.border = '0.5px solid var(--red-color)';
         break;
       case 'Checking':
         this.button!.innerHTML = 'Searching';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         this.button!.style.cursor = 'default';
+        this.input!.style.border = '0.5px solid var(--green-color)';
         break;
       case 'OK':
         this.button!.innerHTML = 'Exporting';
@@ -161,7 +161,7 @@ export default class Panel extends LitElement {
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         this.button!.style.cursor = 'pointer';
         this.input!.value = '';
-        this.input!.style.border = '0 solid rgb(255, 0, 0, 30%)';
+        this.input!.style.border = '0 solid #ffffff00';
     }
   }
 
@@ -172,7 +172,7 @@ export default class Panel extends LitElement {
 
   private checkValidValue(value: string): string | null {
     const match = value.match(
-        /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
+      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
     );
     if (match !== null) {
       return (<any>value.match(/\d*$/g))[0];
@@ -186,7 +186,9 @@ export default class Panel extends LitElement {
       domtoimage.toBlob(tweet).then((blob) => {
         saveAs(blob, 'tweet | sunglasses.com .png');
       });
-      this.changeInput('');
+      delay(2000).then(() => {
+        this.changeInput('');
+      });
     }
   }
 }
@@ -194,7 +196,6 @@ export default class Panel extends LitElement {
 customElements.define('sunglasses-panel', Panel);
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
   interface HTMLElementTagNameMap {
     'sunglasses-panel': Panel;
   }

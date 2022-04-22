@@ -126,19 +126,16 @@ export default class Tweet extends LitElement {
       <div class="tweet-container">
 
       <div class="avatar">
-        <img class="avatar-image" src="/public/img/test-avatar.jpg" alt="">
+        <img class="avatar-image" src="${tweetJson.avatar}" alt="">
         <div class="user-info">
-          <p class="name">Amir Najafi</p>
-          <p class="username">@njfamirm</p>
+          <p class="name">${tweetJson.name}</p>
+          <p class="username">@${tweetJson.username}</p>
         </div>
       </div>
 
       <div class="tweet-text">
         <p>
-        Good news is on the way
-        <br>
-        <br>
-        <span>#twitter @buildWithLit</span>
+        ${tweetJson.text}
         </p>
       </div>
 
@@ -146,11 +143,11 @@ export default class Tweet extends LitElement {
       <!-- </div> -->
 
       <div class="info">
-        <p class="hour">9:51 PM</p>
+        <p class="hour">${tweetJson.hour}</p>
         <p> · </p>
-        <p class="date">Jan 25, 2022</p>
+        <p class="date">${tweetJson.date}</p>
         <p> · </p>
-        <p class="platform">Twitter Web App</p>
+        <p class="platform">${tweetJson.platform}</p>
       </div>
 
       <div class="line"></div>
@@ -158,17 +155,17 @@ export default class Tweet extends LitElement {
       <div class="tweet-actions">
 
         <div class="action">
-          <p class="count count-padding">22</p>
+          <p class="count count-padding">${tweetJson.like}</p>
           <p class="action-text">Likes</p>
         </div>
 
         <div class="action">
-          <p class="count">22</p>
+          <p class="count">${tweetJson.retweet}</p>
           <p class="action-text">Retweets</p>
         </div>
 
         <div class="action">
-          <p class="count count-padding">22</p>
+          <p class="count count-padding">${tweetJson.quotetweet}</p>
           <p class="action-text">Quote Tweet</p>
         </div>
 
@@ -177,13 +174,39 @@ export default class Tweet extends LitElement {
       </div>
     `;
   }
+
+  constructor() {
+    super();
+    this.fetchTweet();
+  }
+
+  async fetchTweet(): Promise<void> {
+    await fetch('/api').then((response) => {
+      response.json().then((t) => {
+        tweetJson = t;
+        this.requestUpdate();
+      });
+    });
+  }
 }
 
 customElements.define('sunglasses-tweet', Tweet);
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
   interface HTMLElementTagNameMap {
     'sunglasses-tweet': Tweet;
   }
 }
+
+let tweetJson = {
+  name: 'Sunglasses',
+  username: 'sunglasses',
+  avatar: '/public/img/test-avatar.jpg',
+  text: 'Just copy the tweet URL',
+  hour: '10:10 PM',
+  date: 'Jan 25, 2022',
+  platform: 'Twitter Web App',
+  like: '52',
+  retweet: '5',
+  quotetweet: '15',
+};

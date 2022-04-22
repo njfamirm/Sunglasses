@@ -75,7 +75,6 @@ export default class Home extends LitElement {
 customElements.define('sunglasses-home-page', Home);
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
   interface HTMLElementTagNameMap {
     'sunglasses-home-page': Home;
   }
