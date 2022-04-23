@@ -27,12 +27,12 @@ export default class TweetController extends SunglassesElement {
 
     .search-form {
       width: 100%;
+      height: 57px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       border-radius: 250px;
-      height: 57px;
       transition: width 1s ease;
     }
 
@@ -47,35 +47,35 @@ export default class TweetController extends SunglassesElement {
     .search-input {
       width: 100%;
       height: 100%;
-      font-size: 1em;
       padding: 10px 25px;
-      user-select: none;
       color: var(--black-color);
       background-color: var(--white-color);
-      outline: none;
-      border-radius: 250px;
       background-color: inherit;
       border: 0 solid #ffffff00;
+      font-size: 1em;
+      user-select: none;
+      border-radius: 250px;
+      outline: none;
       transition: width 1s ease, padding 1s ease, border 0.5s ease;
     }
 
     .search-button {
       width: 180px;
-      padding-left: 10px;
-      font-weight: 700;
-      margin-left: 10px;
-      font-size: 1.2em;
-      border-radius: 250px;
-      padding: 10px 25px;
-      user-select: none;
-      background-color: var(--dark-gray-color);
-      color: var(--white-color);
-      border: none;
-      cursor: pointer;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-left: 10px;
+      margin-left: 10px;
+      border-radius: 250px;
+      padding: 10px 25px;
+      background-color: var(--dark-gray-color);
+      color: var(--white-color);
+      border: none;
+      font-size: 1.2em;
+      font-weight: 700;
+      user-select: none;
+      cursor: pointer;
       transition: background-color 1s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;
     }
 

@@ -7,10 +7,15 @@ import type {TemplateResult} from 'lit';
 export default class TweetContainer extends SunglassesElement {
   static override styles = css`
     * {
-      transition: color 1s ease;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
+    *:focus-visible {
+      outline: none;
     }
 
     *::selection {
@@ -18,13 +23,13 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .tweet-container {
-      box-shadow: var(--shadow);
+      width: 600px;
       padding: 20px 20px;
-      background-color: var(--white-color);
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      width: 600px;
+      background-color: var(--white-color);
+      box-shadow: var(--shadow);
       border-radius: 5px;
     }
 
@@ -61,9 +66,9 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .tweet-text {
+      margin-top: 12px;
       font-weight: 400;
       font-size: 23px;
-      margin-top: 12px;
     }
 
     .tweet-text p {
@@ -84,11 +89,11 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .line {
-      height: 0.3px;
       width: 100%;
+      height: 0.3px;
+      margin: 16px 0;
       background-color: var(--black-color);
       opacity: 20%;
-      margin: 16px 0;
     }
 
     .tweet-actions {
@@ -100,8 +105,8 @@ export default class TweetContainer extends SunglassesElement {
       display: flex;
       align-items: center;
       margin-right: 20px;
-      font-size: 15px;
       color: var(--gray-color);
+      font-size: 15px;
     }
 
     .action-text {
@@ -109,8 +114,8 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .count {
-      color: var(--dark-gray-color);
       margin-right: 5px;
+      color: var(--dark-gray-color);
       font-weight: 400;
     }
 
@@ -122,50 +127,44 @@ export default class TweetContainer extends SunglassesElement {
   override render(): TemplateResult {
     return html`
       <div class="tweet-container">
-
-      <div class="avatar">
-        <img class="avatar-image" src="${this._tweetInfo.avatar}" alt="">
-        <div class="user-info">
-          <p class="name">${this._tweetInfo.name}</p>
-          <p class="username">@${this._tweetInfo.username}</p>
-        </div>
-      </div>
-
-      <div class="tweet-text">
-        <p>
-        ${this._tweetInfo.text}
-        </p>
-      </div>
-
-      <div class="info">
-        <p class="hour">${this._tweetInfo.hour}</p>
-        <p> · </p>
-        <p class="date">${this._tweetInfo.date}</p>
-        <p> · </p>
-        <p class="platform">${this._tweetInfo.platform}</p>
-      </div>
-
-      <div class="line"></div>
-
-      <div class="tweet-actions">
-
-        <div class="action">
-          <p class="count count-padding">${this._tweetInfo.like}</p>
-          <p class="action-text">Likes</p>
+        <div class="avatar">
+          <img class="avatar-image" src="${this._tweetInfo.avatar}" alt="" />
+          <div class="user-info">
+            <p class="name">${this._tweetInfo.name}</p>
+            <p class="username">@${this._tweetInfo.username}</p>
+          </div>
         </div>
 
-        <div class="action">
-          <p class="count">${this._tweetInfo.retweet}</p>
-          <p class="action-text">Retweets</p>
+        <div class="tweet-text">
+          <p>${this._tweetInfo.text}</p>
         </div>
 
-        <div class="action">
-          <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
-          <p class="action-text">Quote Tweet</p>
+        <div class="info">
+          <p class="hour">${this._tweetInfo.hour}</p>
+          <p>·</p>
+          <p class="date">${this._tweetInfo.date}</p>
+          <p>·</p>
+          <p class="platform">${this._tweetInfo.platform}</p>
         </div>
 
-      </div>
-      </div>
+        <div class="line"></div>
+
+        <div class="tweet-actions">
+          <div class="action">
+            <p class="count count-padding">${this._tweetInfo.like}</p>
+            <p class="action-text">Likes</p>
+          </div>
+
+          <div class="action">
+            <p class="count">${this._tweetInfo.retweet}</p>
+            <p class="action-text">Retweets</p>
+          </div>
+
+          <div class="action">
+            <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
+            <p class="action-text">Quote Tweet</p>
+          </div>
+        </div>
       </div>
     `;
   }
