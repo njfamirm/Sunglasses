@@ -3,5 +3,13 @@
     "source.fixAll.eslint": true
   },
   "eslint.validate": ["typescript"],
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "cSpell.words": [
+    "alwatr",
+    "currentcolor",
+    "domtoimage",
+    "Lato",
+    "novalidate",
+    "quotetweet"
+  ]
 }

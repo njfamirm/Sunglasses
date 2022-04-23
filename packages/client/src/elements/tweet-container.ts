@@ -1,8 +1,10 @@
-import {css, html, LitElement} from 'lit';
+import {css, html} from 'lit';
+
+import {SunglassesElement} from '../core/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
-export default class TweetContainer extends LitElement {
+export default class TweetContainer extends SunglassesElement {
   static override styles = css`
     * {
       transition: color 1s ease;
@@ -25,10 +27,6 @@ export default class TweetContainer extends LitElement {
       width: 600px;
       border-radius: 5px;
     }
-
-    /* .tweet-container > * {
-        color: var(--tweet-light-color);
-      } */
 
     .avatar {
       display: flex;
@@ -126,28 +124,25 @@ export default class TweetContainer extends LitElement {
       <div class="tweet-container">
 
       <div class="avatar">
-        <img class="avatar-image" src="${tweetJson.avatar}" alt="">
+        <img class="avatar-image" src="${this._tweetInfo.avatar}" alt="">
         <div class="user-info">
-          <p class="name">${tweetJson.name}</p>
-          <p class="username">@${tweetJson.username}</p>
+          <p class="name">${this._tweetInfo.name}</p>
+          <p class="username">@${this._tweetInfo.username}</p>
         </div>
       </div>
 
       <div class="tweet-text">
         <p>
-        ${tweetJson.text}
+        ${this._tweetInfo.text}
         </p>
       </div>
 
-      <!-- <div class="tweet-media"> -->
-      <!-- </div> -->
-
       <div class="info">
-        <p class="hour">${tweetJson.hour}</p>
+        <p class="hour">${this._tweetInfo.hour}</p>
         <p> · </p>
-        <p class="date">${tweetJson.date}</p>
+        <p class="date">${this._tweetInfo.date}</p>
         <p> · </p>
-        <p class="platform">${tweetJson.platform}</p>
+        <p class="platform">${this._tweetInfo.platform}</p>
       </div>
 
       <div class="line"></div>
@@ -155,17 +150,17 @@ export default class TweetContainer extends LitElement {
       <div class="tweet-actions">
 
         <div class="action">
-          <p class="count count-padding">${tweetJson.like}</p>
+          <p class="count count-padding">${this._tweetInfo.like}</p>
           <p class="action-text">Likes</p>
         </div>
 
         <div class="action">
-          <p class="count">${tweetJson.retweet}</p>
+          <p class="count">${this._tweetInfo.retweet}</p>
           <p class="action-text">Retweets</p>
         </div>
 
         <div class="action">
-          <p class="count count-padding">${tweetJson.quotetweet}</p>
+          <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
           <p class="action-text">Quote Tweet</p>
         </div>
 
@@ -177,17 +172,31 @@ export default class TweetContainer extends LitElement {
 
   constructor() {
     super();
-    this.fetchTweet();
+    this._fetchTweet();
   }
 
-  async fetchTweet(): Promise<void> {
+  protected async _fetchTweet(): Promise<void> {
+    this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
     await fetch('/api').then((response) => {
-      response.json().then((t) => {
-        tweetJson = t;
+      response.json().then((tweetJson) => {
+        this._tweetInfo = tweetJson;
         this.requestUpdate();
       });
     });
   }
+
+  protected _tweetInfo = {
+    name: 'Sunglasses',
+    username: 'sunglasses',
+    avatar: '/public/img/test-avatar.jpg',
+    text: 'Just copy the tweet URL',
+    hour: '10:10 PM',
+    date: 'Jan 25, 2022',
+    platform: 'Twitter Web App',
+    like: '52',
+    retweet: '5',
+    quotetweet: '15',
+  };
 }
 
 customElements.define('tweet-container', TweetContainer);
@@ -197,16 +206,3 @@ declare global {
     'tweet-container': TweetContainer;
   }
 }
-
-let tweetJson = {
-  name: 'Sunglasses',
-  username: 'sunglasses',
-  avatar: '/public/img/test-avatar.jpg',
-  text: 'Just copy the tweet URL',
-  hour: '10:10 PM',
-  date: 'Jan 25, 2022',
-  platform: 'Twitter Web App',
-  like: '52',
-  retweet: '5',
-  quotetweet: '15',
-};

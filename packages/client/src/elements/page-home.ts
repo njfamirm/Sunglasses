@@ -1,11 +1,13 @@
-import {html, css, LitElement} from 'lit';
+import {html, css} from 'lit';
+
+import {SunglassesElement} from '../core/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
 import './tweet-container';
 import './tweet-controller';
 
-export default class PageHome extends LitElement {
+export default class PageHome extends SunglassesElement {
   static override styles? = css`
     * {
       margin: 0;
@@ -197,11 +199,14 @@ export default class PageHome extends LitElement {
 
   protected override firstUpdated(): void {
     const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
-    themeSwitcher?.addEventListener('click', () => {
-      let theme = document.body.getAttribute('data-theme');
-      theme === 'dark' ? (theme = 'light') : (theme = 'dark');
-      document.body.setAttribute('data-theme', theme);
-    });
+    themeSwitcher?.addEventListener('click', this._changeTheme);
+  }
+
+  protected _changeTheme():void {
+    // this._logger.incident('theme', 'switch_theme', 'the theme was switched');
+    let theme = document.body.getAttribute('data-theme');
+    theme === 'dark' ? (theme = 'light') : (theme = 'dark');
+    document.body.setAttribute('data-theme', theme);
   }
 }
 

@@ -1,13 +1,14 @@
 import domtoimage from 'dom-to-image';
 import {saveAs} from 'file-saver';
-import {html, css, LitElement} from 'lit';
+import {html, css} from 'lit';
 import {query} from 'lit/decorators.js';
 
+import {SunglassesElement} from '../core/sunglasses-element';
 import {delay} from '../core/utils/delay';
 
 import type {TemplateResult} from 'lit';
 
-export default class TweetController extends LitElement {
+export default class TweetController extends SunglassesElement {
   static override styles? = css`
     * {
       margin: 0;
@@ -99,9 +100,7 @@ export default class TweetController extends LitElement {
   }
 
   @query('.search-button') button: HTMLSelectElement | undefined;
-
   @query('.search-input') input: HTMLSelectElement | undefined;
-
   @query('.search-form') form: HTMLSelectElement | undefined;
 
   tweet: any;
@@ -114,43 +113,46 @@ export default class TweetController extends LitElement {
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
-      this.sumbit();
+      this._search();
     });
   }
 
-  private sumbit(): void {
+  protected _search():void {
     const value = this.input?.value;
 
     if (value !== undefined && value !== '') {
-      const ID = this.checkValidValue(value);
+      const ID = this._checkValidValue(value);
 
       if (ID !== null) {
-        this.changeInput('Checking');
+        this._changeButtonText('Searching');
         delay(2000).then(() => {
-          if (this.checkExistID(ID)) {
-            this.changeInput('OK');
+          // call function in tweet container
+          if (this._fetchTweet(ID)) {
+            this._changeButtonText('OK');
           } else {
-            this.changeInput('NotValid');
+            this._changeButtonText('NotValid');
             delay(3000).then(() => {
-              this.changeInput('');
+              this._changeButtonText('');
             });
           }
         });
       } else {
-        this.changeInput('NotValid');
+        this._changeButtonText('NotValid');
         delay(3000).then(() => {
-          this.changeInput('');
+          this._changeButtonText('');
         });
       }
     }
   }
 
-  private changeInput(inner: string): void {
+  protected _changeButtonText(inner: string): void {
+    this._logger.incident('style', 'change_button_text', 'change button text in searching');
+
     switch (inner) {
       case 'NotValid':
         this.input!.style.border = '0.5px solid var(--red-color)';
         break;
-      case 'Checking':
+      case 'Searching':
         this.button!.innerHTML = 'Searching';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         this.button!.style.cursor = 'default';
@@ -159,7 +161,7 @@ export default class TweetController extends LitElement {
       case 'OK':
         this.button!.innerHTML = 'Exporting';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
-        this.exportTweet(this.tweet);
+        this._exportTweet(this.tweet);
         break;
       default:
         this.button!.innerHTML = 'Search';
@@ -170,28 +172,32 @@ export default class TweetController extends LitElement {
     }
   }
 
-  private checkExistID(_ID: string): boolean {
+  protected _fetchTweet(_ID: string): boolean {
+    this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
     return true;
   }
 
-  private checkValidValue(value: string): string | null {
+  protected _checkValidValue(value: string): string | null {
     const match = value.match(
         /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
+      this._logger.incident('validate', 'valid_url', 'tweet url valid');
       return (<any>value.match(/\d*$/g))[0];
     }
+    this._logger.incident('validate', 'not_valid_url', 'tweet url not valid');
     return null;
   }
 
   // export tweet
-  private exportTweet(tweet: any): void {
+  protected _exportTweet(tweet: any): void {
     if (tweet !== undefined && tweet !== null) {
+      this._logger.incident('export', 'export_tweet', 'exporting tweet');
       domtoimage.toBlob(tweet).then((blob) => {
         saveAs(blob, 'tweet | sunglasses.com .png');
       });
       delay(2000).then(() => {
-        this.changeInput('');
+        this._changeButtonText('');
       });
     }
   }
