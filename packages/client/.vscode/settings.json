@@ -8,8 +8,12 @@
     "alwatr",
     "currentcolor",
     "domtoimage",
+    "esbuild",
+    "eslintignore",
     "Lato",
+    "Najafi",
     "novalidate",
+    "outfile",
     "quotetweet"
   ]
 }

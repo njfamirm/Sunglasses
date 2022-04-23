@@ -16,7 +16,7 @@ const app = new Application();
 router.get('/', async (ctx: Context) => {
   ctx.response.status = 200;
   await send(ctx, '/', {
-    root: `${Deno.cwd()}/../client/views`,
+    root: `${Deno.cwd()}/../client/`,
     index: 'index.html',
   });
 });
