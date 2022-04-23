@@ -14,7 +14,7 @@
     "build:debug": "npm-run-all clean build:debug:*",
     "build:debug:ts": "esbuild \"src/sunglasses-pwa.ts\" --bundle --outfile=\"public/sunglasses-pwa.js\" --sourcemap",
     "build:debug:css": "esbuild \"src/global.css\" --bundle --outfile=\"public/global.css\" --sourcemap",
-    "build:production": "npm-run-all clean:* build:production:*",
+    "build:production": "npm-run-all clean build:production:*",
     "build:production:ts": "esbuild \"src/sunglasses-pwa.ts\" --bundle --outfile=\"public/sunglasses-pwa.js\" --minify",
     "build:production:css": "esbuild \"src/global.css\" --bundle --outfile=\"public/global.css\" --minify",
     "c": "yarn clean",

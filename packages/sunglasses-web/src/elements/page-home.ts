@@ -203,7 +203,7 @@ export default class PageHome extends SunglassesElement {
       <footer>
         <a
           class="icon-link"
-          title="view preoject source"
+          title="view project source"
           href="https://github.com/njfamirm/Sunglasses"
           target="_blank"
         >

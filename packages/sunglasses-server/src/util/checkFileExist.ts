@@ -1,4 +1,4 @@
-import {Context} from 'https://deno.land/x/oak/mod.ts';
+import {Context} from 'https://deno.land/x/oak@v10.5.1/mod.ts';
 
 // check file exist for serving static
 export async function checkFileExist(ctx: Context) {

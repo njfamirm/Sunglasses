@@ -65,13 +65,10 @@ export default class TweetContainer extends SunglassesElement {
       border-radius: 100px;
     }
 
-    .tweet-text {
+    .tweet-text > * {
       margin-top: 12px;
       font-weight: 400;
       font-size: 23px;
-    }
-
-    .tweet-text p {
       color: var(--black-color);
     }
 
