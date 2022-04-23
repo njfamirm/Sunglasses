@@ -4,6 +4,7 @@
   "description": "Sunglasses web app",
   "main": "sunglasses-pwa.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
+  "private": "true",
   "contributors": [
     "Amir Najafi <njfamirm@gmail.com>"
   ],
