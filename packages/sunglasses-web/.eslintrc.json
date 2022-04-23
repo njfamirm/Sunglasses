@@ -23,7 +23,7 @@
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
-        "project": "packages/*/*/tsconfig.json"
+        "project": "./tsconfig.json"
       }
     },
     "wc": {
@@ -32,10 +32,11 @@
   },
   "rules": {
     "max-len": [
-      "warn",
+      "error",
       {
         "code": 120
-      }
+      },
+      {"ignorePattern": "d=\"([\\s\\S]*?)\""}
     ],
     "no-eval": [
       "error",

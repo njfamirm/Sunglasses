@@ -108,6 +108,6 @@
       }
     ]
   },
-  "include": ["src/**/*.ts", "src/index.ts"],
+  "include": ["src/**/*.ts", "src/sunglasses-pwa.ts"],
   "exclude": []
 }

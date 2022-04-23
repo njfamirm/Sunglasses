@@ -4,6 +4,20 @@
   },
   "eslint.validate": ["typescript"],
   "editor.formatOnSave": false,
+  "eslint.packageManager": "yarn",
+  "npm.packageManager": "yarn",
+  "lit-plugin.strict": true,
+  "editor.wordWrapColumn": 120,
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "files.exclude": {
+    "**/*.map": true,
+    "**/*.js": true,
+    "**/*.d.ts": true,
+    "**/*.tsbuildinfo": true
+  },
+  "cSpell.language": "en,fa,fa-IR",
   "cSpell.words": [
     "alwatr",
     "currentcolor",
@@ -12,8 +26,12 @@
     "eslintignore",
     "Lato",
     "Najafi",
+    "noncallable",
     "novalidate",
     "outfile",
-    "quotetweet"
+    "quotetweet",
+    "svgjs",
+    "tsbuildinfo",
+    "xlink"
   ]
 }

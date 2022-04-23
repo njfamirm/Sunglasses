@@ -4,5 +4,13 @@
   "deno.unstable": true,
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
-  }
+  },
+  "editor.wordWrapColumn": 120,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.language": "en,fa,fa-IR"
 }

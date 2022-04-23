@@ -4,8 +4,8 @@ import {
   Router,
   send,
   Status,
-} from 'https://deno.land/x/oak/mod.ts';
-import {info} from 'https://deno.land/std/log/mod.ts';
+} from 'https://deno.land/x/oak@v10.5.1/mod.ts';
+import {info} from 'https://deno.land/std@0.135.0/log/mod.ts';
 
 import {checkFileExist} from './util/checkFileExist.ts';
 
