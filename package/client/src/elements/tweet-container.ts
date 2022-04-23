@@ -2,7 +2,7 @@ import {css, html, LitElement} from 'lit';
 
 import type {TemplateResult} from 'lit';
 
-export default class Tweet extends LitElement {
+export default class TweetContainer extends LitElement {
   static override styles = css`
     * {
       transition: color 1s ease;
@@ -190,11 +190,11 @@ export default class Tweet extends LitElement {
   }
 }
 
-customElements.define('sunglasses-tweet', Tweet);
+customElements.define('tweet-container', TweetContainer);
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sunglasses-tweet': Tweet;
+    'tweet-container': TweetContainer;
   }
 }
 

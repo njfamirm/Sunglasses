@@ -3,11 +3,10 @@ import {state} from 'lit/decorators.js';
 
 import type {TemplateResult} from 'lit';
 
-import '../components/sunglasses-tweet.ts';
-import '../components/sunglasses-button.ts';
-import '../components/sunglasses-panel.ts';
+import './tweet-container';
+import './tweet-controller';
 
-export default class Home extends LitElement {
+export default class PageHome extends LitElement {
   static override styles? = css`
     * {
       margin: 0;
@@ -28,30 +27,19 @@ export default class Home extends LitElement {
       align-items: center;
     }
 
-    sunglasses-tweet {
+    tweet-container {
       margin-bottom: 2em;
     }
 
-    sunglasses-panel {
+    tweet-controller {
       width: 100%;
-    }
-
-    .panel {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-
-    .button {
-      margin-left: 20px;
     }
   `;
 
   override render(): TemplateResult {
     return html`
-      <sunglasses-tweet id="tweet"></sunglasses-tweet>
-      <sunglasses-panel id="input"></sunglasses-panel>
+      <tweet-container id="tweet"></tweet-container>
+      <tweet-controller id="input"></tweet-controller>
     `;
   }
 
@@ -61,21 +49,20 @@ export default class Home extends LitElement {
     const themeButton = this.shadowRoot?.querySelector('#theme');
     const tweetElement = this.shadowRoot?.querySelector('#tweet');
     themeButton?.addEventListener('click', () => {
-      this.changeTheme(tweetElement);
+      this.changeTheme(<Element>tweetElement);
     });
   }
 
-  private changeTheme(tweetElement: any): void {
-    // eslint-disable-next-line no-unused-expressions
+  private changeTheme(tweetElement: Element): void {
     this.theme === 'light' ? (this.theme = 'dark') : (this.theme = 'light');
     tweetElement?.setAttribute('theme', this.theme);
   }
 }
 
-customElements.define('sunglasses-home-page', Home);
+customElements.define('page-home', PageHome);
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sunglasses-home-page': Home;
+    'page-home': PageHome;
   }
 }

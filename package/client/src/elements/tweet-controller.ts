@@ -1,11 +1,13 @@
 import domtoimage from 'dom-to-image';
 import {saveAs} from 'file-saver';
 import {html, css, LitElement} from 'lit';
-import {property, query} from 'lit/decorators.js';
+import {query} from 'lit/decorators.js';
+
+import {delay} from '../core/utils/delay';
 
 import type {TemplateResult} from 'lit';
 
-export default class Panel extends LitElement {
+export default class TweetController extends LitElement {
   static override styles? = css`
     * {
       margin: 0;
@@ -22,7 +24,7 @@ export default class Panel extends LitElement {
       align-items: center;
     }
 
-    form {
+    .search-form {
       width: 100%;
       display: flex;
       flex-direction: row;
@@ -33,7 +35,7 @@ export default class Panel extends LitElement {
       transition: width 1s ease;
     }
 
-    form > * {
+    .search-form > * {
       box-shadow: var(--shadow);
     }
 
@@ -41,7 +43,7 @@ export default class Panel extends LitElement {
       color: var(--light-gray-color);
     }
 
-    input {
+    .search-input {
       width: 100%;
       height: 100%;
       font-size: 1em;
@@ -56,7 +58,7 @@ export default class Panel extends LitElement {
       transition: width 1s ease, padding 1s ease, border 0.5s ease;
     }
 
-    button {
+    .search-button {
       width: 180px;
       padding-left: 10px;
       font-weight: 700;
@@ -76,38 +78,39 @@ export default class Panel extends LitElement {
       transition: background-color 1s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;
     }
 
-    button:hover {
+    .search-button:hover {
       background-color: var(--black-color);
     }
 
-    button:focus {
+    .search-button:focus {
       border: none;
     }
   `;
-  tweet: any;
+
 
   override render(): TemplateResult {
     return html`
-    <form novalidate>
-        <input class="input" type="url" spellcheck="false" id="link-box"
-          autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950"></input>
-        <button id="export">Search</button>
+    <form class="search-form" novalidate>
+        <input class="search-input" type="url" spellcheck="false" id="link-box"
+          autocomplete="off" placeholder="https://twitter.com/njfamirm/status/1486041539281362950">
+        <button class="search-button">Search</button>
     </form>
     `;
   }
 
-  @query('button') button: HTMLSelectElement | undefined;
+  @query('.search-button') button: HTMLSelectElement | undefined;
 
-  @query('input') input: HTMLSelectElement | undefined;
+  @query('.search-input') input: HTMLSelectElement | undefined;
 
-  @query('form') form: HTMLSelectElement | undefined;
+  @query('.search-form') form: HTMLSelectElement | undefined;
 
-  @property({type: Boolean, attribute: true}) export = false;
+  tweet: any;
 
   override firstUpdated(): void {
     this.tweet = document
-      .querySelector('body > sunglasses-home-page')!
-      .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
+        .querySelector('body > page-home')!
+        .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
+
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
@@ -117,8 +120,10 @@ export default class Panel extends LitElement {
 
   private sumbit(): void {
     const value = this.input?.value;
+
     if (value !== undefined && value !== '') {
       const ID = this.checkValidValue(value);
+
       if (ID !== null) {
         this.changeInput('Checking');
         delay(2000).then(() => {
@@ -165,14 +170,13 @@ export default class Panel extends LitElement {
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   private checkExistID(_ID: string): boolean {
     return true;
   }
 
   private checkValidValue(value: string): string | null {
     const match = value.match(
-      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
+        /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
       return (<any>value.match(/\d*$/g))[0];
@@ -193,14 +197,10 @@ export default class Panel extends LitElement {
   }
 }
 
-customElements.define('sunglasses-panel', Panel);
+customElements.define('tweet-controller', TweetController);
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sunglasses-panel': Panel;
+    'tweet-controller': TweetController;
   }
-}
-
-function delay(time: number): Promise<unknown> {
-  return new Promise((resolve) => setTimeout(resolve, time));
 }
