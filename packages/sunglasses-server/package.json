@@ -10,9 +10,8 @@
   "private": "true",
   "license": "MIT",
   "scripts": {
-    "r": "yarn run",
-    "run": "npm-run-all run:*",
-    "run:deno": "deno run --allow-read --allow-net src/index.ts",
+    "u": "yarn up",
+    "up": "deno run --allow-read --allow-net src/index.ts",
     "f": "yarn format",
     "format": "npm-run-all --sequential format:prettier",
     "format:prettier": "prettier \"**/*.{html,json,md,ts}\" --write"
