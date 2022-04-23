@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/global.css"],
-  "sourcesContent": ["@import url(\"https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap\");\n\n:root {\n  --black-color: #1b1b1b;\n  --dark-gray-color: #313131;\n  --gray-color: #696969;\n  --middle-gray-color: #9e9e9e;\n  --light-gray-color:#b6b6b6;\n  --white-dark-color:#f7f7f7;\n  --white-color:#fff;\n  --red-color:#ff000082;\n  --green-color:#14bb0994;\n  --shadow: 0 0 18px 0px #0000001f;\n  --reverse-shadow: 0 0 18px 0px #0000004a;\n}\n\n:root [data-theme=\"dark\"] {\n  --black-color: #fff;\n  --dark-gray-color: #ececec;\n  --gray-color: #b6b6b6;\n  --middle-gray-color: #9e9e9e;\n  --light-gray-color: #696969;\n  --white-dark-color: #313131;\n  --white-color: #1b1b1b;\n  --red-color:#ff000047;\n  --green-color:#00ff1f47;\n  --shadow: 0px 0 20px 0px #0000004a;\n  --reverse-shadow: 0px 0 20px 0px #00000017;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: \"Lato\", sans-serif;\n  font-weight: 300;\n}\n\nbody {\n  min-height: 100vh;\n  background-color: var(--white-color);\n  display: flex;\n}\n"],
-  "mappings": ";;;AAEA;AACE;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;AAGF;AACE;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;AAGF;AACE;AACA;AACA;AACA;AACA;AAAA;AAGF;AACE;AACA;AACA;AAAA;",
-  "names": []
-}

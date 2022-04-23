@@ -5,7 +5,7 @@ import type {Logger} from '@alwatr/logger/type';
 
 export abstract class SunglassesElement extends LitElement {
   // eslint-disable-next-line no-invalid-this
-  _logger: Logger = createLogger(`<${this.tagName.toLowerCase()}>`)
+  _logger: Logger = createLogger(`<${this.tagName.toLowerCase()}>`);
 
   constructor() {
     super();

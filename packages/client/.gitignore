@@ -3,8 +3,7 @@ node_modules/
 
 # build
 dist/
-public/js
-public/css
+public/*.css
 
 # logs
 *.log

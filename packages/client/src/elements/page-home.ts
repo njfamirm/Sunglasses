@@ -202,7 +202,7 @@ export default class PageHome extends SunglassesElement {
     themeSwitcher?.addEventListener('click', this._changeTheme);
   }
 
-  protected _changeTheme():void {
+  protected _changeTheme(): void {
     // this._logger.incident('theme', 'switch_theme', 'the theme was switched');
     let theme = document.body.getAttribute('data-theme');
     theme === 'dark' ? (theme = 'light') : (theme = 'dark');

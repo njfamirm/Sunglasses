@@ -21,7 +21,7 @@
     "f": "yarn format",
     "format": "npm-run-all --sequential format:prettier format:eslint",
     "format:eslint": "eslint **/*.ts --fix",
-    "format:prettier": "prettier \"**/*.{html,json,md,ts}\" --ignore-path ./.eslintignore --write"
+    "format:prettier": "prettier \"**/*.{html,css,json,md,ts}\" --ignore-path ./.eslintignore --write"
   },
   "dependencies": {
     "@alwatr/logger": "^0.11.0",
