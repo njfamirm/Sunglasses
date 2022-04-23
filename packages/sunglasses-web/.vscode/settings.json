@@ -1,0 +1,19 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["typescript"],
+  "editor.formatOnSave": false,
+  "cSpell.words": [
+    "alwatr",
+    "currentcolor",
+    "domtoimage",
+    "esbuild",
+    "eslintignore",
+    "Lato",
+    "Najafi",
+    "novalidate",
+    "outfile",
+    "quotetweet"
+  ]
+}

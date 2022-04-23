@@ -16,7 +16,7 @@ const app = new Application();
 router.get('/', async (ctx: Context) => {
   ctx.response.status = 200;
   await send(ctx, '/', {
-    root: `${Deno.cwd()}/../client/views`,
+    root: `${Deno.cwd()}/../sunglasses-web/`,
     index: 'index.html',
   });
 });
@@ -32,7 +32,7 @@ router.get('/api', async (ctx: Context) => {
 // serve favicon.ico
 router.get('/favicon.ico', async (ctx: Context) => {
   await send(ctx, '/favicon.svg', {
-    root: `${Deno.cwd()}/../client/public`,
+    root: `${Deno.cwd()}/../sunglasses-web/public`,
     index: 'favicon.svg',
   });
 });
@@ -43,7 +43,7 @@ app.use(router.allowedMethods());
 app.use(async (ctx, next) => {
   if (await checkFileExist(ctx)) {
     await send(ctx, ctx.request.url.pathname, {
-      root: `${Deno.cwd()}/../client/`,
+      root: `${Deno.cwd()}/../sunglasses-web/`,
     });
   } else {
     next();
