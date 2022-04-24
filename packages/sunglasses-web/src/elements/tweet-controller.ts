@@ -96,8 +96,7 @@ export default class TweetController extends SunglassesElement {
           spellcheck="false"
           id="link-box"
           autocomplete="off"
-          placeholder="https://twitter.com/njfamirm/status/1486041539281362950"
-        />
+          placeholder="https://twitter.com/njfamirm/status/1486041539281362950" />
         <button class="search-button">Search</button>
       </form>
     `;
@@ -150,11 +149,7 @@ export default class TweetController extends SunglassesElement {
   }
 
   protected _changeButtonText(inner: string): void {
-    this._logger.incident(
-      'style',
-      'change_button_text',
-      'change button text in searching'
-    );
+    this._logger.incident('style', 'change_button_text', 'change button text in searching');
 
     switch (inner) {
       case 'NotValid':
@@ -187,7 +182,7 @@ export default class TweetController extends SunglassesElement {
 
   protected _checkValidValue(value: string): string | null {
     const match = value.match(
-      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
+      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
       this._logger.incident('validate', 'valid_url', 'tweet url valid');
