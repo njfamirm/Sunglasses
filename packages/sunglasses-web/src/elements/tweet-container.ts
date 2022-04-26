@@ -184,7 +184,7 @@ export default class TweetContainer extends SunglassesElement {
   protected _tweetInfo = {
     name: 'Sunglasses',
     username: 'sunglasses',
-    avatar: '/public/img/test-avatar.jpg',
+    avatar: '/static/img/test-avatar.jpg',
     text: 'Just copy the tweet URL',
     hour: '10:10 PM',
     date: 'Jan 25, 2022',

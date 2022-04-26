@@ -1,9 +1,11 @@
 *
+!nginx.conf
 !packages/sunglasses-web/package.json
 !packages/sunglasses-web/node_modules/
 !packages/sunglasses-web/yarn.lock
 !packages/sunglasses-web/index.html
 !packages/sunglasses-web/tsconfig.json
 !packages/sunglasses-web/src
-!packages/sunglasses-web/public/img
-!packages/sunglasses-web/public/font
+!packages/sunglasses-web/static/favicon.ico
+!packages/sunglasses-web/static/img
+!packages/sunglasses-web/static/font
