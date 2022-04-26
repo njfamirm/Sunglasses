@@ -14,12 +14,12 @@ const app = new Application();
 router.get('/api', async (ctx: Context) => {
   ctx.response.status = 200;
   await send(ctx, 'tweet.json', {
-    root: `${Deno.cwd()}/src/`,
+    root: `${Deno.cwd()}/`,
   });
 });
 
-// app.use(router.routes());
-// app.use(router.allowedMethods());
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 // page not found
 app.use((context) => {

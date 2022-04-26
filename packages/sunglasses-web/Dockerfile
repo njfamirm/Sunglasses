@@ -2,12 +2,12 @@ FROM node:current-alpine3.15 AS builder
 
 WORKDIR /app
 
-COPY ./packages/sunglasses-web/package.json ./packages/sunglasses-web/yarn.lock ./
+COPY ./package.json ./yarn.lock ./
 
 #RUN yarn install
-ADD ./packages/sunglasses-web/node_modules/ ./node_modules
+ADD ./node_modules/ ./node_modules
 
-COPY ./packages/sunglasses-web/ ./
+COPY . .
 
 RUN yarn build:debug
 
