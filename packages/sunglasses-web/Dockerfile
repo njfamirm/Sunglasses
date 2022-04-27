@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
 
-RUN yarn install --production
-# ADD ./node_modules/ ./node_modules
+# RUN yarn install --production
+ADD ./node_modules/ ./node_modules
 
 COPY . .
 

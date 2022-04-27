@@ -6,7 +6,7 @@ const DEBUG_MODE = (process.env.DEBUG_MODE === 'true') ? true : false;
 
 const esbuildOptionTypescript = {
   entryPoints: ['src/sunglasses-pwa.ts'],
-  outfile: 'public/sunglasses-pwa.js',
+  outfile: 'static/sunglasses-pwa.js',
   bundle: true,
   minify: true,
   sourcemap: DEBUG_MODE,
@@ -15,7 +15,7 @@ const esbuildOptionTypescript = {
 
 const esbuildOptionCss = {
   entryPoints: ['src/global.css'],
-  outfile: 'public/global.css',
+  outfile: 'static/global.css',
   bundle: true,
   minify: true,
   sourcemap: DEBUG_MODE,
