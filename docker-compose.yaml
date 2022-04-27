@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  reverse-proxy:
+    image: traefik:v2.6
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=false
+
+  nginx:
+    image: sunglasses-nginx
+    build:
+      context: ./packages/sunglasses-web
+      dockerfile: Dockerfile
+    restart: always
+    labels:
+      - traefik.http.routers.nginx.rule=Host(`sunglasses.localhost`)
+      - traefik.http.services.nginx.loadbalancer.server.port=80
+      - traefik.docker.network=sunglasses-network
+
+  api:
+    image: sunglasses-api
+    build:
+      context: ./packages/sunglasses-server
+      dockerfile: Dockerfile
+    restart: always
+    labels:
+      - traefik.http.routers.api.rule=Host(`sunglasses.api.localhost`)
+      - traefik.http.services.api.loadbalancer.server.port=80
+      - traefik.docker.network=sunglasses-network
+
+networks:
+  sunglasses-network:
+    external : true

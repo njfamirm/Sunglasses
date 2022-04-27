@@ -2,9 +2,9 @@
 node_modules/
 
 # build
-public/*.js
-public/*.css
-public/*.map
+static/*.js
+static/*.css
+static/*.map
 
 # logs
 *.log

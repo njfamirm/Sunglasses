@@ -1,0 +1,11 @@
+*
+!nginx.conf
+!package.json
+!node_modules/
+!yarn.lock
+!index.html
+!tsconfig.json
+!src
+!static/favicon.ico
+!static/img
+!static/font
