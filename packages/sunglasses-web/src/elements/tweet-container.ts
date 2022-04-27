@@ -173,7 +173,7 @@ export default class TweetContainer extends SunglassesElement {
 
   protected async _fetchTweet(): Promise<void> {
     this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
-    await fetch('/api').then((response) => {
+    await fetch('http://sunglasses.api.localhost/api/v1').then((response) => {
       response.json().then((tweetJson) => {
         this._tweetInfo = tweetJson;
         this.requestUpdate();

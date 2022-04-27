@@ -4,12 +4,13 @@ USER deno
 
 WORKDIR /app
 
-COPY src/index.ts .
-RUN deno cache index.ts
+COPY src/deps.ts .
+RUN deno cache deps.ts
 
 COPY ./src .
+RUN deno cache main.ts
 
-EXPOSE 8000
+EXPOSE 80
 
-CMD ["run", "--allow-net", "--allow-read", "index.ts"]
+CMD ["run", "--allow-net", "--allow-read", "main.ts"]
 
