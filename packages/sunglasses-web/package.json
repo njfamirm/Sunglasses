@@ -15,7 +15,7 @@
     "build:debug": "export DEBUG_MODE=true && node esbuild.config.js",
     "build:production": "export DEBUG_MODE=false && node esbuild.config.js",
     "c": "yarn clean",
-    "clean": "rm -rf public/*.{js,css,map}",
+    "clean": "rm -rf static/*.{js,css,map}",
     "f": "yarn format",
     "format": "npm-run-all --sequential format:prettier format:eslint",
     "format:eslint": "eslint **/*.ts --fix",

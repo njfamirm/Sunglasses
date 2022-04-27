@@ -2,7 +2,7 @@
   "name": "sunglasses-server",
   "version": "0.0.0",
   "description": "Server of Sunglasses web app",
-  "main": "index.js",
+  "main": "main.js",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "contributors": [
     "Amir Najafi <njfamirm@gmail.com>"
@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "u": "yarn up",
-    "up": "deno run --allow-read --allow-net src/index.ts",
+    "up": "deno run --allow-read --allow-net src/main.ts",
     "f": "yarn format",
     "format": "npm-run-all --sequential format:prettier",
     "format:prettier": "prettier \"**/*.{json,md,ts}\" --write"

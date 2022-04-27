@@ -6,6 +6,9 @@
 *.map
 *.d.ts
 
+# build
+static/
+
 # dependencies
 node_modules/
 
