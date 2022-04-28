@@ -14,7 +14,6 @@ export default class TweetController extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-weight: 300;
     }
 
     :host {
@@ -72,7 +71,7 @@ export default class TweetController extends SunglassesElement {
       color: var(--white-color);
       border: none;
       font-size: 1.2em;
-      font-weight: 700;
+      font-weight: 400;
       user-select: none;
       cursor: pointer;
       transition: background-color 1s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;

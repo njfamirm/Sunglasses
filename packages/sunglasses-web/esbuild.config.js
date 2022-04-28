@@ -34,7 +34,7 @@ esbuild
 esbuild
     .build(esbuildOptionCss)
     .then((msg) => {
-      console.log(`typescript: ${JSON.stringify(msg, null, 4)}`);
+      console.log(`css: ${JSON.stringify(msg, null, 4)}`);
     })
     .catch((err) => {
       console.log(`css error:' ${JSON.stringify(err, null, 4)}`);

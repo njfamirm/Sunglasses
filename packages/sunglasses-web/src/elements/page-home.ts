@@ -13,7 +13,6 @@ export default class PageHome extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-weight: 300;
     }
 
     *:focus-visible {
