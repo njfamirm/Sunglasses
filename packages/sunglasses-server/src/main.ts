@@ -1,5 +1,6 @@
 import {Application, Context, Router, send, Status} from './deps.ts';
 import {oakCors} from './deps.ts';
+import {port} from './config.ts'
 
 const router = new Router();
 const app = new Application();
@@ -21,10 +22,8 @@ app.use((context) => {
   context.response.body = `404 - '${context.request.url}' not found`;
 });
 
-app.addEventListener('listen', ({secure, hostname, port}) => {
-  const protocol = secure ? 'https://' : 'http://';
-  const url = `${protocol}${hostname ?? 'localhost'}:${port}`;
-  console.log(`${'Listening on:'} ${url}`);
+app.addEventListener('listen', ({port}) => {
+  console.log(`${'Listening on port'} ${port}`);
 });
 
-await app.listen({port: 7000});
+await app.listen({port: port});

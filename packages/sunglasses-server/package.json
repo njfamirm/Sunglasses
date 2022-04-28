@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "u": "yarn up",
-    "up": "deno run --allow-read --allow-net src/main.ts",
+    "up": "deno run --allow-read --allow-env --allow-net src/main.ts",
     "f": "yarn format",
     "format": "npm-run-all --sequential format:prettier",
     "format:prettier": "prettier \"**/*.{json,md,ts}\" --write"

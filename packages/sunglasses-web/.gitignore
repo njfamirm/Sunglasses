@@ -10,3 +10,6 @@ static/*.map
 *.log
 
 !esbuild.config.js
+
+!src/config/writeConfig.js
+src/config/config.json

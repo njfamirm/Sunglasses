@@ -8,9 +8,10 @@ COPY src/deps.ts .
 RUN deno cache deps.ts
 
 COPY ./src .
+COPY ./tweet.json .
 RUN deno cache main.ts
 
 EXPOSE 80
 
-CMD ["run", "--allow-net", "--allow-read", "main.ts"]
+CMD ["run", "--allow-net", "--allow-env", "--allow-read", "main.ts"]
 
