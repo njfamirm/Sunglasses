@@ -47,6 +47,7 @@
         "allowIndirect": true
       }
     ],
+    "@typescript-eslint/no-non-null-assertion": "off",
     "no-floating-decimal": "error",
     "space-infix-ops": "error",
     "new-cap": [

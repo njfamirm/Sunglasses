@@ -1,5 +1,6 @@
 import {css, html} from 'lit';
 
+import {apiServer} from '../config/config.json';
 import {sunglassesSignal} from '../core/signal';
 import {SunglassesElement} from '../core/sunglasses-element';
 import {signalValue} from '../core/type';
@@ -176,7 +177,7 @@ export default class TweetContainer extends SunglassesElement {
 
   protected async _fetchTweet(): Promise<void> {
     this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
-    await fetch('http://localhost:7000/v1').then((response) => {
+    await fetch(`${apiServer}/v1`).then((response) => {
       response.json().then((tweetJson) => {
         this._tweetInfo = tweetJson;
         this.requestUpdate();

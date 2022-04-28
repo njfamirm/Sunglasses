@@ -18,6 +18,8 @@ services:
       context: ./packages/sunglasses-web
       dockerfile: Dockerfile
     restart: always
+    environment:
+      - DEBUG_MODE=production
     labels:
       - traefik.http.routers.nginx.rule=Host(`sunglasses.localhost`)
       - traefik.http.services.nginx.loadbalancer.server.port=80
@@ -29,6 +31,8 @@ services:
       context: ./packages/sunglasses-server
       dockerfile: Dockerfile
     restart: always
+    environment:
+      - DEBUG_MODE=production
     labels:
       - traefik.http.routers.api.rule=Host(`sunglasses.api.localhost`)
       - traefik.http.services.api.loadbalancer.server.port=80

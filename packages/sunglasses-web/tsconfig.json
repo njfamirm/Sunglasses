@@ -52,8 +52,8 @@
     // "noPropertyAccessFromIndexSignature": true,  /* Require undeclared properties from index signatures to use element accesses. */
 
     /* Module Resolution Options */
-    "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "baseUrl": "./package" /* Base directory to resolve non-absolute module names. */,
+    "moduleResolution": "Node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
+    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     // "paths": {},                                 /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                              /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                             /* List of folders to include type definitions from. */
@@ -108,6 +108,6 @@
       }
     ]
   },
-  "include": ["src/**/*.ts", "src/sunglasses-pwa.ts"],
+  "include": ["src/**/*.ts", "src/sunglasses-pwa.ts", "src/config/config.json"],
   "exclude": []
 }
