@@ -1,8 +1,9 @@
-// import domtoimage from 'dom-to-image';
-// import {saveAs} from 'file-saver';
+import domtoimage from 'dom-to-image';
+import {saveAs} from 'file-saver';
 import {html, css} from 'lit';
 import {query} from 'lit/decorators.js';
 
+import {debugMode} from '../config/config.json';
 import {sunglassesSignal} from '../core/signal';
 import {SunglassesElement} from '../core/sunglasses-element';
 import {delay} from '../core/utils/delay';
@@ -190,9 +191,11 @@ export default class TweetController extends SunglassesElement {
   protected _exportTweet(tweet: Element): void {
     if (tweet !== undefined && tweet !== null) {
       this._logger.incident('export', 'export_tweet', 'exporting tweet');
-      // domtoimage.toBlob(tweet).then((blob) => {
-      //   saveAs(blob, 'tweet | sunglasses.com .png');
-      // });
+      if (debugMode !== 'debug') {
+        domtoimage.toBlob(tweet).then((blob) => {
+          saveAs(blob, 'sunglasses-tweet.png');
+        });
+      }
       delay(1000).then(() => {
         this._changeButtonText('');
       });
