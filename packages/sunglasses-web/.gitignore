@@ -9,4 +9,4 @@ static/*.map
 # logs
 *.log
 
-!esbuild.bundle.js
+!esbuild.config.js

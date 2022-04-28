@@ -10,8 +10,6 @@ export default class TweetContainer extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
     }
 
     *:focus-visible {
@@ -45,7 +43,7 @@ export default class TweetContainer extends SunglassesElement {
 
     .name {
       color: var(--black-color);
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .username {
@@ -67,7 +65,7 @@ export default class TweetContainer extends SunglassesElement {
 
     .tweet-text > * {
       margin-top: 12px;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 23px;
       color: var(--black-color);
     }
@@ -113,7 +111,7 @@ export default class TweetContainer extends SunglassesElement {
     .count {
       margin-right: 5px;
       color: var(--dark-gray-color);
-      font-weight: 400;
+      font-weight: 300;
     }
 
     .count-padding {

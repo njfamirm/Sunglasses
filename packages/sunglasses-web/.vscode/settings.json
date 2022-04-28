@@ -13,7 +13,7 @@
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "files.exclude": {
     "**/*.map": true,
-    "**/*.js": true,
+    // "**/*.js": true,
     "**/*.d.ts": true,
     "**/*.tsbuildinfo": true
   },
@@ -21,9 +21,11 @@
   "cSpell.words": [
     "alwatr",
     "currentcolor",
+    "dataurl",
     "domtoimage",
     "esbuild",
     "eslintignore",
+    "fetchpriority",
     "Lato",
     "Najafi",
     "noncallable",

@@ -34,10 +34,13 @@
     "max-len": [
       "error",
       {
-        "code": 120
-      },
-      {"ignorePattern": "d=\"([\\s\\S]*?)\""}
+        "code": 100,
+        "tabWidth": 2,
+        "ignorePattern": "d=\"([\\s\\S]*?)\"",
+        "ignoreRegExpLiterals": true
+      }
     ],
+    "indent": ["error", 2, {"SwitchCase": 1}],
     "no-eval": [
       "error",
       {
@@ -56,13 +59,7 @@
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling", "index"],
-          "type"
-        ],
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"], "type"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

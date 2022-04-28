@@ -11,3 +11,6 @@ static/
 
 # dependencies
 node_modules/
+
+# bundel file
+public/

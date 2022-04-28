@@ -14,8 +14,6 @@ export default class TweetController extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
     }
 
     :host {
@@ -73,7 +71,7 @@ export default class TweetController extends SunglassesElement {
       color: var(--white-color);
       border: none;
       font-size: 1.2em;
-      font-weight: 700;
+      font-weight: 400;
       user-select: none;
       cursor: pointer;
       transition: background-color 1s cubic-bezier(0.6, 0.32, 0.06, 0.74) 0s;
@@ -97,8 +95,7 @@ export default class TweetController extends SunglassesElement {
           spellcheck="false"
           id="link-box"
           autocomplete="off"
-          placeholder="https://twitter.com/njfamirm/status/1486041539281362950"
-        />
+          placeholder="https://twitter.com/njfamirm/status/1486041539281362950" />
         <button class="search-button">Search</button>
       </form>
     `;
@@ -151,11 +148,7 @@ export default class TweetController extends SunglassesElement {
   }
 
   protected _changeButtonText(inner: string): void {
-    this._logger.incident(
-      'style',
-      'change_button_text',
-      'change button text in searching'
-    );
+    this._logger.incident('style', 'change_button_text', 'change button text in searching');
 
     switch (inner) {
       case 'NotValid':
@@ -188,7 +181,7 @@ export default class TweetController extends SunglassesElement {
 
   protected _checkValidValue(value: string): string | null {
     const match = value.match(
-      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g
+      /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
       this._logger.incident('validate', 'valid_url', 'tweet url valid');

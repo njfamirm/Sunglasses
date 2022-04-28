@@ -2,6 +2,7 @@
 !nginx.conf
 !package.json
 !node_modules/
+!esbuild.config.js
 !yarn.lock
 !index.html
 !tsconfig.json

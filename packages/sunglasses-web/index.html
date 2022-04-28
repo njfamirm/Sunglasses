@@ -6,7 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sunglasses</title>
 
+    <link
+      rel="preload"
+      href="/static/font/roboto-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+    <link
+      rel="preload"
+      href="/static/font/roboto-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+
     <link rel="stylesheet" href="/static/global.css" />
+
+    <style type="text/css">
+      body {
+        min-height: 100vh;
+        display: flex;
+        background-color: var(--white-color);
+        font-family: 'Roboto';
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        transform: translateZ(0);
+        text-rendering: optimizeLegibility;
+        word-wrap: break-word;
+        text-size-adjust: none;
+        font-weight: 300;
+      }
+    </style>
   </head>
 
   <body>
