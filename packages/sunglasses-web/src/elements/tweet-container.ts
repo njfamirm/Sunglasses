@@ -1,6 +1,8 @@
 import {css, html} from 'lit';
 
+import {sunglassesSignal} from '../core/signal';
 import {SunglassesElement} from '../core/sunglasses-element';
+import {signalValue} from '../core/type';
 
 import type {TemplateResult} from 'lit';
 
@@ -164,14 +166,17 @@ export default class TweetContainer extends SunglassesElement {
     `;
   }
 
-  constructor() {
-    super();
-    this._fetchTweet();
+  protected override firstUpdated(): void {
+    sunglassesSignal.addListener((msg: signalValue) => {
+      if (msg.name === 'searchBox' && msg.status === 'changed') {
+        this._fetchTweet();
+      }
+    });
   }
 
   protected async _fetchTweet(): Promise<void> {
     this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
-    await fetch('http://sunglasses.api.localhost/api/v1').then((response) => {
+    await fetch('http://localhost:7000/v1').then((response) => {
       response.json().then((tweetJson) => {
         this._tweetInfo = tweetJson;
         this.requestUpdate();

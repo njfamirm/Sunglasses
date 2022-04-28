@@ -5,7 +5,7 @@ const router = new Router();
 const app = new Application();
 
 // serve api page
-router.get('/api/v1', oakCors({origin: '*'}), async (ctx: Context) => {
+router.get('/v1', oakCors({origin: '*'}), async (ctx: Context) => {
   ctx.response.status = 200;
   await send(ctx, 'tweet.json', {
     root: `${Deno.cwd()}/`,
@@ -27,4 +27,4 @@ app.addEventListener('listen', ({secure, hostname, port}) => {
   console.log(`${'Listening on:'} ${url}`);
 });
 
-await app.listen({port: 80});
+await app.listen({port: 7000});

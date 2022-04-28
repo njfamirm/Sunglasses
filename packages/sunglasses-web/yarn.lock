@@ -9,6 +9,14 @@
   dependencies:
     tslib "^2.3.1"
 
+"@alwatr/signal@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@alwatr/signal/-/signal-0.11.0.tgz#369791d415dbf10dbb64c54b1564e55e81779e02"
+  integrity sha512-2DeNu5shllxKp6xZ7m08G+mv/UTC4osgy2ZlXSA75hyr4jQ9Wnw/X+07rVywan/eWIt7agYCpXShvn9a+qNwcQ==
+  dependencies:
+    "@alwatr/logger" "^0.11.0"
+    tslib "^2.3.1"
+
 "@babel/code-frame@7.12.11":
   version "7.12.11"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.12.11.tgz"

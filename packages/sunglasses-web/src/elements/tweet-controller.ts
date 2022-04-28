@@ -1,8 +1,9 @@
-import domtoimage from 'dom-to-image';
-import {saveAs} from 'file-saver';
+// import domtoimage from 'dom-to-image';
+// import {saveAs} from 'file-saver';
 import {html, css} from 'lit';
 import {query} from 'lit/decorators.js';
 
+import {sunglassesSignal} from '../core/signal';
 import {SunglassesElement} from '../core/sunglasses-element';
 import {delay} from '../core/utils/delay';
 
@@ -127,20 +128,21 @@ export default class TweetController extends SunglassesElement {
 
       if (ID !== null) {
         this._changeButtonText('Searching');
-        delay(2000).then(() => {
+        delay(1000).then(() => {
           // call function in tweet container
           if (this._fetchTweet(ID)) {
             this._changeButtonText('OK');
+            sunglassesSignal.dispatch({name: 'searchBox', status: 'changed'});
           } else {
             this._changeButtonText('NotValid');
-            delay(3000).then(() => {
+            delay(1000).then(() => {
               this._changeButtonText('');
             });
           }
         });
       } else {
         this._changeButtonText('NotValid');
-        delay(3000).then(() => {
+        delay(1000).then(() => {
           this._changeButtonText('');
         });
       }
@@ -195,10 +197,10 @@ export default class TweetController extends SunglassesElement {
   protected _exportTweet(tweet: any): void {
     if (tweet !== undefined && tweet !== null) {
       this._logger.incident('export', 'export_tweet', 'exporting tweet');
-      domtoimage.toBlob(tweet).then((blob) => {
-        saveAs(blob, 'tweet | sunglasses.com .png');
-      });
-      delay(2000).then(() => {
+      // domtoimage.toBlob(tweet).then((blob) => {
+      //   saveAs(blob, 'tweet | sunglasses.com .png');
+      // });
+      delay(1000).then(() => {
         this._changeButtonText('');
       });
     }
