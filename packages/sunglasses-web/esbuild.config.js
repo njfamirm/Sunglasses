@@ -19,6 +19,7 @@ const esbuildOptionCss = {
   bundle: true,
   minify: true,
   sourcemap: DEBUG_MODE,
+  external: ['*.woff2']
 };
 
 esbuild

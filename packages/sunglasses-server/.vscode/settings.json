@@ -13,7 +13,5 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "cSpell.language": "en,fa,fa-IR",
-  "cSpell.words": [
-    "Najafi"
-  ]
+  "cSpell.words": ["Najafi"]
 }
