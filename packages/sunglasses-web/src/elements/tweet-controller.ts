@@ -106,7 +106,7 @@ export default class TweetController extends SunglassesElement {
   @query('.search-input') input: HTMLSelectElement | undefined;
   @query('.search-form') form: HTMLSelectElement | undefined;
 
-  tweet: any;
+  tweet: Element | undefined;
 
   override firstUpdated(): void {
     this.tweet = document
@@ -130,20 +130,13 @@ export default class TweetController extends SunglassesElement {
         this._changeButtonText('Searching');
         delay(1000).then(() => {
           // call function in tweet container
-          if (this._fetchTweet(ID)) {
-            this._changeButtonText('OK');
-            sunglassesSignal.dispatch({name: 'searchBox', status: 'changed'});
-          } else {
-            this._changeButtonText('NotValid');
-            delay(1000).then(() => {
-              this._changeButtonText('');
-            });
-          }
+          this._changeButtonText('OK');
+          sunglassesSignal.dispatch({name: 'searchBox', status: 'changed'});
         });
       } else {
         this._changeButtonText('NotValid');
         delay(1000).then(() => {
-          this._changeButtonText('');
+          this._changeButtonText(''); // default
         });
       }
     }
@@ -165,7 +158,9 @@ export default class TweetController extends SunglassesElement {
       case 'OK':
         this.button!.innerHTML = 'Exporting';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
-        this._exportTweet(this.tweet);
+        if (this.tweet != null) {
+          this._exportTweet(this.tweet);
+        }
         break;
       default:
         this.button!.innerHTML = 'Search';
@@ -176,25 +171,23 @@ export default class TweetController extends SunglassesElement {
     }
   }
 
-  protected _fetchTweet(_ID: string): boolean {
-    this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
-    return true;
-  }
-
   protected _checkValidValue(value: string): string | null {
     const match = value.match(
       /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
       this._logger.incident('validate', 'valid_url', 'tweet url valid');
-      return (<any>value.match(/\d*$/g))[0];
+      const id = value.match(/\d*$/g);
+      if (id != null) {
+        return id[0];
+      }
     }
     this._logger.incident('validate', 'not_valid_url', 'tweet url not valid');
     return null;
   }
 
   // export tweet
-  protected _exportTweet(tweet: any): void {
+  protected _exportTweet(tweet: Element): void {
     if (tweet !== undefined && tweet !== null) {
       this._logger.incident('export', 'export_tweet', 'exporting tweet');
       // domtoimage.toBlob(tweet).then((blob) => {
