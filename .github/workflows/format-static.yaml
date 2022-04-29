@@ -1,0 +1,30 @@
+name: Format static
+
+on:
+  push:
+    paths: packages/sunglasses-web/*
+    branches:
+      - main
+      - next
+  pull_request:
+    paths: packages/sunglasses-web/*
+    branches:
+      - main
+      - next
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+      - name: Install dependencies
+        working-directory: ./packages/sunglasses-web/
+        run: yarn install
+      - name: Form Code
+        working-directory: ./packages/sunglasses-web/
+        run: yarn format
