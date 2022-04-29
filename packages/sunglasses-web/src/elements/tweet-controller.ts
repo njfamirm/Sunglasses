@@ -1,5 +1,3 @@
-import domtoimage from 'dom-to-image';
-import {saveAs} from 'file-saver';
 import {html, css} from 'lit';
 import {query} from 'lit/decorators.js';
 
@@ -88,40 +86,38 @@ export default class TweetController extends SunglassesElement {
     }
   `;
 
-  override render(): TemplateResult {
-    return html`
+inputValue = debugMode === 'debug' ? 'https://twitter.com/sunglasses/status/1' : '';
+
+override render(): TemplateResult {
+  return html`
       <form class="search-form" novalidate>
         <input
           class="search-input"
           type="url"
-          spellcheck="false"
-          id="link-box"
+          placeholder="https://twitter.com/njfamirm/status/1486041539281362950"
           autocomplete="off"
-          placeholder="https://twitter.com/njfamirm/status/1486041539281362950" />
+          spellcheck="false"
+          value= ${this.inputValue} />
         <button class="search-button">Search</button>
       </form>
     `;
-  }
+}
 
   @query('.search-button') button: HTMLSelectElement | undefined;
   @query('.search-input') input: HTMLSelectElement | undefined;
   @query('.search-form') form: HTMLSelectElement | undefined;
 
-  tweet: Element | undefined;
-
   override firstUpdated(): void {
-    this.tweet = document
-      .querySelector('body > page-home')!
-      .shadowRoot!.querySelector('#tweet')?.shadowRoot?.children[0];
-
     this.form?.addEventListener('submit', (e) => {
       // to prevent redirect in action form
       e.preventDefault();
-      this._search();
+      this._onSearch();
     });
   }
 
-  protected _search(): void {
+  delayTime: number = debugMode === 'debug' ? 800 : 0;
+
+  protected _onSearch(): void {
     const value = this.input?.value;
 
     if (value !== undefined && value !== '') {
@@ -129,10 +125,12 @@ export default class TweetController extends SunglassesElement {
 
       if (ID !== null) {
         this._changeButtonText('Searching');
-        delay(1000).then(() => {
-          // call function in tweet container
+        delay(this.delayTime).then(() => {
           this._changeButtonText('OK');
-          sunglassesSignal.dispatch({name: 'searchBox', status: 'changed'});
+
+          // send fetch signal to tweet-container
+          sunglassesSignal.dispatch({name: 'fetchTweet', description: value});
+          this._changeButtonText(''); // default
         });
       } else {
         this._changeButtonText('NotValid');
@@ -156,12 +154,11 @@ export default class TweetController extends SunglassesElement {
         this.button!.style.cursor = 'default';
         this.input!.style.border = '0.5px solid var(--green-color)';
         break;
-      case 'OK':
+      case 'OK': // change to controller mode
         this.button!.innerHTML = 'Exporting';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
-        if (this.tweet != null) {
-          this._exportTweet(this.tweet);
-        }
+        // send fetch signal to tweet-container
+        sunglassesSignal.dispatch({name: 'exportTweet'});
         break;
       default:
         this.button!.innerHTML = 'Search';
@@ -177,29 +174,14 @@ export default class TweetController extends SunglassesElement {
       /^(http(s)?:\/\/)?(www\.)?twitter.com\/[-a-zA-Z0-9@:%._\\+~#=]*\/status\/\d*$/g,
     );
     if (match !== null) {
-      this._logger.incident('validate', 'valid_url', 'tweet url valid');
       const id = value.match(/\d*$/g);
       if (id != null) {
+        this._logger.incident('validate', 'valid_url', `the id of tweets is equal to ${id[0]}`);
         return id[0];
       }
     }
     this._logger.incident('validate', 'not_valid_url', 'tweet url not valid');
     return null;
-  }
-
-  // export tweet
-  protected _exportTweet(tweet: Element): void {
-    if (tweet !== undefined && tweet !== null) {
-      this._logger.incident('export', 'export_tweet', 'exporting tweet');
-      if (debugMode !== 'debug') {
-        domtoimage.toBlob(tweet).then((blob) => {
-          saveAs(blob, 'sunglasses-tweet.png');
-        });
-      }
-      delay(1000).then(() => {
-        this._changeButtonText('');
-      });
-    }
   }
 }
 

@@ -1,4 +1,4 @@
 export type signalValue = {
-  name: 'searchBox';
-  status: string;
+  name: 'fetchTweet' | 'exportTweet';
+  description?: string;
 };

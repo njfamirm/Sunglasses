@@ -1,6 +1,9 @@
+import domtoimage from 'dom-to-image';
+import {saveAs} from 'file-saver';
 import {css, html} from 'lit';
+import {query} from 'lit/decorators.js';
 
-import {apiServer} from '../config/config.json';
+import {apiServer, debugMode} from '../config/config.json';
 import {sunglassesSignal} from '../core/signal';
 import {SunglassesElement} from '../core/sunglasses-element';
 import {signalValue} from '../core/type';
@@ -167,22 +170,39 @@ export default class TweetContainer extends SunglassesElement {
     `;
   }
 
+  @query('.tweet-container') tweet: HTMLSelectElement | undefined;
+
   protected override firstUpdated(): void {
     sunglassesSignal.addListener((msg: signalValue) => {
-      if (msg.name === 'searchBox' && msg.status === 'changed') {
-        this._fetchTweet();
+      if (msg.name === 'fetchTweet' && msg.description != undefined) {
+        this._fetchTweet(msg.description);
+      } else if (msg.name === 'exportTweet') {
+        this._exportTweet();
       }
     });
   }
 
-  protected async _fetchTweet(): Promise<void> {
+  protected async _fetchTweet(url: string): Promise<void> {
     this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
-    await fetch(`${apiServer}/v1`).then((response) => {
+    await fetch(`${apiServer}/v1?link=${url}`).then((response) => {
       response.json().then((tweetJson) => {
         this._tweetInfo = tweetJson;
         this.requestUpdate();
       });
     });
+  }
+
+  // export tweet
+  protected _exportTweet(): void {
+    if (this.tweet === undefined) {
+      return;
+    }
+    this._logger.incident('export', 'export_tweet', 'exporting tweet');
+    if (debugMode !== 'debug') {
+      domtoimage.toBlob(this.tweet).then((blob) => {
+        saveAs(blob, 'sunglasses-tweet.png');
+      });
+    }
   }
 
   protected _tweetInfo = {
