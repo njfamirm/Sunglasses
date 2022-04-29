@@ -6,11 +6,11 @@ import type {TemplateResult} from 'lit';
 
 export default class Header extends SunglassesElement {
   static override styles? = css`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     *:focus-visible {
       outline: none;

@@ -20,7 +20,7 @@
     "l": "yarn lint",
     "f": "npm-run-all --sequential format lint",
     "lint": "eslint **/*.ts --fix",
-    "format": "prettier \"**/*.{html,css,json,md,ts}\" --ignore-path ./.eslintignore --write"
+    "format": "prettier \"**/*.{html,css,json,md,ts,js}\" --ignore-path ./.eslintignore --write"
   },
   "dependencies": {
     "@alwatr/logger": "^0.11.0",
