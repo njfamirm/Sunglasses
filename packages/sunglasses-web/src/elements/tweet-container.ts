@@ -1,6 +1,9 @@
+import domtoimage from 'dom-to-image';
+import {saveAs} from 'file-saver';
 import {css, html} from 'lit';
+import {query} from 'lit/decorators.js';
 
-import {apiServer} from '../config/config.json';
+import {apiServer, debugMode} from '../config/config.json';
 import {sunglassesSignal} from '../core/signal';
 import {SunglassesElement} from '../core/sunglasses-element';
 import {signalValue} from '../core/type';
@@ -28,7 +31,7 @@ export default class TweetContainer extends SunglassesElement {
       padding: 20px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       background-color: var(--white-color);
       box-shadow: var(--shadow);
       border-radius: 5px;
@@ -54,7 +57,7 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .avatar {
-      margin-bottom: 4px;
+      margin-bottom: 28px;
     }
 
     .avatar > * {
@@ -67,9 +70,8 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .tweet-text > * {
-      margin-top: 12px;
-      font-weight: 300;
-      font-size: 23px;
+      font-weight: 400;
+      font-size: 25px;
       color: var(--black-color);
     }
 
@@ -78,7 +80,7 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .info {
-      margin-top: 16px;
+      margin-top: 28px;
     }
 
     .info > * {
@@ -122,10 +124,13 @@ export default class TweetContainer extends SunglassesElement {
     }
   `;
 
+  enableDateAndPlatform = true;
+  enableAction = true;
+
   override render(): TemplateResult {
     return html`
       <div class="tweet-container">
-        <div class="avatar">
+        <div class="tweet-part avatar">
           <img class="avatar-image" src="${this._tweetInfo.avatar}" alt="" />
           <div class="user-info">
             <p class="name">${this._tweetInfo.name}</p>
@@ -133,56 +138,80 @@ export default class TweetContainer extends SunglassesElement {
           </div>
         </div>
 
-        <div class="tweet-text">
-          <p>${this._tweetInfo.text}</p>
+        <div>
+          <div class="tweet-part tweet-text">
+            <p>${this._tweetInfo.text}</p>
+          </div>
         </div>
 
-        <div class="info">
-          <p class="hour">${this._tweetInfo.hour}</p>
-          <p>·</p>
-          <p class="date">${this._tweetInfo.date}</p>
-          <p>·</p>
-          <p class="platform">${this._tweetInfo.platform}</p>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="tweet-actions">
-          <div class="action">
-            <p class="count count-padding">${this._tweetInfo.like}</p>
-            <p class="action-text">Likes</p>
+        <div class="tweet-part">
+          <div class="info">
+            ${this.enableDateAndPlatform
+              ? html` <p class="hour">${this._tweetInfo.hour}</p>
+                  <p>·</p>
+                  <p class="date">${this._tweetInfo.date}</p>
+                  <p>·</p>
+                  <p class="platform">${this._tweetInfo.platform}</p>`
+              : html``}
           </div>
+          ${this.enableAction
+            ? html` <div class="line"></div>
 
-          <div class="action">
-            <p class="count">${this._tweetInfo.retweet}</p>
-            <p class="action-text">Retweets</p>
-          </div>
+                <div class="tweet-actions">
+                  <div class="action">
+                    <p class="count count-padding">${this._tweetInfo.like}</p>
+                    <p class="action-text">Likes</p>
+                  </div>
 
-          <div class="action">
-            <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
-            <p class="action-text">Quote Tweet</p>
-          </div>
+                  <div class="action">
+                    <p class="count">${this._tweetInfo.retweet}</p>
+                    <p class="action-text">Retweets</p>
+                  </div>
+
+                  <div class="action">
+                    <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
+                    <p class="action-text">Quote Tweet</p>
+                  </div>
+                </div>`
+            : html``}
         </div>
       </div>
     `;
   }
 
+  @query('.tweet-container') tweet: HTMLSelectElement | undefined;
+
   protected override firstUpdated(): void {
     sunglassesSignal.addListener((msg: signalValue) => {
-      if (msg.name === 'searchBox' && msg.status === 'changed') {
-        this._fetchTweet();
+      if (msg.name === 'fetchTweet' && msg.description != undefined) {
+        this._fetchTweet(msg.description);
+      } else if (msg.name === 'exportTweet') {
+        this._exportTweet();
       }
     });
   }
 
-  protected async _fetchTweet(): Promise<void> {
+  protected async _fetchTweet(url: string): Promise<void> {
     this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
-    await fetch(`${apiServer}/v1`).then((response) => {
+    await fetch(`${apiServer}/v1?link=${url}`).then((response) => {
       response.json().then((tweetJson) => {
         this._tweetInfo = tweetJson;
         this.requestUpdate();
       });
     });
+  }
+
+  // export tweet
+  protected _exportTweet(): void {
+    if (this.tweet === undefined) {
+      return;
+    }
+    this._logger.incident('export', 'export_tweet', 'exporting tweet');
+    if (debugMode !== 'debug') {
+      domtoimage.toBlob(this.tweet).then((blob) => {
+        saveAs(blob, 'sunglasses-tweet.png');
+      });
+    }
   }
 
   protected _tweetInfo = {
