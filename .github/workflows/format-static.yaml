@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Form Code
-        run: yarn run format
+        run: yarn format
