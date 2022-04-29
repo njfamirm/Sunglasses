@@ -86,10 +86,10 @@ export default class TweetController extends SunglassesElement {
     }
   `;
 
-inputValue = debugMode === 'debug' ? 'https://twitter.com/sunglasses/status/1' : '';
+  inputValue = debugMode === 'debug' ? 'https://twitter.com/sunglasses/status/1' : '';
 
-override render(): TemplateResult {
-  return html`
+  override render(): TemplateResult {
+    return html`
       <form class="search-form" novalidate>
         <input
           class="search-input"
@@ -97,11 +97,11 @@ override render(): TemplateResult {
           placeholder="https://twitter.com/njfamirm/status/1486041539281362950"
           autocomplete="off"
           spellcheck="false"
-          value= ${this.inputValue} />
+          value=${this.inputValue} />
         <button class="search-button">Search</button>
       </form>
     `;
-}
+  }
 
   @query('.search-button') button: HTMLSelectElement | undefined;
   @query('.search-input') input: HTMLSelectElement | undefined;
