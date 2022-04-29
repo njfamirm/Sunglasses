@@ -2,12 +2,12 @@ name: Format static
 
 on:
   push:
-    paths: packages/sunglasses-web/*
+    paths: [packages/sunglasses-web/*]
     branches:
       - main
       - next
   pull_request:
-    paths: packages/sunglasses-web/*
+    paths: [packages/sunglasses-web/*]
     branches:
       - main
       - next
