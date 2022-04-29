@@ -124,6 +124,9 @@ export default class TweetContainer extends SunglassesElement {
     }
   `;
 
+  enableDateAndPlatform = true;
+  enableAction = true;
+
   override render(): TemplateResult {
     return html`
       <div class="tweet-container">
@@ -143,31 +146,34 @@ export default class TweetContainer extends SunglassesElement {
 
         <div class="tweet-part">
           <div class="info">
-            <p class="hour">${this._tweetInfo.hour}</p>
-            <p>·</p>
-            <p class="date">${this._tweetInfo.date}</p>
-            <p>·</p>
-            <p class="platform">${this._tweetInfo.platform}</p>
+            ${this.enableDateAndPlatform
+              ? html` <p class="hour">${this._tweetInfo.hour}</p>
+                  <p>·</p>
+                  <p class="date">${this._tweetInfo.date}</p>
+                  <p>·</p>
+                  <p class="platform">${this._tweetInfo.platform}</p>`
+              : html``}
           </div>
+          ${this.enableAction
+            ? html` <div class="line"></div>
 
-          <div class="line"></div>
+                <div class="tweet-actions">
+                  <div class="action">
+                    <p class="count count-padding">${this._tweetInfo.like}</p>
+                    <p class="action-text">Likes</p>
+                  </div>
 
-          <div class="tweet-actions">
-            <div class="action">
-              <p class="count count-padding">${this._tweetInfo.like}</p>
-              <p class="action-text">Likes</p>
-            </div>
+                  <div class="action">
+                    <p class="count">${this._tweetInfo.retweet}</p>
+                    <p class="action-text">Retweets</p>
+                  </div>
 
-            <div class="action">
-              <p class="count">${this._tweetInfo.retweet}</p>
-              <p class="action-text">Retweets</p>
-            </div>
-
-            <div class="action">
-              <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
-              <p class="action-text">Quote Tweet</p>
-            </div>
-          </div>
+                  <div class="action">
+                    <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
+                    <p class="action-text">Quote Tweet</p>
+                  </div>
+                </div>`
+            : html``}
         </div>
       </div>
     `;

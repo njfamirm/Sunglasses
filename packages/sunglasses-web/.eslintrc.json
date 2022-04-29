@@ -41,7 +41,8 @@
         "ignoreUrls": true
       }
     ],
-    "indent": ["error", 2, {"SwitchCase": 1}],
+    "operator-linebreak": ["error", "before"],
+    "indent": ["error", 2, {"SwitchCase": 1, "ignoredNodes": ["ConditionalExpression"]}],
     "no-eval": [
       "error",
       {
