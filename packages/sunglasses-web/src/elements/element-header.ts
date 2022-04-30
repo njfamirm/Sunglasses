@@ -1,4 +1,5 @@
 import {html, css} from 'lit';
+import {query} from 'lit/decorators.js';
 
 import {SunglassesElement} from '../core/sunglasses-element';
 
@@ -26,9 +27,7 @@ export default class Header extends SunglassesElement {
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       align-items: center;
-      align-content: center;
       background-color: var(--white-color);
     }
 
@@ -49,6 +48,7 @@ export default class Header extends SunglassesElement {
     ul > li {
       display: flex;
       align-items: center;
+      list-style: none;
     }
 
     ul > li > .link {
@@ -61,10 +61,6 @@ export default class Header extends SunglassesElement {
 
     ul > li > .link:hover {
       color: var(--gray-color);
-    }
-
-    ul > li {
-      list-style: none;
     }
 
     ul > li > a {
@@ -145,16 +141,18 @@ export default class Header extends SunglassesElement {
     `;
   }
 
+  @query('.theme-switcher') themeSwitcher: HTMLSelectElement | undefined;
+
   protected override firstUpdated(): void {
-    const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
-    themeSwitcher?.addEventListener('click', this._changeTheme);
+    this.themeSwitcher?.addEventListener('click', this._changeTheme);
   }
 
   protected _changeTheme(): void {
     // this._logger.incident('theme', 'switch_theme', 'the theme was switched');
-    let theme = document.body.getAttribute('data-theme');
-    theme === 'dark' ? (theme = 'light') : (theme = 'dark');
-    document.body.setAttribute('data-theme', theme);
+    let newTheme: 'dark' | 'light';
+    const oldTheme = document.body.getAttribute('data-theme');
+    oldTheme === 'dark' ? (newTheme = 'light') : (newTheme = 'dark');
+    document.body.setAttribute('data-theme', newTheme);
   }
 }
 

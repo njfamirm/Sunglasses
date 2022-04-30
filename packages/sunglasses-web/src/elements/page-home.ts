@@ -6,7 +6,8 @@ import type {TemplateResult} from 'lit';
 
 import './tweet-container';
 import './tweet-controller';
-import './elemnt-header';
+import './element-header';
+import './element-footer';
 
 export default class PageHome extends SunglassesElement {
   static override styles? = css`
@@ -56,23 +57,6 @@ export default class PageHome extends SunglassesElement {
     }
 
     footer {
-      width: 100%;
-      padding: 0.5em 0;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      background-color: var(--white-color);
-    }
-
-    .footer-text {
-      color: var(--black-color);
-      padding: 1em;
-    }
-
-    .footer-link {
-      color: var(--black-color);
-      font-weight: 400;
     }
   `;
 
@@ -88,26 +72,9 @@ export default class PageHome extends SunglassesElement {
       </main>
 
       <footer>
-        <p class="footer-text">
-          Made with ❤️ by the
-          <a class="footer-link" target="_black" href="https://github.com/njfamirm/Sunglasses"
-            >Sunglasses community
-          </a>
-        </p>
+        <element-footer></element-footer>
       </footer>
     `;
-  }
-
-  protected override firstUpdated(): void {
-    const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
-    themeSwitcher?.addEventListener('click', this._changeTheme);
-  }
-
-  protected _changeTheme(): void {
-    // this._logger.incident('theme', 'switch_theme', 'the theme was switched');
-    let theme = document.body.getAttribute('data-theme');
-    theme === 'dark' ? (theme = 'light') : (theme = 'dark');
-    document.body.setAttribute('data-theme', theme);
   }
 }
 
