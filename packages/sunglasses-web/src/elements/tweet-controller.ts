@@ -3,8 +3,8 @@ import {query} from 'lit/decorators.js';
 
 import {debugMode} from '../config/config.json';
 import {sunglassesSignal} from '../core/signal';
-import {SunglassesElement} from '../core/sunglasses-element';
 import {delay} from '../core/utils/delay';
+import {SunglassesElement} from './sunglasses-element/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
@@ -14,6 +14,10 @@ export default class TweetController extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    ::placeholder {
+      color: var(--light-gray-color);
     }
 
     :host {
@@ -36,10 +40,6 @@ export default class TweetController extends SunglassesElement {
 
     .search-form > * {
       box-shadow: var(--shadow);
-    }
-
-    ::placeholder {
-      color: var(--light-gray-color);
     }
 
     .search-input {

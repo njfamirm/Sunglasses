@@ -20,6 +20,9 @@ const config = {
 
 const jsonConfig = JSON.stringify(config)
 
-console.log(jsonConfig)
+console.log(`
+Debug mode: ${jsonConfig.debugMode}
+API server: ${jsonConfig.apiServer}
+`)
 
 fs.writeFileSync('./src/config/config.json', jsonConfig, {encoding: 'utf-8'})

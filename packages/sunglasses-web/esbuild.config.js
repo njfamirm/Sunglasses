@@ -1,6 +1,6 @@
 const esbuild = require('esbuild');
 
-// const browserList = ['chrome58', 'firefox57', 'safari11', 'edge16'];
+const browserList = ['chrome58', 'firefox57', 'safari11', 'edge16'];
 
 const DEBUG_MODE = (process.env.DEBUG_MODE === 'debug') ? true : false;
 
@@ -10,7 +10,7 @@ const esbuildOptionTypescript = {
   bundle: true,
   minify: true,
   sourcemap: DEBUG_MODE,
-  // target: browserList,
+  target: browserList,
 };
 
 const esbuildOptionCss = {

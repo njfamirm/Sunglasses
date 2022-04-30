@@ -5,8 +5,8 @@ import {query} from 'lit/decorators.js';
 
 import {apiServer, debugMode} from '../config/config.json';
 import {sunglassesSignal} from '../core/signal';
-import {SunglassesElement} from '../core/sunglasses-element';
 import {signalValue} from '../core/type';
+import {SunglassesElement} from './sunglasses-element/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
