@@ -4,8 +4,6 @@ import {css, html} from 'lit';
 import {query} from 'lit/decorators.js';
 
 import {apiServer, debugMode} from '../config/config.json';
-import {sunglassesSignal} from '../core/signal';
-import {signalValue} from '../core/type';
 import {SunglassesElement} from './sunglasses-element/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
@@ -182,26 +180,30 @@ export default class TweetContainer extends SunglassesElement {
   @query('.tweet-container') tweet: HTMLSelectElement | undefined;
 
   protected override firstUpdated(): void {
-    sunglassesSignal.addListener((msg: signalValue) => {
-      if (msg.name === 'fetchTweet' && msg.description != undefined) {
-        this._fetchTweet(msg.description);
-      } else if (msg.name === 'exportTweet') {
-        this._exportTweet();
-      }
-    });
+    this._signalListener((url: string): void => {
+      this._fetchTweet(url);
+    }, 'fetchTweet');
+
+    this._signalListener((): void => {
+      this._exportTweet();
+    }, 'exportTweet');
   }
 
   protected async _fetchTweet(url: string): Promise<void> {
-    this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
+    this._logger.incident('fetchTweet', 'fetch_tweet', `tweet fetch from /v1?link=${url}`);
     await fetch(`${apiServer}/v1?link=${url}`).then((response) => {
-      response.json().then((tweetJson) => {
-        this._tweetInfo = tweetJson;
-        this.requestUpdate();
-      });
+      response
+        .json()
+        .then((tweetJson) => {
+          this._tweetInfo = tweetJson;
+          this.requestUpdate();
+        })
+        .catch((err) => {
+          this._logger.error('fetch_tweet', 'failed_fetch_tweet', err);
+        });
     });
   }
 
-  // export tweet
   protected _exportTweet(): void {
     if (this.tweet === undefined) {
       return;

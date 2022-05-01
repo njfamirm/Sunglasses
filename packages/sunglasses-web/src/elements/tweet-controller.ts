@@ -2,7 +2,6 @@ import {html, css} from 'lit';
 import {query} from 'lit/decorators.js';
 
 import {debugMode} from '../config/config.json';
-import {sunglassesSignal} from '../core/signal';
 import {delay} from '../core/utils/delay';
 import {SunglassesElement} from './sunglasses-element/sunglasses-element';
 
@@ -129,7 +128,7 @@ export default class TweetController extends SunglassesElement {
           this._changeButtonText('OK');
 
           // send fetch signal to tweet-container
-          sunglassesSignal.dispatch({name: 'fetchTweet', description: value});
+          this._signalDispatch({name: 'fetchTweet', description: value});
           this._changeButtonText(''); // default
         });
       } else {
@@ -158,7 +157,7 @@ export default class TweetController extends SunglassesElement {
         this.button!.innerHTML = 'Exporting';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         // send fetch signal to tweet-container
-        sunglassesSignal.dispatch({name: 'exportTweet'});
+        this._signalDispatch({name: 'exportTweet'});
         break;
       default:
         this.button!.innerHTML = 'Search';

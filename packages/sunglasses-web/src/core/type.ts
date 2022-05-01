@@ -1,4 +1,6 @@
+export type signalType = 'fetchTweet' | 'exportTweet';
+
 export type signalValue = {
-  name: 'fetchTweet' | 'exportTweet';
+  name: signalType;
   description?: string;
 };
