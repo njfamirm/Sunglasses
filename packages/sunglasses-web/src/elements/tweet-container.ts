@@ -27,6 +27,12 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .tweet-container {
+      padding: 2em;
+      background-image: linear-gradient(62deg, rgb(3, 69, 134) 0%, rgb(39 4 55) 100%);
+      border-radius: 5px;
+    }
+
+    .tweet {
       width: 600px;
       padding: 20px 20px;
       display: flex;
@@ -131,57 +137,59 @@ export default class TweetContainer extends SunglassesElement {
   override render(): TemplateResult {
     return html`
       <div class="tweet-container">
-        <div class="tweet-part avatar">
-          <img class="avatar-image" src="${this._tweetInfo.avatar}" alt="" />
-          <div class="user-info">
-            <p class="name">${this._tweetInfo.name}</p>
-            <p class="username">@${this._tweetInfo.username}</p>
+        <div class="tweet">
+          <div class="tweet-part avatar">
+            <img class="avatar-image" src="${this._tweetInfo.avatar}" alt="" />
+            <div class="user-info">
+              <p class="name">${this._tweetInfo.name}</p>
+              <p class="username">@${this._tweetInfo.username}</p>
+            </div>
           </div>
-        </div>
 
-        <div>
-          <div class="tweet-part tweet-text">
-            <p>${this._tweetInfo.text}</p>
+          <div>
+            <div class="tweet-part tweet-text">
+              <p>${this._tweetInfo.text}</p>
+            </div>
           </div>
-        </div>
 
-        <div class="tweet-part">
-          <div class="info">
-            ${this.enableDate
-              ? html`
-                  <p class="hour">${this._tweetInfo.hour}</p>
-                  <p>·</p>
-                  <p class="date">${this._tweetInfo.date}</p>
+          <div class="tweet-part">
+            <div class="info">
+              ${this.enableDate
+                ? html`
+                    <p class="hour">${this._tweetInfo.hour}</p>
+                    <p>·</p>
+                    <p class="date">${this._tweetInfo.date}</p>
 
-                  ${this.enablePlatform
-                    ? html`
-                        <p>·</p>
-                        <p class="platform">${this._tweetInfo.platform}</p>
-                      `
-                    : html``}
-                `
+                    ${this.enablePlatform
+                      ? html`
+                          <p>·</p>
+                          <p class="platform">${this._tweetInfo.platform}</p>
+                        `
+                      : html``}
+                  `
+                : html``}
+            </div>
+            ${this.enableAction
+              ? html` <div class="line"></div>
+
+                  <div class="tweet-actions">
+                    <div class="action">
+                      <p class="count count-padding">${this._tweetInfo.like}</p>
+                      <p class="action-text">Likes</p>
+                    </div>
+
+                    <div class="action">
+                      <p class="count">${this._tweetInfo.retweet}</p>
+                      <p class="action-text">Retweets</p>
+                    </div>
+
+                    <div class="action">
+                      <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
+                      <p class="action-text">Quote Tweet</p>
+                    </div>
+                  </div>`
               : html``}
           </div>
-          ${this.enableAction
-            ? html` <div class="line"></div>
-
-                <div class="tweet-actions">
-                  <div class="action">
-                    <p class="count count-padding">${this._tweetInfo.like}</p>
-                    <p class="action-text">Likes</p>
-                  </div>
-
-                  <div class="action">
-                    <p class="count">${this._tweetInfo.retweet}</p>
-                    <p class="action-text">Retweets</p>
-                  </div>
-
-                  <div class="action">
-                    <p class="count count-padding">${this._tweetInfo.quotetweet}</p>
-                    <p class="action-text">Quote Tweet</p>
-                  </div>
-                </div>`
-            : html``}
         </div>
       </div>
     `;
