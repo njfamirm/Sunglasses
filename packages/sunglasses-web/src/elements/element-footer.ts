@@ -29,7 +29,7 @@ export default class Footer extends SunglassesElement {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      background-color: var(--white-color);
+      background-color: inherit;
     }
 
     .footer-text {
