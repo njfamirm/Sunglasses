@@ -122,8 +122,9 @@ export default class TweetContainer extends SunglassesElement {
     }
   `;
 
-  enableDateAndPlatform = true;
-  enableAction = true;
+  enableDate = true;
+  enablePlatform = true; // show if enableDate true
+  enableAction = false;
 
   override render(): TemplateResult {
     return html`
@@ -144,12 +145,19 @@ export default class TweetContainer extends SunglassesElement {
 
         <div class="tweet-part">
           <div class="info">
-            ${this.enableDateAndPlatform
-              ? html` <p class="hour">${this._tweetInfo.hour}</p>
+            ${this.enableDate
+              ? html`
+                  <p class="hour">${this._tweetInfo.hour}</p>
                   <p>·</p>
                   <p class="date">${this._tweetInfo.date}</p>
-                  <p>·</p>
-                  <p class="platform">${this._tweetInfo.platform}</p>`
+
+                  ${this.enablePlatform
+                    ? html`
+                        <p>·</p>
+                        <p class="platform">${this._tweetInfo.platform}</p>
+                      `
+                    : html``}
+                `
               : html``}
           </div>
           ${this.enableAction
@@ -209,7 +217,7 @@ export default class TweetContainer extends SunglassesElement {
       return;
     }
     this._logger.incident('export', 'export_tweet', 'exporting tweet');
-    if (debugMode === 'debug') {
+    if (debugMode !== 'debug') {
       domtoimage.toBlob(this.tweet).then((blob) => {
         saveAs(blob, 'sunglasses-tweet.png');
       });
