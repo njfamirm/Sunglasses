@@ -2,9 +2,8 @@ import {html, css} from 'lit';
 import {query} from 'lit/decorators.js';
 
 import {debugMode} from '../config/config.json';
-import {sunglassesSignal} from '../core/signal';
-import {SunglassesElement} from '../core/sunglasses-element';
 import {delay} from '../core/utils/delay';
+import {SunglassesElement} from '../sunglasses-debt/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
@@ -14,6 +13,10 @@ export default class TweetController extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    ::placeholder {
+      color: var(--light-gray-color);
     }
 
     :host {
@@ -36,10 +39,6 @@ export default class TweetController extends SunglassesElement {
 
     .search-form > * {
       box-shadow: var(--shadow);
-    }
-
-    ::placeholder {
-      color: var(--light-gray-color);
     }
 
     .search-input {
@@ -126,10 +125,10 @@ export default class TweetController extends SunglassesElement {
       if (ID !== null) {
         this._changeButtonText('Searching');
         delay(this.delayTime).then(() => {
+          // send fetch signal to tweet-container
+          this._signalDispatch({name: 'fetchTweet', description: value});
           this._changeButtonText('OK');
 
-          // send fetch signal to tweet-container
-          sunglassesSignal.dispatch({name: 'fetchTweet', description: value});
           this._changeButtonText(''); // default
         });
       } else {
@@ -158,7 +157,7 @@ export default class TweetController extends SunglassesElement {
         this.button!.innerHTML = 'Exporting';
         this.button!.style.backgroundColor = 'var(--dark-gray-color)';
         // send fetch signal to tweet-container
-        sunglassesSignal.dispatch({name: 'exportTweet'});
+        this._signalDispatch({name: 'exportTweet'});
         break;
       default:
         this.button!.innerHTML = 'Search';

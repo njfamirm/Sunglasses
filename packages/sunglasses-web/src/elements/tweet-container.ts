@@ -3,10 +3,10 @@ import {saveAs} from 'file-saver';
 import {css, html} from 'lit';
 import {query} from 'lit/decorators.js';
 
+import {delay} from 'core/utils/delay';
+
 import {apiServer, debugMode} from '../config/config.json';
-import {sunglassesSignal} from '../core/signal';
-import {SunglassesElement} from '../core/sunglasses-element';
-import {signalValue} from '../core/type';
+import {SunglassesElement} from '../sunglasses-debt/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
@@ -124,8 +124,9 @@ export default class TweetContainer extends SunglassesElement {
     }
   `;
 
-  enableDateAndPlatform = true;
-  enableAction = true;
+  enableDate = true;
+  enablePlatform = true; // show if enableDate true
+  enableAction = false;
 
   override render(): TemplateResult {
     return html`
@@ -146,12 +147,19 @@ export default class TweetContainer extends SunglassesElement {
 
         <div class="tweet-part">
           <div class="info">
-            ${this.enableDateAndPlatform
-              ? html` <p class="hour">${this._tweetInfo.hour}</p>
+            ${this.enableDate
+              ? html`
+                  <p class="hour">${this._tweetInfo.hour}</p>
                   <p>·</p>
                   <p class="date">${this._tweetInfo.date}</p>
-                  <p>·</p>
-                  <p class="platform">${this._tweetInfo.platform}</p>`
+
+                  ${this.enablePlatform
+                    ? html`
+                        <p>·</p>
+                        <p class="platform">${this._tweetInfo.platform}</p>
+                      `
+                    : html``}
+                `
               : html``}
           </div>
           ${this.enableAction
@@ -182,34 +190,47 @@ export default class TweetContainer extends SunglassesElement {
   @query('.tweet-container') tweet: HTMLSelectElement | undefined;
 
   protected override firstUpdated(): void {
-    sunglassesSignal.addListener((msg: signalValue) => {
-      if (msg.name === 'fetchTweet' && msg.description != undefined) {
-        this._fetchTweet(msg.description);
-      } else if (msg.name === 'exportTweet') {
-        this._exportTweet();
-      }
-    });
+    this._signalListener((url: string): void => {
+      this._fetchTweet(url);
+    }, 'fetchTweet');
+
+    this._signalListener((): void => {
+      this._exportTweet();
+    }, 'exportTweet');
   }
 
+  fetching = false;
   protected async _fetchTweet(url: string): Promise<void> {
-    this._logger.incident('fetchTweet', 'fetch_tweet', 'tweet fetch from /api');
+    this._logger.incident('fetchTweet', 'fetch_tweet', `tweet fetch from /v1?link=${url}`);
+    this.fetching = true;
     await fetch(`${apiServer}/v1?link=${url}`).then((response) => {
-      response.json().then((tweetJson) => {
-        this._tweetInfo = tweetJson;
-        this.requestUpdate();
-      });
+      response
+        .json()
+        .then((tweetJson) => {
+          this.fetching = false;
+          this._tweetInfo = tweetJson;
+          this.requestUpdate();
+        })
+        .catch((err) => {
+          this.fetching = false;
+          this._logger.error('fetch_tweet', 'failed_fetch_tweet', err);
+        });
     });
   }
 
-  // export tweet
   protected _exportTweet(): void {
-    if (this.tweet === undefined) {
-      return;
-    }
-    this._logger.incident('export', 'export_tweet', 'exporting tweet');
-    if (debugMode !== 'debug') {
-      domtoimage.toBlob(this.tweet).then((blob) => {
-        saveAs(blob, 'sunglasses-tweet.png');
+    // avoid export before fetching
+    if (this.fetching) {
+      delay(500).then(() => {
+        // timeout
+        if (this.tweet !== undefined) {
+          this._logger.incident('export', 'export_tweet', 'exporting tweet');
+          if (debugMode !== 'debug') {
+            domtoimage.toBlob(this.tweet).then((blob) => {
+              saveAs(blob, 'sunglasses-tweet.png');
+            });
+          }
+        }
       });
     }
   }
@@ -222,9 +243,9 @@ export default class TweetContainer extends SunglassesElement {
     hour: '10:10 PM',
     date: 'Jan 25, 2022',
     platform: 'Twitter Web App',
-    like: '52',
-    retweet: '5',
-    quotetweet: '15',
+    like: 52,
+    retweet: 5,
+    quotetweet: 15,
   };
 }
 

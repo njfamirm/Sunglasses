@@ -1,6 +1,7 @@
 import {html, css} from 'lit';
+import {query} from 'lit/decorators.js';
 
-import {SunglassesElement} from '../core/sunglasses-element';
+import {SunglassesElement} from '../sunglasses-debt/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
@@ -26,9 +27,7 @@ export default class Header extends SunglassesElement {
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       align-items: center;
-      align-content: center;
       background-color: var(--white-color);
     }
 
@@ -49,6 +48,7 @@ export default class Header extends SunglassesElement {
     ul > li {
       display: flex;
       align-items: center;
+      list-style: none;
     }
 
     ul > li > .link {
@@ -61,10 +61,6 @@ export default class Header extends SunglassesElement {
 
     ul > li > .link:hover {
       color: var(--gray-color);
-    }
-
-    ul > li {
-      list-style: none;
     }
 
     ul > li > a {
@@ -89,19 +85,7 @@ export default class Header extends SunglassesElement {
   override render(): TemplateResult {
     return html`
       <a href="/">
-        <svg
-          class="logo"
-          xmlns="http://www.w3.org/2000/svg"
-          version="1.1"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svgjs="http://svgjs.com/svgjs"
-          width="512"
-          height="512"
-          x="0"
-          y="0"
-          viewBox="0 0 60 60"
-          xml:space="preserve"
-          class="">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
           <g>
             <path
               xmlns="http://www.w3.org/2000/svg"
@@ -124,17 +108,10 @@ export default class Header extends SunglassesElement {
         </li>
         <li>
           <svg
+            class="theme-switcher"
+            title="Change theme"
             xmlns="http://www.w3.org/2000/svg"
-            version="1.1"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xmlns:svgjs="http://svgjs.com/svgjs"
-            width="512"
-            height="512"
-            x="0"
-            y="0"
-            viewBox="0 0 312.812 312.812"
-            xml:space="preserve"
-            class="theme-switcher">
+            viewBox="0 0 312.812 312.812">
             <g>
               <path
                 d="M305.2,178.159c-3.2-0.8-6.4,0-9.2,2c-10.4,8.8-22.4,16-35.6,20.8c-12.4,4.8-26,7.2-40.4,7.2c-32.4,0-62-13.2-83.2-34.4    c-21.2-21.2-34.4-50.8-34.4-83.2c0-13.6,2.4-26.8,6.4-38.8c4.4-12.8,10.8-24.4,19.2-34.4c3.6-4.4,2.8-10.8-1.6-14.4    c-2.8-2-6-2.8-9.2-2c-34,9.2-63.6,29.6-84.8,56.8c-20.4,26.8-32.4,60-32.4,96c0,43.6,17.6,83.2,46.4,112s68,46.4,112,46.4    c36.8,0,70.8-12.8,98-34c27.6-21.6,47.6-52.4,56-87.6C314,184.959,310.8,179.359,305.2,178.159z"></path>
@@ -145,16 +122,20 @@ export default class Header extends SunglassesElement {
     `;
   }
 
+  @query('.theme-switcher') themeSwitcher: HTMLSelectElement | undefined;
+
   protected override firstUpdated(): void {
-    const themeSwitcher = this.shadowRoot?.querySelector('.theme-switcher');
-    themeSwitcher?.addEventListener('click', this._changeTheme);
+    this.themeSwitcher?.addEventListener('click', () => {
+      this._changeTheme();
+    });
   }
 
   protected _changeTheme(): void {
-    // this._logger.incident('theme', 'switch_theme', 'the theme was switched');
-    let theme = document.body.getAttribute('data-theme');
-    theme === 'dark' ? (theme = 'light') : (theme = 'dark');
-    document.body.setAttribute('data-theme', theme);
+    this._logger.incident('theme', 'switch_theme', 'the theme was switched');
+    let newTheme: 'dark' | 'light';
+    const oldTheme = document.body.getAttribute('data-theme');
+    oldTheme === 'dark' ? (newTheme = 'light') : (newTheme = 'dark');
+    document.body.setAttribute('data-theme', newTheme);
   }
 }
 
