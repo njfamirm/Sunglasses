@@ -2,12 +2,16 @@ name: Build static
 
 on:
   push:
-    paths: packages/sunglasses-web/*
+    paths:
+      - packages/sunglasses-web/**/*.ts
+      - packages/sunglasses-web/**/*.js
     branches:
       - main
       - next
   pull_request:
-    paths: packages/sunglasses-web/*
+    paths:
+      - packages/sunglasses-web/**/*.ts
+      - packages/sunglasses-web/**/*.js
     branches:
       - main
       - next

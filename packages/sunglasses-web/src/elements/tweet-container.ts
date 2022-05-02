@@ -209,7 +209,7 @@ export default class TweetContainer extends SunglassesElement {
       return;
     }
     this._logger.incident('export', 'export_tweet', 'exporting tweet');
-    if (debugMode !== 'debug') {
+    if (debugMode === 'debug') {
       domtoimage.toBlob(this.tweet).then((blob) => {
         saveAs(blob, 'sunglasses-tweet.png');
       });
