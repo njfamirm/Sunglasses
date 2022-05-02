@@ -1,6 +1,6 @@
 import {html, css} from 'lit';
 
-import {SunglassesElement} from './sunglasses-element/sunglasses-element';
+import {SunglassesElement} from '../sunglasses-debt/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 

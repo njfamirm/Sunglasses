@@ -1,8 +1,8 @@
 import {createLogger} from '@alwatr/logger';
 import {LitElement} from 'lit';
 
-import {sunglassesSignal} from '../../core/signal';
-import {signalType, signalValue} from '../../core/type';
+import {sunglassesSignal} from '../core/signal';
+import {signalType, signalValue} from '../core/type';
 
 import type {Logger} from '@alwatr/logger/type';
 
@@ -28,7 +28,7 @@ export abstract class SunglassesElement extends LitElement {
             this._logger.error(
               'signal_listener',
               'signal_description_undifined',
-              `signal description undifined in ${signal}`,
+              `signal description undifined in ${JSON.stringify(signal, null, '2')}`,
             );
           }
         } else {
@@ -39,6 +39,11 @@ export abstract class SunglassesElement extends LitElement {
   }
 
   protected _signalDispatch(signal: signalValue): void {
+    this._logger.incident(
+      'signal_dispatch',
+      'signal_dispatched',
+      `${JSON.stringify(signal, null, '2')} dispatched`,
+    );
     sunglassesSignal.dispatch(signal);
   }
 }

@@ -3,7 +3,7 @@ import {query} from 'lit/decorators.js';
 
 import {debugMode} from '../config/config.json';
 import {delay} from '../core/utils/delay';
-import {SunglassesElement} from './sunglasses-element/sunglasses-element';
+import {SunglassesElement} from '../sunglasses-debt/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
@@ -125,10 +125,10 @@ export default class TweetController extends SunglassesElement {
       if (ID !== null) {
         this._changeButtonText('Searching');
         delay(this.delayTime).then(() => {
-          this._changeButtonText('OK');
-
           // send fetch signal to tweet-container
           this._signalDispatch({name: 'fetchTweet', description: value});
+          this._changeButtonText('OK');
+
           this._changeButtonText(''); // default
         });
       } else {

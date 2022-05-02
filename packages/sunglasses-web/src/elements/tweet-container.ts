@@ -3,8 +3,10 @@ import {saveAs} from 'file-saver';
 import {css, html} from 'lit';
 import {query} from 'lit/decorators.js';
 
+import {delay} from 'core/utils/delay';
+
 import {apiServer, debugMode} from '../config/config.json';
-import {SunglassesElement} from './sunglasses-element/sunglasses-element';
+import {SunglassesElement} from '../sunglasses-debt/sunglasses-element';
 
 import type {TemplateResult} from 'lit';
 
@@ -197,29 +199,38 @@ export default class TweetContainer extends SunglassesElement {
     }, 'exportTweet');
   }
 
+  fetching = false;
   protected async _fetchTweet(url: string): Promise<void> {
     this._logger.incident('fetchTweet', 'fetch_tweet', `tweet fetch from /v1?link=${url}`);
+    this.fetching = true;
     await fetch(`${apiServer}/v1?link=${url}`).then((response) => {
       response
         .json()
         .then((tweetJson) => {
+          this.fetching = false;
           this._tweetInfo = tweetJson;
           this.requestUpdate();
         })
         .catch((err) => {
+          this.fetching = false;
           this._logger.error('fetch_tweet', 'failed_fetch_tweet', err);
         });
     });
   }
 
   protected _exportTweet(): void {
-    if (this.tweet === undefined) {
-      return;
-    }
-    this._logger.incident('export', 'export_tweet', 'exporting tweet');
-    if (debugMode !== 'debug') {
-      domtoimage.toBlob(this.tweet).then((blob) => {
-        saveAs(blob, 'sunglasses-tweet.png');
+    // avoid export before fetching
+    if (this.fetching) {
+      delay(500).then(() => {
+        // timeout
+        if (this.tweet !== undefined) {
+          this._logger.incident('export', 'export_tweet', 'exporting tweet');
+          if (debugMode !== 'debug') {
+            domtoimage.toBlob(this.tweet).then((blob) => {
+              saveAs(blob, 'sunglasses-tweet.png');
+            });
+          }
+        }
       });
     }
   }
@@ -232,9 +243,9 @@ export default class TweetContainer extends SunglassesElement {
     hour: '10:10 PM',
     date: 'Jan 25, 2022',
     platform: 'Twitter Web App',
-    like: '52',
-    retweet: '5',
-    quotetweet: '15',
+    like: 52,
+    retweet: 5,
+    quotetweet: 15,
   };
 }
 
