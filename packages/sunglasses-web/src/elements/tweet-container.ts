@@ -16,6 +16,7 @@ export default class TweetContainer extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      cursor: default;
     }
 
     *:focus-visible {
@@ -27,18 +28,26 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .tweet-container {
-      padding: 2em;
-      background-image: linear-gradient(62deg, rgb(3, 69, 134) 0%, rgb(39 4 55) 100%);
+      width: 600px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: var(--tweet-theme-1);
       border-radius: 5px;
     }
 
+    .tweet-container:before {
+      transform: translate(-25%, -25%) rotate(-180deg);
+    }
+
     .tweet {
-      width: 600px;
+      margin: 2em;
       padding: 20px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: var(--white-color);
+      background-color: var(--tweet-bg-color);
       box-shadow: var(--shadow);
       border-radius: 5px;
     }
@@ -54,12 +63,12 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .name {
-      color: var(--black-color);
+      color: var(--tweet-black-color);
       font-weight: 400;
     }
 
     .username {
-      color: var(--gray-color);
+      color: var(--tweet-gray-color);
     }
 
     .avatar {
@@ -78,11 +87,11 @@ export default class TweetContainer extends SunglassesElement {
     .tweet-text > * {
       font-weight: 400;
       font-size: 25px;
-      color: var(--black-color);
+      color: var(--tweet-black-color);
     }
 
     .tweet-text > p > span {
-      color: var(--dark-gray-color);
+      color: var(--tweet-dark-gray-color);
     }
 
     .info {
@@ -91,14 +100,14 @@ export default class TweetContainer extends SunglassesElement {
 
     .info > * {
       display: inline;
-      color: var(--gray-color);
+      color: var(--tweet-gray-color);
     }
 
     .line {
       width: 100%;
       height: 0.3px;
       margin: 16px 0;
-      background-color: var(--black-color);
+      background-color: var(--tweet-black-color);
       opacity: 20%;
     }
 
@@ -111,7 +120,7 @@ export default class TweetContainer extends SunglassesElement {
       display: flex;
       align-items: center;
       margin-right: 20px;
-      color: var(--gray-color);
+      color: var(--tweet-gray-color);
       font-size: 15px;
     }
 
@@ -121,7 +130,7 @@ export default class TweetContainer extends SunglassesElement {
 
     .count {
       margin-right: 5px;
-      color: var(--dark-gray-color);
+      color: var(--tweet-dark-gray-color);
       font-weight: 300;
     }
 
@@ -131,8 +140,8 @@ export default class TweetContainer extends SunglassesElement {
   `;
 
   enableDate = true;
-  enablePlatform = true; // show if enableDate true
-  enableAction = false;
+  enablePlatform = true; // enable if enableDate true
+  enableAction = true;
 
   override render(): TemplateResult {
     return html`
@@ -195,7 +204,7 @@ export default class TweetContainer extends SunglassesElement {
     `;
   }
 
-  @query('.tweet-container') tweet: HTMLSelectElement | undefined;
+  @query('.tweet-container') tweetContainer: HTMLSelectElement | undefined;
 
   protected override firstUpdated(): void {
     this._signalListener((url: string): void => {
@@ -205,6 +214,14 @@ export default class TweetContainer extends SunglassesElement {
     this._signalListener((): void => {
       this._exportTweet();
     }, 'exportTweet');
+
+    this._signalListener((themeNumber) => {
+      this._changeTheme(themeNumber);
+    }, 'changeTweetTheme');
+
+    // this._signalListener((sizeNumber) => {
+    //   this._changeSize(sizeNumber);
+    // }, 'changeTweetSize');
   }
 
   fetching = false;
@@ -228,13 +245,13 @@ export default class TweetContainer extends SunglassesElement {
 
   protected _exportTweet(): void {
     // avoid export before fetching
-    if (this.fetching) {
+    if (!this.fetching) {
       delay(500).then(() => {
         // timeout
-        if (this.tweet !== undefined) {
+        if (this.tweetContainer !== undefined) {
           this._logger.incident('export', 'export_tweet', 'exporting tweet');
-          if (debugMode !== 'debug') {
-            domtoimage.toBlob(this.tweet).then((blob) => {
+          if (debugMode === 'debug') {
+            domtoimage.toBlob(this.tweetContainer).then((blob) => {
               saveAs(blob, 'sunglasses-tweet.png');
             });
           }
@@ -242,6 +259,18 @@ export default class TweetContainer extends SunglassesElement {
       });
     }
   }
+
+  protected _changeTheme(themeNumber: string): void {
+    this.tweetContainer!.setAttribute(
+      'style',
+      `background-image: var(--tweet-theme-${themeNumber});`,
+    );
+  }
+
+  // protected _changeSize(sizeNumber: string): void {
+  //   this.tweetContainer!.style.width = `var(--tweet-width-${sizeNumber})`;
+  //   this.tweetContainer!.style.height = `var(--tweet-height-${sizeNumber})`;
+  // }
 
   protected _tweetInfo = {
     name: 'Sunglasses',

@@ -20,7 +20,25 @@
     U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-:root [data-theme='dark'] {
+:root {
+  --tweet-bg-color: #121313b8;
+  --tweet-black-color: #fff;
+  --tweet-dark-gray-color: #ececec;
+  --tweet-gray-color: #b6b6b6;
+
+  --tweet-theme-1: linear-gradient(62deg, #034586 0%, #57047d 100%);
+  --tweet-theme-2: linear-gradient(62deg, #d5d40a 0%, #7d0452 100%);
+  --tweet-theme-3: linear-gradient(62deg, #860303 0%, #7c047d 100%);
+  --tweet-theme-4: linear-gradient(62deg, #034586 0%, #717d04 100%);
+  --tweet-theme-5: linear-gradient(62deg, #867f03 0%, #047d76 100%);
+  --tweet-theme-6: linear-gradient(62deg, #867f03 0%, #860303 100%);
+  --tweet-theme-7: linear-gradient(62deg, #edf903 0%, #162ec9 100%);
+
+  /* --tweet-width-1: 700px;
+  --tweet-height-1: 700px; */
+}
+
+:root [data-theme='light'] {
   --black-color: #1f2122;
   --dark-gray-color: #313131;
   --gray-color: #696969;
@@ -31,11 +49,12 @@
   --reverse-shadow: 0 0 18px 0px #0000004a;
   --shadow: 0 0 18px 0px #0000001f;
   --white-color: #fff;
+  --tweet-color: rgba(255, 255, 255, 0.863);
   --white-dark-color: #f7f7f7;
-  --body-color: #fafafa;
+  --body-color: #ededec;
 }
 
-:root {
+:root [data-theme='dark'] {
   --black-color: #fff;
   --dark-gray-color: #ececec;
   --gray-color: #b6b6b6;

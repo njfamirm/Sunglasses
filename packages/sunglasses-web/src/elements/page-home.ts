@@ -50,10 +50,6 @@ export default class PageHome extends SunglassesElement {
     tweet-container {
       margin-bottom: 2em;
     }
-
-    tweet-controller {
-      width: 100%;
-    }
   `;
 
   override render(): TemplateResult {
