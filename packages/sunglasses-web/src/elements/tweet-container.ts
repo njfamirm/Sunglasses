@@ -28,8 +28,6 @@ export default class TweetContainer extends SunglassesElement {
     }
 
     .tweet-container {
-      width: 600px;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -219,9 +217,9 @@ export default class TweetContainer extends SunglassesElement {
       this._changeTheme(themeNumber);
     }, 'changeTweetTheme');
 
-    // this._signalListener((sizeNumber) => {
-    //   this._changeSize(sizeNumber);
-    // }, 'changeTweetSize');
+    this._signalListener((sizeNumber) => {
+      this._changeSize(sizeNumber);
+    }, 'changeTweetSize');
   }
 
   fetching = false;
@@ -263,14 +261,21 @@ export default class TweetContainer extends SunglassesElement {
   protected _changeTheme(themeNumber: string): void {
     this.tweetContainer!.setAttribute(
       'style',
-      `background-image: var(--tweet-theme-${themeNumber});`,
+      // TODO: better way?
+      `${this.tweetContainer?.getAttribute('style') ?? ''}
+      background-image: var(--tweet-theme-${themeNumber});`,
     );
   }
 
-  // protected _changeSize(sizeNumber: string): void {
-  //   this.tweetContainer!.style.width = `var(--tweet-width-${sizeNumber})`;
-  //   this.tweetContainer!.style.height = `var(--tweet-height-${sizeNumber})`;
-  // }
+  protected _changeSize(sizeNumber: string): void {
+    this.tweetContainer!.setAttribute(
+      'style',
+      // TODO: better way?
+      `${this.tweetContainer?.getAttribute('style') ?? ''}
+      width: var(--tweet-width-${sizeNumber});
+      height: var(--tweet-height-${sizeNumber});`,
+    );
+  }
 
   protected _tweetInfo = {
     name: 'Sunglasses',

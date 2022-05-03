@@ -125,7 +125,7 @@ export default class TweetController extends SunglassesElement {
       filter: brightness(0.6);
     }
 
-    /* .tweet-size {
+    .tweet-size {
       width: 100%;
       height: 100%;
       display: flex;
@@ -152,7 +152,7 @@ export default class TweetController extends SunglassesElement {
     .active-size {
       color: var(--gray-color);
       background-color: var(--white-dark-color);
-    } */
+    }
 
     .controller-container > * {
       display: none;
@@ -166,7 +166,7 @@ export default class TweetController extends SunglassesElement {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 150px;
+      width: 200px;
     }
 
     .session-button {
@@ -238,13 +238,13 @@ export default class TweetController extends SunglassesElement {
           <button class="theme theme7"></button>
         </div>
 
-        <!-- <div class="tweet-size">
-          <button class="size size1 active-size">1 × 2</button>
-          <button class="size size2">1 × 2</button>
-          <button class="size size3">1 × 2</button>
-          <button class="size size4">1 × 2</button>
-          <button class="size size5">1 × 2</button>
-        </div> -->
+        <div class="tweet-size">
+          <button class="size size0 active-size">auto</button>
+          <button class="size size1">1:1</button>
+          <button class="size size2">9:16</button>
+          <button class="size size3">1.91:1</button>
+          <button class="size size4">4:5</button>
+        </div>
       </div>
       <div class="button-container">
         <button class="session-button search-button active-button">
@@ -268,7 +268,7 @@ export default class TweetController extends SunglassesElement {
             </g>
           </svg>
         </button>
-        <!-- <button class="session-button size-button">
+        <button class="session-button size-button">
           <svg class="session-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <g>
               <path
@@ -277,7 +277,7 @@ export default class TweetController extends SunglassesElement {
                 d="M190.233,309.7L17.067,482.867v-133c0-4.713-3.817-8.533-8.533-8.533S0,345.154,0,349.867v153.6     c0,1.111,0.227,2.217,0.658,3.26c0.865,2.088,2.527,3.75,4.615,4.615C6.316,511.773,7.422,512,8.533,512h153.6     c4.717,0,8.533-3.821,8.533-8.533s-3.817-8.533-8.533-8.533h-133L202.3,321.767c3.333-3.333,3.333-8.733,0-12.067     C198.967,306.367,193.567,306.367,190.233,309.7z"></path>
             </g>
           </svg>
-        </button> -->
+        </button>
         <button class="session-button export-button">
           <svg class="session-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
             <g>
@@ -291,13 +291,14 @@ export default class TweetController extends SunglassesElement {
       </div>
     `;
   }
+
   delayTime: number = debugMode === 'debug' ? 800 : 0;
 
   @query('.export-button') exportButton: HTMLSelectElement | undefined;
   @query('.search-input') input: HTMLSelectElement | undefined;
   @query('.search-form') form: HTMLSelectElement | undefined;
   @query('.color-palette') colorPalette: HTMLSelectElement | undefined;
-  // @query('.tweet-size') tweetSize: HTMLSelectElement | undefined;
+  @query('.tweet-size') tweetSize: HTMLSelectElement | undefined;
 
   override firstUpdated(): void {
     const sessionButton = this.shadowRoot?.querySelectorAll('.session-button');
@@ -314,12 +315,12 @@ export default class TweetController extends SunglassesElement {
       });
     });
 
-    // const sizeButton = this.shadowRoot?.querySelectorAll('.size');
-    // sizeButton?.forEach((element: Element) => {
-    //   element.addEventListener('click', () => {
-    //     this._changeSize(element);
-    //   });
-    // });
+    const sizeButton = this.shadowRoot?.querySelectorAll('.size');
+    sizeButton?.forEach((element: Element) => {
+      element.addEventListener('click', () => {
+        this._changeSize(element);
+      });
+    });
 
     // send export signal to tweetContainer
     this.exportButton?.addEventListener('click', () => {
@@ -357,11 +358,10 @@ export default class TweetController extends SunglassesElement {
 
         break;
 
-      // case 'size-button':
-      //   this.tweetSize?.setAttribute('style', 'display: flex;');
-      //   this.tweetSize?.classList.add('active-session');
-
-      //   break;
+      case 'size-button':
+        activeSession?.setAttribute('style', 'display: none;');
+        this.tweetSize?.setAttribute('style', 'display: flex;');
+        this.tweetSize?.classList.add('active-session');
     }
 
     element.classList.add('active-button');
@@ -378,16 +378,16 @@ export default class TweetController extends SunglassesElement {
     this._signalDispatch({name: 'changeTweetTheme', description: `${themeNumber.at(-1)}`});
   }
 
-  // protected _changeSize(element: Element): void {
-  //   const activeSize = this.shadowRoot?.querySelector('.active-size');
-  //   activeSize?.classList.remove('active-size');
+  protected _changeSize(element: Element): void {
+    const activeSize = this.shadowRoot?.querySelector('.active-size');
+    activeSize?.classList.remove('active-size');
 
-  //   element.classList.add('active-size');
-  //   const tweetSizeNum = element?.classList.value.split(/\s+/)[1];
+    element.classList.add('active-size');
+    const tweetSizeNum = element?.classList.value.split(/\s+/)[1];
 
-  //   // send change theme signal to tweetConatiner
-  //   this._signalDispatch({name: 'changeTweetSize', description: `${tweetSizeNum.at(-1)}`});
-  // }
+    // send change theme signal to tweetConatiner
+    this._signalDispatch({name: 'changeTweetSize', description: `${tweetSizeNum.at(-1)}`});
+  }
 
   protected _onSearch(): void {
     const value = this.input?.value;

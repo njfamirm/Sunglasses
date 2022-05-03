@@ -34,8 +34,17 @@
   --tweet-theme-6: linear-gradient(62deg, #867f03 0%, #860303 100%);
   --tweet-theme-7: linear-gradient(62deg, #edf903 0%, #162ec9 100%);
 
-  /* --tweet-width-1: 700px;
-  --tweet-height-1: 700px; */
+  --tweet-width-0: null;
+  --tweet-height-0: null;
+  --tweet-width-1: 540px;
+  --tweet-height-1: 540px;
+  --tweet-width-2: 540px;
+  --tweet-height-2: 960px;
+  --tweet-width-3: 540px;
+  --tweet-height-3: 304px;
+  --tweet-width-4: 540px;
+  --tweet-height-4: 675px;
+
 }
 
 :root [data-theme='light'] {
