@@ -2,9 +2,11 @@
 node_modules/
 
 # build
-static/*.js
+**/*.js
+**/*.map
+**/*.d.ts
+.tsbuildinfo
 static/*.css
-static/*.map
 
 # logs
 *.log

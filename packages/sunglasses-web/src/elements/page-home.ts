@@ -12,8 +12,8 @@ import './element-footer';
 export default class PageHome extends SunglassesElement {
   static override styles? = css`
     * {
-      margin: 0;
-      padding: 0;
+      /* margin: 0; */
+      /* padding: 0; */
       box-sizing: border-box;
     }
 
@@ -38,7 +38,6 @@ export default class PageHome extends SunglassesElement {
 
     header {
       width: 100vw;
-      padding: 0.2em 1em;
     }
 
     .main {
@@ -49,14 +48,7 @@ export default class PageHome extends SunglassesElement {
     }
 
     tweet-container {
-      margin-bottom: 2em;
-    }
-
-    tweet-controller {
-      width: 100%;
-    }
-
-    footer {
+      margin-top: 2em;
     }
   `;
 

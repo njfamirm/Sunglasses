@@ -10,6 +10,7 @@ export default class Footer extends SunglassesElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      user-select: none;
     }
 
     *:focus-visible {
@@ -18,7 +19,6 @@ export default class Footer extends SunglassesElement {
 
     a {
       cursor: pointer;
-      user-select: none;
       text-decoration: none;
     }
 
@@ -29,7 +29,7 @@ export default class Footer extends SunglassesElement {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      background-color: var(--white-color);
+      background-color: inherit;
     }
 
     .footer-text {
