@@ -24,6 +24,7 @@ export default class TweetController extends SunglassesElement {
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      margin: 1em;
     }
 
     .controller-container {
@@ -33,7 +34,7 @@ export default class TweetController extends SunglassesElement {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      margin: 1em;
+      margin-bottom: 1em;
     }
 
     .search-form {
@@ -337,7 +338,6 @@ export default class TweetController extends SunglassesElement {
 
   protected _changeSession(element: Element): void {
     const activeSession = this.shadowRoot?.querySelector('.active-session');
-    activeSession?.classList.remove('active-session');
 
     const button = this.shadowRoot?.querySelector('.active-button');
     button?.classList.remove('active-button');
@@ -347,12 +347,14 @@ export default class TweetController extends SunglassesElement {
     switch (sessionName) {
       case 'search-button':
         activeSession?.setAttribute('style', 'display: none;');
+        activeSession?.classList.remove('active-session');
         this.form?.setAttribute('style', 'display: flex;');
         this.form?.classList.add('active-session');
 
         break;
       case 'color-button':
         activeSession?.setAttribute('style', 'display: none;');
+        activeSession?.classList.remove('active-session');
         this.colorPalette?.setAttribute('style', 'display: flex;');
         this.colorPalette?.classList.add('active-session');
 
@@ -360,6 +362,7 @@ export default class TweetController extends SunglassesElement {
 
       case 'size-button':
         activeSession?.setAttribute('style', 'display: none;');
+        activeSession?.classList.remove('active-session');
         this.tweetSize?.setAttribute('style', 'display: flex;');
         this.tweetSize?.classList.add('active-session');
     }
@@ -385,7 +388,7 @@ export default class TweetController extends SunglassesElement {
     element.classList.add('active-size');
     const tweetSizeNum = element?.classList.value.split(/\s+/)[1];
 
-    // send change theme signal to tweetConatiner
+    // send change size signal to tweetConatiner
     this._signalDispatch({name: 'changeTweetSize', description: `${tweetSizeNum.at(-1)}`});
   }
 
@@ -396,39 +399,21 @@ export default class TweetController extends SunglassesElement {
       const ID = this._checkValidValue(value);
 
       if (ID !== null) {
-        this._changeButtonText('Searching');
+        this.form!.style.outline = '0.5px solid var(--green-color)';
         delay(this.delayTime).then(() => {
           // send fetch signal to tweet-container
           this._signalDispatch({name: 'fetchTweet', description: value});
-          this._changeButtonText('OK');
 
-          this._changeButtonText(''); // default
+          this.input!.value = '';
+          this.form!.style.outline = '0 solid #ffffff00';
         });
       } else {
-        this._changeButtonText('NotValid');
+        this.form!.style.outline = '0.5px solid var(--red-color)';
         delay(1000).then(() => {
-          this._changeButtonText(''); // default
+          this.input!.value = '';
+          this.form!.style.outline = '0 solid #ffffff00';
         });
       }
-    }
-  }
-
-  protected _changeButtonText(inner: string): void {
-    this._logger.incident('style', 'change_button_text', 'change button text in searching');
-
-    switch (inner) {
-      case 'NotValid':
-        this.form!.style.outline = '0.5px solid var(--red-color)';
-        break;
-      case 'Searching':
-        this.form!.style.outline = '0.5px solid var(--green-color)';
-        break;
-      case 'OK': // change to controller mode
-        // send fetch signal to tweet-container
-        break;
-      default:
-        this.input!.value = '';
-        this.form!.style.outline = '0 solid #ffffff00';
     }
   }
 

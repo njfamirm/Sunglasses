@@ -48,7 +48,7 @@ export default class PageHome extends SunglassesElement {
     }
 
     tweet-container {
-      margin-bottom: 2em;
+      margin-top: 2em;
     }
   `;
 
